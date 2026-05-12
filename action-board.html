@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高精高速早会看板</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;background:#f5f6fa;padding:20px;min-height:100vh}
+        .header{text-align:center;margin-bottom:30px;padding:20px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:12px;color:white;box-shadow:0 4px 15px rgba(102,126,234,0.3)}
+        .header h1{font-size:28px;margin-bottom:8px}
+        .header .date{font-size:14px;opacity:0.9}
+        .summary{display:flex;justify-content:center;gap:20px;margin-bottom:30px;flex-wrap:wrap}
+        .summary-card{padding:15px 30px;border-radius:10px;text-align:center;color:white;min-width:120px;transition:transform 0.2s}
+        .summary-card:hover{transform:translateY(-3px)}
+        .summary-card.active{background:linear-gradient(135deg,#f5af19 0%,#f12711 100%)}
+        .summary-card.delayed{background:linear-gradient(135deg,#ed213a 0%,#93291e 100%)}
+        .summary-card.done{background:linear-gradient(135deg,#11998e 0%,#38ef7d 100%)}
+        .summary-card .count{font-size:32px;font-weight:bold}
+        .summary-card .label{font-size:14px;opacity:0.9}
+        .owner-stats{background:white;border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 2px 10px rgba(0,0,0,0.05)}
+        .owner-stats h2{font-size:16px;color:#333;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px}
+        .clear-btn{font-size:12px;padding:4px 12px;border-radius:12px;border:1px solid #667eea;background:white;color:#667eea;cursor:pointer;display:none;margin-left:auto}
+        .clear-btn:hover{background:#667eea;color:white}
+        .owner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+        .owner-card{padding:12px 15px;border-radius:8px;background:#f8f9fa;border:2px solid transparent;transition:all 0.2s;cursor:pointer}
+        .owner-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(102,126,234,0.15)}
+        .owner-card.active-filter{border-color:#667eea;background:#eef0ff}
+        .owner-card .name{font-weight:600;color:#333;margin-bottom:8px}
+        .owner-card .badges{display:flex;gap:8px;flex-wrap:wrap}
+        .owner-card .badge{padding:3px 10px;border-radius:12px;font-size:12px;font-weight:500}
+        .owner-card .badge.active{background:#fff3cd;color:#856404}
+        .owner-card .badge.delayed{background:#f8d7da;color:#721c24}
+        .owner-card .badge.done{background:#d4edda;color:#155724}
+        .owner-card .badge-count{font-weight:bold;margin-right:2px}
+        .filter-hint{font-size:12px;color:#999;margin-top:8px;display:none}
+        .section{background:white;border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 2px 10px rgba(0,0,0,0.05)}
+        .section-title{font-size:18px;font-weight:600;margin-bottom:15px;padding-bottom:10px;border-bottom:2px solid #eee;display:flex;align-items:center;gap:10px}
+        .section-title.active{color:#f5af19;border-color:#f5af19}
+        .section-title.delayed{color:#ed213a;border-color:#ed213a}
+        .section-title.done{color:#11998e;border-color:#11998e}
+        .item{padding:15px;border-radius:8px;margin-bottom:12px;border-left:4px solid;background:#f8f9fa;break-inside:avoid}
+        .item.active{border-color:#f5af19}
+        .item.delayed{border-color:#ed213a}
+        .item.done{border-color:#11998e}
+        .item-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+        .item-code{font-weight:600;font-size:15px;color:#333}
+        .item-owner{font-size:13px;color:#666;background:#e9ecef;padding:4px 10px;border-radius:15px}
+        .item-desc{color:#555;margin-bottom:8px;line-height:1.5;font-size:14px}
+        .item-action{color:#333;font-weight:500;margin-bottom:8px;padding:8px;background:white;border-radius:6px;line-height:1.5;font-size:14px}
+        .item-action strong{color:#666;font-weight:500}
+        .item-due{font-size:13px;color:#888}
+        .item-due span{color:#333;font-weight:600}
+        .empty{text-align:center;color:#999;padding:30px}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>高精高速早会看板</h1>
+        <div class="date" id="updateDate">2026年5月12日 星期二</div>
+    </div>
+    <div class="summary">
+        <div class="summary-card active"><div class="count" id="activeCount">-</div><div class="label">进行中</div></div>
+        <div class="summary-card delayed"><div class="count" id="delayedCount">-</div><div class="label">延期</div></div>
+        <div class="summary-card done"><div class="count" id="doneCount">-</div><div class="label">已完成</div></div>
+    </div>
+    <div class="owner-stats">
+        <h2>
+            负责人统计（进行中 / 延期）
+            <button class="clear-btn" id="clearBtn" onclick="clearFilter()">显示全部</button>
+        </h2>
+        <div class="filter-hint" id="filterHint"></div>
+        <div class="owner-grid" id="ownerGrid"></div>
+    </div>
+    <div class="section">
+        <div class="section-title active">进行中</div>
+        <div id="activeList"></div>
+    </div>
+    <div class="section">
+        <div class="section-title delayed">延期</div>
+        <div id="delayedList"></div>
+    </div>
+    <div class="section">
+        <div class="section-title done">已完成</div>
+        <div id="doneList"></div>
+    </div>
+    <script>
+        var DATA = [{"code": "C01196304（XR951-2）", "desc": "同轴度超差（装完推力盘）", "action": "已沟通客户，结果为报废", "owner": "袁胜", "due_date": "05-11", "status": "已完成"}, {"code": "C01196269", "desc": "质量问题，需外圆磨返修", "action": "暂无解决方案，已升级解决，跟踪进度", "owner": "范拴让", "due_date": "05-11", "status": "延期"}, {"code": "C01196228", "desc": "3件齿检复测质量问题", "action": "磨齿返修存在风险，判定责任，同步安排返修（2件OK，1件待返）", "owner": "金益/刘海燕", "due_date": "05-11", "status": "延期"}, {"code": "C01300271", "desc": "委外电镀需压缩时间", "action": "确认回厂时间", "owner": "马文洁", "due_date": "05-08", "status": "延期"}, {"code": "C01300341", "desc": "4件锁定库存状态不明", "action": "确认锁定原因及解决方案", "owner": "金益", "due_date": "05-08", "status": "进行中"}, {"code": "CC093021（TF999-1）", "desc": "客户退回件", "action": "确认是否报废", "owner": "金益", "due_date": "05-12", "status": "进行中"}, {"code": "C14006096、C14006097", "desc": "库存状态需确认", "action": "确认是否有窄版", "owner": "刘磊", "due_date": "05-11", "status": "延期"}, {"code": "C01196107", "desc": "4件锁定库存状态不明", "action": "确认原因", "owner": "金益", "due_date": "05-11", "status": "延期"}, {"code": "C01196212", "desc": "客户退货件，锈蚀严重", "action": "已反馈销售，跟踪客户反馈结果", "owner": "刘磊", "due_date": "05-18", "status": "进行中"}, {"code": "C01196137（WY150-1)", "desc": "电跳返修不合格，已无余量", "action": "已用老设备检测， 仍为不合格，需想客户申请偏差", "owner": "金益", "due_date": "05-18", "status": "进行中"}, {"code": "C01196295", "desc": "钢印位置错误", "action": "钢印位置错误问题已返修，需进一步根因分析，避免后续再次发生", "owner": "尹唐/金益", "due_date": "05-18", "status": "进行中"}, {"code": "C01300310", "desc": "2件去重量大", "action": "泛威大齿轮车床返修，优先返修发货产品，此款排队", "owner": "刘海燕", "due_date": "05-18", "status": "进行中"}];
+        var currentFilter = null;
+
+        function escapeHtml(text){
+            var div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function getOwners(item){
+            if(!item.owner) return [];
+            return item.owner.split('/').map(function(o){return o.trim()}).filter(function(o){return o});
+        }
+
+        function getOwnerStats(){
+            var stats = {};
+            DATA.forEach(function(item){
+                getOwners(item).forEach(function(owner){
+                    if(!stats[owner]) stats[owner] = {active:0,delayed:0,done:0};
+                    if(item.status==='进行中') stats[owner].active++;
+                    else if(item.status==='延期') stats[owner].delayed++;
+                    else if(item.status==='已完成') stats[owner].done++;
+                });
+            });
+            return stats;
+        }
+
+        function renderOwnerStats(){
+            var stats = getOwnerStats();
+            var grid = document.getElementById('ownerGrid');
+            var sorted = Object.entries(stats).sort(function(a,b){
+                return (b[1].active+b[1].delayed) - (a[1].active+a[1].delayed);
+            });
+            var html = '';
+            sorted.forEach(function(e){
+                var name = e[0], c = e[1];
+                var cls = (currentFilter === name) ? 'owner-card active-filter' : 'owner-card';
+                html += '<div class="'+cls+'" onclick="filterByOwner(this)">'
+                    + '<div class="name">' + escapeHtml(name) + '</div>'
+                    + '<div class="badges">'
+                    + (c.active>0?'<span class="badge active"><span class="badge-count">'+c.active+'</span>进行中</span>':'')
+                    + (c.delayed>0?'<span class="badge delayed"><span class="badge-count">'+c.delayed+'</span>延期</span>':'')
+                    + (c.active===0&&c.delayed===0?'<span class="badge done"><span class="badge-count">'+c.done+'</span>已完成</span>':'')
+                    + '</div></div>';
+            });
+            grid.innerHTML = html || '<div class="empty">暂无数据</div>';
+        }
+
+        function renderItemsHtml(items){
+            if(items.length===0) return '';
+            var html = '';
+            items.forEach(function(item){
+                var cls = item.status==='进行中'?'active':item.status==='延期'?'delayed':'done';
+                html += '<div class="item '+cls+'">'
+                    + '<div class="item-header"><div class="item-code">' + escapeHtml(item.code) + '</div>'
+                    + '<div class="item-owner">' + escapeHtml(item.owner) + '</div></div>'
+                    + '<div class="item-desc">' + escapeHtml(item.desc) + '</div>'
+                    + '<div class="item-action"><strong>行动计划：</strong>' + escapeHtml(item.action) + '</div>'
+                    + '<div class="item-due">预计完成时间：<span>' + escapeHtml(item.due_date) + '</span></div>'
+                    + '</div>';
+            });
+            return html;
+        }
+
+        function getFilteredData(){
+            if(!currentFilter) return DATA;
+            return DATA.filter(function(d){
+                return getOwners(d).indexOf(currentFilter) !== -1;
+            });
+        }
+
+        function renderAll(){
+            var filtered = getFilteredData();
+            var active = filtered.filter(function(d){return d.status==='进行中'});
+            var delayed = filtered.filter(function(d){return d.status==='延期'});
+            var done = filtered.filter(function(d){return d.status==='已完成'});
+            document.getElementById('activeCount').textContent = active.length;
+            document.getElementById('delayedCount').textContent = delayed.length;
+            document.getElementById('doneCount').textContent = done.length;
+            document.getElementById('activeList').innerHTML = renderItemsHtml(active) || '<div class="empty">暂无数据</div>';
+            document.getElementById('delayedList').innerHTML = renderItemsHtml(delayed) || '<div class="empty">暂无数据</div>';
+            document.getElementById('doneList').innerHTML = renderItemsHtml(done) || '<div class="empty">暂无数据</div>';
+            var clearBtn = document.getElementById('clearBtn');
+            clearBtn.style.display = currentFilter ? 'inline-block' : 'none';
+            var hint = document.getElementById('filterHint');
+            hint.style.display = currentFilter ? 'block' : 'none';
+            if(currentFilter) hint.textContent = '当前筛选：' + currentFilter + '（点击"显示全部"取消筛选）';
+            renderOwnerStats();
+        }
+
+        function filterByOwner(el){
+            var name = el.querySelector('.name').textContent;
+            if(currentFilter === name){
+                currentFilter = null;
+            } else {
+                currentFilter = name;
+            }
+            renderAll();
+        }
+
+        function clearFilter(){
+            currentFilter = null;
+            renderAll();
+        }
+
+        // 初始化
+        var now = new Date();
+        var weekdaysCN = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+        document.getElementById('updateDate').textContent = (now.getFullYear()+'年'+(now.getMonth()+1)+'月'+now.getDate()+'日 '+weekdaysCN[now.getDay()]);
+        renderAll();
+    </script>
+</body>
+</html>
