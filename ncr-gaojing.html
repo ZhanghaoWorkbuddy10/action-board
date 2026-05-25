@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高精高速 / 子件 NCR 未关闭明细 — 2026-05-25</title>
+<style>
+  :root {
+    --bg: #f5f6f8;
+    --card-bg: #fff;
+    --text: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --border: #e9ecef;
+    --primary: #1a73e8;
+    --gaojing-badge: #e74c3c;
+    --zijian-badge: #e67e22;
+    --approver-ok: #27ae60;
+    --approver-warn: #e67e22;
+    --approver-flow: #3498db;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); line-height:1.6; padding:20px; }
+  
+  .container { max-width:1200px; margin:0 auto; }
+  
+  /* Header */
+  .header { background: var(--card-bg); border-radius:12px; padding:24px 28px; margin-bottom:20px; box-shadow: var(--shadow); }
+  .header h1 { font-size:22px; font-weight:600; margin-bottom:6px; }
+  .header .meta { color: var(--text-secondary); font-size:14px; display:flex; gap:24px; flex-wrap:wrap; align-items:center; }
+  .header .meta .dot { width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:4px; }
+  .header .dot.live { background:#27ae60; animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  
+  /* Stats row */
+  .stats { display:flex; gap:16px; margin-bottom:20px; flex-wrap:wrap; }
+  .stat-card { background: var(--card-bg); border-radius:10px; padding:18px 22px; box-shadow: var(--shadow); min-width:140px; flex:1; }
+  .stat-card .num { font-size:28px; font-weight:700; }
+  .stat-card .label { font-size:13px; color:var(--text-secondary); margin-top:2px; }
+  .stat-card.gaojing .num { color: var(--gaojing-badge); }
+  .stat-card.zijian .num { color: var(--zijian-badge); }
+  .stat-card.total .num { color: var(--primary); }
+  
+  /* Section */
+  .section { background: var(--card-bg); border-radius:12px; padding:24px 28px; margin-bottom:20px; box-shadow: var(--shadow); }
+  .section h2 { font-size:18px; font-weight:600; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+  .badge { display:inline-block; padding:3px 12px; border-radius:20px; font-size:12px; font-weight:600; color:#fff; }
+  .badge.gaojing { background: var(--gaojing-badge); }
+  .badge.zijian { background: var(--zijian-badge); }
+  
+  /* Table */
+  .table-wrap { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th { background:#f8f9fa; padding:10px 12px; text-align:left; font-weight:600; color:var(--text-secondary); font-size:13px; border-bottom:2px solid var(--border); white-space:nowrap; cursor:pointer; user-select:none; }
+  th:hover { color:var(--primary); }
+  th .sort-icon { font-size:10px; margin-left:3px; opacity:0.3; }
+  th.sorted .sort-icon { opacity:1; }
+  td { padding:9px 12px; border-bottom:1px solid var(--border); vertical-align:middle; }
+  tr:hover { background:#f8f9ff; }
+  
+  /* Cell styles */
+  td.ncr a { color:var(--primary); text-decoration:none; font-weight:500; }
+  td.ncr a:hover { text-decoration:underline; }
+  td.name { font-weight:500; }
+  
+  /* Approver tags */
+  .tag { display:inline-block; padding:2px 10px; border-radius:12px; font-size:12px; font-weight:500; }
+  .tag.person { background:#e8f5e9; color:#2e7d32; }
+  .tag.flow { background:#e3f2fd; color:#1565c0; }
+  .tag.warn { background:#fff3e0; color:#e65100; }
+  .tag.empty { background:#f5f5f5; color:#9e9e9e; }
+  
+  /* Footer */
+  .footer { text-align:center; color:var(--text-secondary); font-size:12px; padding:16px; }
+  
+  /* Responsive */
+  @media (max-width:768px) {
+    body { padding:10px; }
+    .header, .section { padding:16px; }
+    th, td { padding:8px 6px; font-size:12px; }
+    .hide-mobile { display:none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ====== HEADER ====== -->
+<div class="header">
+  <h1>🎯 高精高速 / 子件 — 未关闭 NCR 明细</h1>
+  <div class="meta">
+    <span><span class="dot live"></span> 数据更新：2026-05-25 09:24</span>
+    <span>📋 NCR 总条数：25</span>
+    <span>🔗 数据来源：非风产品交付 NCR 跟踪</span>
+  </div>
+</div>
+
+<!-- ====== STATS ====== -->
+<div class="stats">
+  <div class="stat-card gaojing">
+    <div class="num" id="statGaojing">19</div>
+    <div class="label">🏭 高精高速 NCR</div>
+  </div>
+  <div class="stat-card zijian">
+    <div class="num" id="statZijian">6</div>
+    <div class="label">🔩 子件 NCR</div>
+  </div>
+  <div class="stat-card total">
+    <div class="num" id="statTotal">25</div>
+    <div class="label">📊 合计</div>
+  </div>
+</div>
+
+<!-- ====== 高精高速 ====== -->
+<div class="section">
+  <h2><span class="badge gaojing">高精高速</span> 未关闭 NCR（<span id="countGaojing">19</span> 条）</h2>
+  <div class="table-wrap">
+    <table id="tableGaojing">
+      <thead>
+        <tr>
+          <th onclick="sortTable('tableGaojing',0)" style="width:50px">#</th>
+          <th onclick="sortTable('tableGaojing',1)">存货编码</th>
+          <th onclick="sortTable('tableGaojing',2)">存货名称</th>
+          <th onclick="sortTable('tableGaojing',3)">客户</th>
+          <th onclick="sortTable('tableGaojing',4)">零件号</th>
+          <th onclick="sortTable('tableGaojing',5)">当前审批人</th>
+          <th onclick="sortTable('tableGaojing',6)" class="hide-mobile">创建时间</th>
+        </tr>
+      </thead>
+      <tbody id="tbodyGaojing"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ====== 子件 ====== -->
+<div class="section">
+  <h2><span class="badge zijian">子件</span> 未关闭 NCR（<span id="countZijian">6</span> 条）</h2>
+  <div class="table-wrap">
+    <table id="tableZijian">
+      <thead>
+        <tr>
+          <th onclick="sortTable('tableZijian',0)" style="width:50px">#</th>
+          <th onclick="sortTable('tableZijian',1)">存货编码</th>
+          <th onclick="sortTable('tableZijian',2)">存货名称</th>
+          <th onclick="sortTable('tableZijian',3)">客户</th>
+          <th onclick="sortTable('tableZijian',4)">零件号</th>
+          <th onclick="sortTable('tableZijian',5)">当前审批人</th>
+          <th onclick="sortTable('tableZijian',6)" class="hide-mobile">创建时间</th>
+        </tr>
+      </thead>
+      <tbody id="tbodyZijian"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  非风产品交付 NCR 跟踪 · 每日更新 · 数据来源 OA 系统
+</div>
+
+</div>
+
+<!-- ====== DATA ====== -->
+<script>
+const DATA = {
+  gaojing: [
+    {"xuhao":"2","bianma":"C01196269","name":"T型轴","kehu":"021093","ncr":"XH675","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/4239774c-31dd-4ce1-bfad-5ada52cf492b?additional_query={}","time":"2026-04-22","approver":"返工返修流程"},
+    {"xuhao":"3","bianma":"CC092930","name":"齿轮","kehu":"021093","ncr":"XN257","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/d804e66e-0408-4a2a-8990-0d4c7a66a0c2?additional_query={}","time":"2026-05-16","approver":"张友谊"},
+    {"xuhao":"4","bianma":"C01196293","name":"低速齿轮轴","kehu":"021097","ncr":"XR390","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/95f69189-2ba3-4eef-ba6b-f0a5c3fb97a9?additional_query={}","time":"2026-05-23","approver":"金益"},
+    {"xuhao":"5","bianma":"C01196294","name":"高速齿轮轴","kehu":"021097","ncr":"XR391","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/088d2e72-3929-4f9d-a2f5-f6b397a4b26a?additional_query={}","time":"2026-05-10","approver":"偏差申请流程"},
+    {"xuhao":"6","bianma":"C01196294","name":"高速齿轮轴","kehu":"021097","ncr":"XR370","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/2a01de02-120b-4646-81c8-8f1066f2ad5d?additional_query={}","time":"2026-05-10","approver":""},
+    {"xuhao":"7","bianma":"C01196294","name":"高速齿轮轴","kehu":"021097","ncr":"XR369","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/4cfc5e3b-ec5f-4e8d-b695-89e4194d6256?additional_query={}","time":"2026-05-10","approver":"偏差申请流程"},
+    {"xuhao":"8","bianma":"C01196294","name":"高速齿轮轴","kehu":"021097","ncr":"XR371","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/ffe4983d-c7a6-4b8b-9ced-ecd398e091ad?additional_query={}","time":"2026-05-10","approver":"偏差申请流程"},
+    {"xuhao":"9","bianma":"C01196294","name":"高速齿轮轴","kehu":"021097","ncr":"XS382","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/eed70b1d-6fca-478e-a69c-4d8547c2d068?additional_query={}","time":"2026-05-10","approver":"偏差申请流程"},
+    {"xuhao":"10","bianma":"C01196294","name":"高速齿轮轴","kehu":"021097","ncr":"XS378","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/74b0144a-c397-4613-ab76-bc105cd1db69?additional_query={}","time":"2026-05-10","approver":"偏差申请流程"},
+    {"xuhao":"11","bianma":"C01196294","name":"高速齿轮轴","kehu":"021097","ncr":"YH401","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/318f5ebd-bd78-4e46-b321-4b9a534d6d38?additional_query={}","time":"2026-05-15","approver":"于宏宝"},
+    {"xuhao":"12","bianma":"C01196294","name":"高速齿轮轴","kehu":"021097","ncr":"XR373","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/f56ac5f8-3cf8-4b75-9b70-8c8ff8d49161?additional_query={}","time":"2026-05-18","approver":"返工返修流程"},
+    {"xuhao":"13","bianma":"C01196295","name":"低速齿轮轴","kehu":"021097","ncr":"XR376","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/f1ddd928-2809-42fa-b551-b0a11f364de0?additional_query={}","time":"2026-04-02","approver":"偏差申请流程"},
+    {"xuhao":"14","bianma":"C01196295","name":"低速齿轮轴","kehu":"021097","ncr":"XR374","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/4db6d4db-cb6a-466d-9da8-f28a0ba75a43?additional_query={}","time":"2026-04-24","approver":"王晓柯"},
+    {"xuhao":"15","bianma":"C01196295","name":"低速齿轮轴","kehu":"021097","ncr":"XR376","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/51c4d55f-aa56-4801-b9f9-c721b7f7abe3?additional_query={}","time":"2026-05-23","approver":"返工返修流程"},
+    {"xuhao":"16","bianma":"CC093021","name":"大齿轮组件","kehu":"021097","ncr":"YG846-4","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/3c2a5e2f-0835-4759-8d62-ca61b85de199?additional_query={}","time":"2026-05-22","approver":"返工返修流程"},
+    {"xuhao":"20","bianma":"CC093052","name":"齿轮","kehu":"371025","ncr":"YH054","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/93562676-2a12-4ba5-982a-8ed62b400261?additional_query={}","time":"2026-05-21","approver":"舒大张"},
+    {"xuhao":"21","bianma":"CC093052","name":"齿轮","kehu":"371025","ncr":"XR409","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/2ccfdb22-656d-4faf-8914-4ef175d6b3f1?additional_query={}","time":"2026-05-21","approver":"返工返修流程"},
+    {"xuhao":"28","bianma":"C01196226","name":"齿轮轴组件","kehu":"51202007","ncr":"XE033-10","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/099c4013-da46-4e25-a02b-78ae678f88b8?additional_query={}","time":"2026-04-09","approver":"张路"},
+    {"xuhao":"29","bianma":"C01300341","name":"大齿轮组件","kehu":"51202007","ncr":"XT593-3","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/01cdb0db-f803-4cfc-b67c-c6ee7648467f?additional_query={}","time":"2026-05-14","approver":"返工返修流程"}
+  ],
+  zijian: [
+    {"xuhao":"22","bianma":"C01196251","name":"低速齿轮轴48","kehu":"—","ncr":"YK395-1","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/60ccf297-94e6-44f3-844e-2773c01ebc44?additional_query={}","time":"2026-05-24","approver":"佘吉楼"},
+    {"xuhao":"23","bianma":"C01300218","name":"主齿轮","kehu":"—","ncr":"YH533-1","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/71de34d5-dbf6-4ea1-9376-46e0dbdf74fd?additional_query={}","time":"2026-05-16","approver":"陈斌"},
+    {"xuhao":"24","bianma":"C01300218","name":"主齿轮","kehu":"—","ncr":"YH534-1","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/71de34d5-dbf6-4ea1-9376-46e0dbdf74fd?additional_query={}","time":"2026-05-16","approver":"陈斌"},
+    {"xuhao":"25","bianma":"C01300218","name":"主齿轮","kehu":"—","ncr":"YH535-1","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/71de34d5-dbf6-4ea1-9376-46e0dbdf74fd?additional_query={}","time":"2026-05-16","approver":"陈斌"},
+    {"xuhao":"26","bianma":"C01300218","name":"主齿轮","kehu":"—","ncr":"YH536-1","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/71de34d5-dbf6-4ea1-9376-46e0dbdf74fd?additional_query={}","time":"2026-05-16","approver":"陈斌"},
+    {"xuhao":"27","bianma":"C01300218","name":"主齿轮","kehu":"—","ncr":"YH532-1","link":"https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/71de34d5-dbf6-4ea1-9376-46e0dbdf74fd?additional_query={}","time":"2026-05-16","approver":"陈斌"}
+  ]
+};
+
+// === Render Tables ===
+function getApproverTag(approver) {
+  if (!approver) return '<span class="tag empty">未分配</span>';
+  if (approver.includes('流程') || approver.includes('返工')) return `<span class="tag flow">${approver}</span>`;
+  return `<span class="tag person">${approver}</span>`;
+}
+
+function renderTable(tbodyId, data) {
+  const tbody = document.getElementById(tbodyId);
+  tbody.innerHTML = data.map((r, i) => `
+    <tr>
+      <td>${i+1}</td>
+      <td>${r.bianma}</td>
+      <td class="name">${r.name}</td>
+      <td>${r.kehu}</td>
+      <td class="ncr"><a href="${r.link}" target="_blank" title="打开OA">${r.ncr}</a></td>
+      <td>${getApproverTag(r.approver)}</td>
+      <td class="hide-mobile">${r.time}</td>
+    </tr>
+  `).join('');
+}
+
+renderTable('tbodyGaojing', DATA.gaojing);
+renderTable('tbodyZijian', DATA.zijian);
+
+// === Simple Sort ===
+let sortState = {};
+function sortTable(tableId, colIdx) {
+  const table = document.getElementById(tableId);
+  const tbody = table.querySelector('tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const key = tableId + '_' + colIdx;
+  sortState[key] = sortState[key] === 'asc' ? 'desc' : 'asc';
+  const dir = sortState[key] === 'asc' ? 1 : -1;
+  
+  rows.sort((a, b) => {
+    const aVal = a.cells[colIdx].textContent.trim();
+    const bVal = b.cells[colIdx].textContent.trim();
+    return aVal.localeCompare(bVal, 'zh-CN') * dir;
+  });
+  
+  rows.forEach(r => tbody.appendChild(r));
+  
+  // Update header indicator
+  table.querySelectorAll('th').forEach(th => th.classList.remove('sorted'));
+  table.querySelectorAll('th')[colIdx].classList.add('sorted');
+}
+</script>
+</body>
+</html>
