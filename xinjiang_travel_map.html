@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新疆伊犁旅行路线地图</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; font-family: 'Microsoft YaHei', sans-serif; }
+
+#map { position:absolute; top:0; left:0; right:0; bottom:0; z-index:1; }
+
+/* 右侧面板 */
+#panel {
+  position:absolute; right:0; top:0; bottom:0; width:340px; z-index:1000;
+  background: rgba(255,255,255,0.96); box-shadow: -2px 0 12px rgba(0,0,0,0.15);
+  overflow-y:auto; padding:16px 14px; transition: transform 0.3s;
+}
+@media(max-width:700px) { #panel { width:100%; transform:translateX(100%); } #panel.open { transform:translateX(0); } }
+
+.day-card {
+  background: #f8f9fa; border-radius:10px; padding:12px 14px; margin-bottom:12px;
+  cursor:pointer; transition: all 0.2s; border-left: 4px solid #ccc;
+}
+.day-card:hover { background:#e9f5ff; transform:translateX(-3px); }
+.day-card.active { background:#e9f5ff; border-left-color: #1890ff; box-shadow:0 2px 8px rgba(24,144,255,0.2); }
+.day-card h3 { margin:0 0 6px 0; font-size:15px; }
+.day-card h3 span { display:inline-block; width:22px; height:22px; line-height:22px;
+  text-align:center; border-radius:50%; color:#fff; font-size:12px; margin-right:6px; }
+.day-card p { margin:3px 0; font-size:13px; color:#555; line-height:1.5; }
+.day-label { font-size:11px; color:#999; margin-bottom:2px; }
+
+/* 图例 */
+#legend {
+  position:absolute; bottom:20px; left:10px; z-index:1000;
+  background:rgba(255,255,255,0.95); padding:10px 12px; border-radius:8px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.15); font-size:12px; line-height:1.8;
+}
+.legend-line { display:flex; align-items:center; gap:6px; }
+.legend-dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+.legend-line-stripe { width:24px; height:4px; flex-shrink:0; }
+
+/* 加载遮罩 */
+#loading {
+  position:fixed; top:0; left:0; right:0; bottom:0; z-index:9999;
+  background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center;
+}
+#loading-box { background:#fff; border-radius:12px; padding:30px 40px; text-align:center; }
+#loading-box .spinner { width:36px; height:36px; border:4px solid #eee; border-top:4px solid #1890ff;
+  border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto 12px; }
+@keyframes spin { to { transform:rotate(360deg); } }
+#loading-box p { margin:0; color:#555; font-size:14px; }
+#loading-box small { color:#999; font-size:12px; }
+</style>
+</head>
+<body>
+
+<div id="loading">
+  <div id="loading-box">
+    <div class="spinner"></div>
+    <p>正在加载地图数据…</p>
+    <small>首次加载约 3~8 秒</small>
+  </div>
+</div>
+
+<div id="map"></div>
+
+<div id="panel">
+  <h2 style="margin:0 0 14px 0;font-size:17px;">🗺️ 新疆伊犁4天行程</h2>
+  <div class="day-label">📅 婚礼日（6/26）· 无自驾</div>
+  <div class="day-card" onclick="focusDay(0)" id="card0">
+    <h3><span style="background:#666">🏔️</span> 昭苏玉湖</h3>
+    <p>湖岸轻徒步、观雪山倒影</p>
+    <p>🏨 住宿：望湖庄园（首选）/ 昭苏县城</p>
+  </div>
+
+  <div class="day-label">📅 Day 1（6/27）· 约330km</div>
+  <div class="day-card" onclick="focusDay(1)" id="card1">
+    <h3><span style="background:#e74c3c">1</span> 昭苏玉湖 → 特克斯</h3>
+    <p>🚗 S220省道，约1.5小时</p>
+    <p>🏞️ 天马浴河（昭苏湿地公园）</p>
+  </div>
+  <div class="day-card" onclick="focusDay(1)" id="card1b">
+    <h3><span style="background:#e74c3c">2</span> 特克斯 → 赛里木湖</h3>
+    <p>🚗 G577转连霍高速，约3.5小时</p>
+    <p>🏨 住宿：赛里木湖东门（桔子水晶等）</p>
+  </div>
+
+  <div class="day-label">📅 Day 2（6/28）· 约180km</div>
+  <div class="day-card" onclick="focusDay(2)" id="card2">
+    <h3><span style="background:#f39c12">3</span> 赛里木湖环湖</h3>
+    <p>🚗 环湖约90km，走走停停2~3小时</p>
+    <p>🏞️ 月亮湾、点将台、西海草原</p>
+  </div>
+  <div class="day-card" onclick="focusDay(2)" id="card2b">
+    <h3><span style="background:#f39c12">4</span> 赛里木湖 → 精河县</h3>
+    <p>🚗 连霍高速，约1.5小时</p>
+    <p>🏨 住宿：精河县（希尔顿惠庭/领御国际）</p>
+  </div>
+
+  <div class="day-label">📅 Day 3（6/29）· 约420km</div>
+  <div class="day-card" onclick="focusDay(3)" id="card3">
+    <h3><span style="background:#9b59b6">5</span> 精河县 → 乌鲁木齐</h3>
+    <p>🚗 连霍高速，约4.5小时</p>
+    <p>🏞️ 国际大巴扎 / 新疆博物馆</p>
+    <p>🏨 住宿：乌鲁木齐机场附近</p>
+  </div>
+  <div style="font-size:11px;color:#bbb;text-align:center;margin-top:8px;">Powered by 高德地图 · 双击桌面HTML文件即可打开</div>
+</div>
+
+<div id="legend">
+  <div style="font-weight:bold;margin-bottom:6px;">图例</div>
+  <div class="legend-line"><div class="legend-dot" style="background:#e74c3c;"></div> Day1 路线</div>
+  <div class="legend-line"><div class="legend-dot" style="background:#f39c12;"></div> Day2 路线</div>
+  <div class="legend-line"><div class="legend-dot" style="background:#9b59b6;"></div> Day3 路线</div>
+  <div class="legend-line"><div class="legend-dot" style="background:#2ecc71;border:2px solid #fff;box-shadow:0 0 0 1px #2ecc71;"></div> 住宿点</div>
+  <div class="legend-line"><div class="legend-dot" style="background:#e74c3c;"></div> 景点/途经点</div>
+  <div class="legend-line"><div class="legend-dot" style="background:#3498db;"></div> 起点/终点</div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// ============================================================
+//  精确坐标（手动校准至高德地图实际位置）
+// ============================================================
+// 格式：[经度, 纬度]
+const places = {
+  1: { name:'昭苏玉湖（婚礼仪式地）', lng:80.847, lat:43.348, type:'start', day:0 },
+  2: { name:'望湖庄园（玉湖景区内住宿）', lng:80.852, lat:43.345, type:'hotel', day:0 },
+  3: { name:'昭苏县城（备选住宿）', lng:80.982, lat:43.393, type:'hotel', day:0 },
+  4: { name:'特克斯八卦城', lng:81.825, lat:43.230, type:'spot', day:1 },
+  5: { name:'赛里木湖东门', lng:81.148, lat:44.624, type:'hotel', day:1 },
+  6: { name:'赛里木湖·月亮湾', lng:81.195, lat:44.588, type:'spot', day:2 },
+  7: { name:'赛里木湖·点将台', lng:81.078, lat:44.535, type:'spot', day:2 },
+  8: { name:'赛里木湖·西海草原', lng:80.935, lat:44.548, type:'spot', day:2 },
+  9: { name:'精河县', lng:82.926, lat:44.620, type:'hotel', day:2 },
+  10:{ name:'乌鲁木齐博物馆', lng:87.617, lat:43.777, type:'spot', day:3 },
+  11:{ name:'乌鲁木齐机场附近（住宿）', lng:87.474, lat:43.907, type:'hotel', day:3 },
+};
+
+// 路线分段（按地点序号连接）
+const dayRoutes = {
+  1: [ [1,4], [4,5] ],
+  2: [ [5,6], [6,7], [7,8], [8,5], [5,9] ],
+  3: [ [9,10], [10,11] ],
+};
+
+const dayColors = { 1:'#e74c3c', 2:'#f39c12', 3:'#9b59b6' };
+const dayNames  = { 1:'Day1 昭苏→特克斯→赛里木湖', 2:'Day2 赛里木湖环湖→精河县', 3:'Day3 精河→乌鲁木齐' };
+
+// ============================================================
+//  初始化地图（以赛里木湖为中心）
+// ============================================================
+const map = L.map('map').setView([44.0, 81.5], 8);
+
+// 高德瓦片（经纬度坐标系，与GPS一致）
+L.tileLayer('https://webrd0{1-4}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&style=7&x={x}&y={y}&z={z}', {
+  subdomains: '1234',
+  maxZoom: 18,
+}).addTo(map);
+
+// ============================================================
+//  画标记点
+// ============================================================
+const markers = {};
+Object.keys(places).forEach(function(id) {
+  var p = places[id];
+  var color = p.type==='start'?'#3498db' : p.type==='hotel'?'#2ecc71' : p.type==='end'?'#3498db':'#e74c3c';
+  var icon = L.divIcon({
+    className:'',
+    html:'<div style="background:'+color+';color:#fff;width:26px;height:26px;border-radius:50%;'
+       + 'display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold;'
+       + 'border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.3);">'+id+'</div>',
+    iconSize:[26,26], iconAnchor:[13,13]
+  });
+  var m = L.marker([p.lat, p.lng], {icon:icon})
+    .bindPopup('<b>第'+id+'站：'+p.name+'</b><br>所属：'+dayNames[p.day]?.replace('Day'+p.day,'第'+p.day+'天')||'婚礼日');
+  m.addTo(map);
+  markers[id] = m;
+});
+
+// ============================================================
+//  画路线（先用直线，再尝试用高德API替换为真实道路）
+// ============================================================
+const routeLines = {};   // day -> layer
+const AMAP_KEY = 'cbad4a2d26cf2ccbaa1fc19fbc678c8c';
+
+function drawStraightRoutes(day) {
+  var routes = dayRoutes[day];
+  if (!routes) return;
+  var allPts = [];
+  routes.forEach(function(seg) {
+    var a = places[seg[0]], b = places[seg[1]];
+    if (a && b) {
+      var pts = [[a.lat, a.lng], [b.lat, b.lng]];
+      var clr = dayColors[day];
+      var dash = (seg[0]===8 && seg[1]===5) ? '8,6' : '';  // 环湖返回段用虚线
+      var line = L.polyline(pts, {color:clr, weight:4, opacity:0.7, dashArray:dash}).addTo(map);
+      if (dash) line.bindTooltip(dayNames[day]+'（环湖返回东门）', {direction:'center'});
+      allPts.push([a.lat, a.lng], [b.lat, b.lng]);
+    }
+  });
+  // 合并到一条多段线便于显示/隐藏
+  if (!routeLines[day]) routeLines[day] = [];
+  // 实际每条seg是一条独立线，这里简化用最后一条代表（仅用于focus缩放）
+}
+
+function drawAllStraight() {
+  [1,2,3].forEach(drawStraightRoutes);
+  var all = Object.values(places).map(function(p){ return [p.lat, p.lng]; });
+  map.fitBounds(L.latLngBounds(all).pad(0.15));
+}
+
+// ---------- 尝试用高德API画真实道路 ----------
+function fetchRouteAMap(origin, dest, callback) {
+  var url = 'https://restapi.amap.com/v3/direction/driving?'
+    + 'key=' + AMAP_KEY
+    + '&origin=' + origin.lng + ',' + origin.lat
+    + '&destination=' + dest.lng + ',' + dest.lat
+    + '&strategy=0&extensions=all';
+  // JSONP方式绕过跨域
+  var cbName = '_amap_cb_' + Math.random().toString(36).substr(2,6);
+  window[cbName] = function(data) {
+    callback(data);
+    delete window[cbName];
+  };
+  var script = document.createElement('script');
+  script.src = url + '&callback=' + cbName;
+  document.head.appendChild(script);
+  setTimeout(function(){ delete window[cbName]; }, 8000);
+}
+
+function drawRealRoutes(day, callback) {
+  var routes = dayRoutes[day];
+  if (!routes) { if(callback)callback(); return; }
+  var clr = dayColors[day];
+  var completed = 0;
+  routes.forEach(function(seg) {
+    var a = places[seg[0]], b = places[seg[1]];
+    if (!a || !b) { completed++; if(completed===routes.length && callback)callback(); return; }
+    fetchRouteAMap(a, b, function(data) {
+      if (data.status==='1' && data.route && data.route.paths) {
+        data.route.paths.forEach(function(path) {
+          var pts = [];
+          (path.steps||[]).forEach(function(step) {
+            (step.polyline||'').split(';').forEach(function(ll) {
+              var p = ll.split(',');
+              if (p.length>=2) pts.push([parseFloat(p[1]), parseFloat(p[0])]);
+            });
+          });
+          if (pts.length>1) {
+            L.polyline(pts, {color:clr, weight:4, opacity:0.8}).addTo(map);
+          }
+        });
+      }
+      completed++;
+      if (completed===routes.length && callback) callback();
+    });
+  });
+}
+
+// ============================================================
+//  主流程：先画直线，再尝试真实路线
+// ============================================================
+drawAllStraight();
+
+// 延迟加载高德真实路线（避免API并发限制）
+setTimeout(function(){
+  var day = 1;
+  function nextDay() {
+    if (day>3) {
+      // 真实路线加载完毕，隐藏loading
+      var ld = document.getElementById('loading');
+      if (ld) ld.style.display = 'none';
+      return;
+    }
+    drawRealRoutes(day, function(){
+      day++;
+      setTimeout(nextDay, 600);  // 每段间隔600ms，避免触发频率限制
+    });
+  }
+  nextDay();
+}, 1500);
+
+// 如果8秒内loading还没消失（API失败），强制隐藏
+setTimeout(function(){
+  var ld = document.getElementById('loading');
+  if (ld) ld.style.display = 'none';
+}, 8000);
+
+// ============================================================
+//  右侧面板交互
+// ============================================================
+function focusDay(day) {
+  // 高亮卡片
+  document.querySelectorAll('.day-card').forEach(function(c){ c.classList.remove('active'); });
+  if (day>=1 && day<=3) {
+    var ids = ['card'+day, 'card'+day+'b'];
+    ids.forEach(function(id){ var el=document.getElementById(id); if(el)el.classList.add('active'); });
+  } else {
+    var el = document.getElementById('card0'); if(el)el.classList.add('active');
+  }
+  // 缩放地图到当天范围
+  var bounds = L.latLngBounds([]);
+  var shown = false;
+  if (day===0) {
+    [1,2,3].forEach(function(id){ var p=places[id]; bounds.extend([p.lat,p.lng]); shown=true; });
+  } else {
+    (dayRoutes[day]||[]).forEach(function(seg){
+      var a=places[seg[0]], b=places[seg[1]];
+      if(a){ bounds.extend([a.lat,a.lng]); shown=true; }
+      if(b){ bounds.extend([b.lat,b.lng]); shown=true; }
+    });
+  }
+  if (shown) map.fitBounds(bounds.pad(0.1));
+}
+</script>
+</body>
+</html>
