@@ -57,7 +57,7 @@
 <body>
     <div class="header">
         <h1>高精高速早会看板</h1>
-        <div class="date" id="updateDate">2026年6月1日 星期一</div>
+        <div class="date" id="updateDate">2026年6月9日 星期二</div>
     </div>
     <div class="summary">
         <div class="summary-card active"><div class="count" id="activeCount">-</div><div class="label">进行中</div></div>
@@ -85,7 +85,7 @@
         <div id="doneList"></div>
     </div>
     <script>
-        var DATA = [{"code": "C01196269", "desc": "质量问题，需外圆磨返修", "action": "暂无解决方案，已升级解决，跟踪进度", "owner": "范拴让", "due_date": "05-11", "status": "延期"}, {"code": "C01196212（XD862-1)", "desc": "客户退货件，锈蚀严重", "action": "已反馈销售，跟踪客户反馈结果", "owner": "刘磊", "due_date": "05-18", "status": "延期"}, {"code": "C01300136", "desc": "已打孔，仍超重，未开单", "action": "已开单，小齿轮线返修", "owner": "管全", "due_date": "06-01", "status": "进行中"}, {"code": "C01196210", "desc": "退货件已锈蚀无法返修", "action": "反馈销售，沟通客户，跟踪结果", "owner": "刘磊", "due_date": "05-15", "status": "延期"}, {"code": "C01196221（XU635-10)", "desc": "齿面锈坑（成品检验）", "action": "实物在小齿轮车间，转大齿轮磨齿返修，确认完成时间", "owner": "刘海燕", "due_date": "06-03", "status": "进行中"}, {"code": "C01300472（YN829）", "desc": "斜面有划伤", "action": "立磨返修，排队等待，确认原因并整改", "owner": "刘海燕/金益", "due_date": "05-27", "status": "延期"}, {"code": "C01300313（XU078-1/XU078-3）", "desc": "要求109.975~109.985，实测110.02", "action": "立磨返修，需排队", "owner": "刘海燕", "due_date": "05-30", "status": "延期"}, {"code": "C01196294（XS382，XR369）", "desc": "返修后电跳不好，离下差0.01", "action": "已返修，确认结果", "owner": "刘磊/金益", "due_date": "06-01", "status": "进行中"}, {"code": "C01300395（XW160-7）", "desc": "端面锈坑", "action": "确认返修方案", "owner": "袁胜", "due_date": "06-01", "status": "进行中"}, {"code": "C01300311（YH399）", "desc": "端面跳动0.013mm", "action": "确认清楚质量问题，输出结果", "owner": "金益", "due_date": "06-01", "status": "进行中"}];
+        var DATA = [{"code": "C01300472（YN829）", "desc": "斜面有划伤", "action": "立磨返修，排队等待，确认原因并整改", "owner": "刘海燕/金益", "due_date": "05-27", "status": "延期"}, {"code": "C01300313（XU078-1/XU078-3）", "desc": "要求109.975~109.985，实测110.02", "action": "立磨返修，需排队", "owner": "刘海燕", "due_date": "05-30", "status": "延期"}, {"code": "C01300395（XW160-7）", "desc": "端面锈坑", "action": "立磨返修，需排队", "owner": "刘海燕", "due_date": "06-01", "status": "延期"}, {"code": "C01196221", "desc": "5件磁粉电跳上锈", "action": "调查原因（初步分析胶带防护问题），小齿轮同步返修", "owner": "金益/管全", "due_date": "06-10", "status": "进行中"}, {"code": "C01300353（XS534-1）", "desc": "生锈，漏做动平衡", "action": "除锈，动平衡", "owner": "管全", "due_date": "06-10", "status": "进行中"}, {"code": "C01300494/491", "desc": "委外回厂后生锈，同时三坐标检测不良", "action": "确认报告，再输出结论", "owner": "金益", "due_date": "06-09", "status": "进行中"}, {"code": "C01310062（YH216-1）", "desc": "零件有砸伤", "action": "报废", "owner": "袁胜", "due_date": "06-09", "status": "已完成"}, {"code": "C01300315（XU077-2）", "desc": "端面生锈严重", "action": "大齿轮车床返修", "owner": "刘海燕", "due_date": "06-10", "status": "进行中"}, {"code": "C01300312（XU078-1/XU078-3）", "desc": "中心孔超差", "action": "X10立磨返修，排队等待", "owner": "刘海燕", "due_date": "06-07", "status": "延期"}, {"code": "C01300398", "desc": "三左边变形大", "action": "初评报废，正在与客户沟通，等待结果", "owner": "沈雨菁", "due_date": "06-05", "status": "延期"}, {"code": "C01196232", "desc": "轴径碰伤，精车去不掉", "action": "报废", "owner": "袁胜", "due_date": "06-08", "status": "已完成"}, {"code": "CC093093（YK384）", "desc": "内孔超差0.012", "action": "报废", "owner": "袁胜", "due_date": "06-08", "status": "已完成"}];
         var currentFilter = null;
 
         function escapeHtml(text){
