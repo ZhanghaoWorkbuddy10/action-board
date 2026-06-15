@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全部 NCR 未关闭明细 — 2026-06-15 09:49</title>
+<style>
+  :root {
+    --bg: #f5f6f8; --card-bg: #fff; --text: #2c3e50; --text-secondary: #7f8c8d;
+    --border: #e9ecef; --primary: #1a73e8;
+    --gaojing-badge: #e74c3c; --zijian-badge: #e67e22; --other-badge: #7f8c8d;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+         background: var(--bg); color: var(--text); line-height:1.6; padding:20px; }
+  .container { max-width:1400px; margin:0 auto; }
+  .header { background: var(--card-bg); border-radius:12px; padding:24px 28px; margin-bottom:20px; box-shadow: var(--shadow); }
+  .header h1 { font-size:22px; font-weight:600; margin-bottom:6px; }
+  .header .meta { color: var(--text-secondary); font-size:14px; display:flex; gap:24px; flex-wrap:wrap; align-items:center; }
+  .header .meta .dot { width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:4px; }
+  .header .dot.live { background:#27ae60; animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .stats { display:flex; gap:16px; margin-bottom:20px; flex-wrap:wrap; }
+  .stat-card { background: var(--card-bg); border-radius:10px; padding:18px 22px; box-shadow: var(--shadow); min-width:140px; flex:1; }
+  .stat-card .num { font-size:28px; font-weight:700; }
+  .stat-card .label { font-size:13px; color:var(--text-secondary); margin-top:2px; }
+  .stat-card.total .num { color: var(--primary); }
+  .stat-card.gaojing .num { color: var(--gaojing-badge); }
+  .stat-card.zijian .num { color: var(--zijian-badge); }
+  .stat-card.other .num { color: var(--other-badge); }
+  .section { background: var(--card-bg); border-radius:12px; padding:24px 28px; margin-bottom:20px; box-shadow: var(--shadow); }
+  .section h2 { font-size:18px; font-weight:600; margin-bottom:16px; }
+  .badge { display:inline-block; padding:3px 12px; border-radius:20px; font-size:12px; font-weight:600; color:#fff; }
+  .badge.gaojing { background: var(--gaojing-badge); }
+  .badge.zijian { background: var(--zijian-badge); }
+  .badge.other { background: var(--other-badge); }
+  .table-wrap { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th { background:#f8f9fa; padding:10px 12px; text-align:left; font-weight:600; color:var(--text-secondary);
+       font-size:13px; border-bottom:2px solid var(--border); white-space:nowrap; cursor:pointer; user-select:none; }
+  th:hover { color:var(--primary); }
+  th .sort-icon { font-size:10px; margin-left:3px; opacity:0.3; }
+  th.sorted .sort-icon { opacity:1; }
+  td { padding:9px 12px; border-bottom:1px solid var(--border); vertical-align:middle; }
+  tr:hover { background:#f8f9ff; }
+  td.ncr a { color:var(--primary); text-decoration:none; font-weight:500; }
+  td.ncr a:hover { text-decoration:underline; }
+  td.name { font-weight:500; }
+  .tag { display:inline-block; padding:2px 10px; border-radius:12px; font-size:12px; font-weight:500; }
+  .tag.person { background:#e8f5e9; color:#2e7d32; }
+  .tag.flow { background:#e3f2fd; color:#1565c0; }
+  .tag.warn { background:#fff3e0; color:#e65100; }
+  .tag.empty { background:#f5f5f5; color:#9e9e9e; }
+  .cat-tag { display:inline-block; padding:2px 10px; border-radius:12px; font-size:12px; font-weight:600; color:#fff; }
+  .cat-tag.gaojing { background: var(--gaojing-badge); }
+  .cat-tag.zijian { background: var(--zijian-badge); }
+  .cat-tag.other { background: var(--other-badge); }
+  .footer { text-align:center; color:var(--text-secondary); font-size:12px; padding:16px; }
+  @media (max-width:768px) {
+    body { padding:10px; } .header, .section { padding:16px; }
+    th, td { padding:8px 6px; font-size:12px; } .hide-mobile { display:none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+  <h1>全部 NCR 未关闭明细</h1>
+  <div class="meta">
+    <span><span class="dot live"></span> 数据更新：2026-06-15 09:49</span>
+    <span>NCR 总条数：49</span>
+    <span>数据来源：非风产品交付 NCR 跟踪</span>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat-card total">
+    <div class="num" id="statTotal">49</div>
+    <div class="label">全部 NCR</div>
+  </div>
+  <div class="stat-card gaojing">
+    <div class="num" id="statGaojing">11</div>
+    <div class="label">高精高速</div>
+  </div>
+  <div class="stat-card zijian">
+    <div class="num" id="statZijian">9</div>
+    <div class="label">子件</div>
+  </div>
+  <div class="stat-card other">
+    <div class="num" id="statOther">29</div>
+    <div class="label">其他</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>全部未关闭 NCR（<span id="countTotal">49</span> 条）</h2>
+  <div class="table-wrap">
+    <table id="tableAll">
+      <thead>
+        <tr>
+          <th onclick="sortTable('tableAll',0)" style="width:50px">#</th>
+          <th onclick="sortTable('tableAll',1)">类别</th>
+          <th onclick="sortTable('tableAll',2)">存货编码</th>
+          <th onclick="sortTable('tableAll',3)">存货名称</th>
+          <th onclick="sortTable('tableAll',4)">客户</th>
+          <th onclick="sortTable('tableAll',5)">零件号</th>
+          <th onclick="sortTable('tableAll',6)">当前审批人</th>
+          <th onclick="sortTable('tableAll',7)" class="hide-mobile">创建时间</th>
+        </tr>
+      </thead>
+      <tbody id="tbodyAll"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  非风产品交付 NCR 跟踪 · 每日更新 · 数据来源 OA 系统
+</div>
+</div>
+
+<script>
+const DATA = [{"xuhao": "1", "bianma": "C01196269", "name": "T型轴", "cat": "高精高速", "kehu": "021093", "ncr": "XH675", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/ec091166-b5d7-496b-bb28-a7b4e6efce8d?additional_query={}", "time": "2026-06-08", "approver": "偏差申请流程"}, {"xuhao": "2", "bianma": "C01300501", "name": "圆柱齿轮", "cat": "高精高速", "kehu": "021093", "ncr": "YK409", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/3ae3e85e-5d8c-479f-861e-03e5c9cc82ef?additional_query={}", "time": "2026-06-14", "approver": "张友谊"}, {"xuhao": "3", "bianma": "C01300395", "name": "大齿轮组件", "cat": "高精高速", "kehu": "021097", "ncr": "XW160-7", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/2707587b7501463da0b58637e7eaf80d?additional_query={}", "time": "2026-05-31", "approver": "王晓柯"}, {"xuhao": "4", "bianma": "C01300084", "name": "大齿轮", "cat": "子件", "kehu": "", "ncr": "YN648-2", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/52d36b61-391b-4f71-b4ed-bf3a38e5d271?additional_query={}", "time": "2026-06-11", "approver": "陈斌"}, {"xuhao": "5", "bianma": "C01300472", "name": "主动轮轴系#", "cat": "高精高速", "kehu": "021104", "ncr": "YN829", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/9050aa56-f150-4202-bb9a-eeff7c94d385?additional_query={}", "time": "2026-05-23", "approver": "返工返修流程"}, {"xuhao": "6", "bianma": "C01300218", "name": "主齿轮", "cat": "子件", "kehu": "", "ncr": "YH533-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/71de34d5-dbf6-4ea1-9376-46e0dbdf74fd?additional_query={}", "time": "2026-05-16", "approver": "偏差申请流程"}, {"xuhao": "7", "bianma": "C01300218", "name": "主齿轮", "cat": "子件", "kehu": "", "ncr": "YH534-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/71de34d5-dbf6-4ea1-9376-46e0dbdf74fd?additional_query={}", "time": "2026-05-16", "approver": "偏差申请流程"}, {"xuhao": "8", "bianma": "C01300218", "name": "主齿轮", "cat": "子件", "kehu": "", "ncr": "YH535-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/71de34d5-dbf6-4ea1-9376-46e0dbdf74fd?additional_query={}", "time": "2026-05-16", "approver": "偏差申请流程"}, {"xuhao": "9", "bianma": "C01300218", "name": "主齿轮", "cat": "子件", "kehu": "", "ncr": "YH536-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/71de34d5-dbf6-4ea1-9376-46e0dbdf74fd?additional_query={}", "time": "2026-05-16", "approver": "偏差申请流程"}, {"xuhao": "10", "bianma": "C01300218", "name": "主齿轮", "cat": "子件", "kehu": "", "ncr": "YH532-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/71de34d5-dbf6-4ea1-9376-46e0dbdf74fd?additional_query={}", "time": "2026-05-16", "approver": "偏差申请流程"}, {"xuhao": "11", "bianma": "C01300491", "name": "主动同步齿轮", "cat": "高精高速", "kehu": "51002051", "ncr": "YH205", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/0066652d-742d-4660-8b6e-90bfe6c0f431?additional_query={}", "time": "2026-06-02", "approver": "返工返修流程"}, {"xuhao": "12", "bianma": "C01310060", "name": "薄齿圈", "cat": "子件", "kehu": "", "ncr": "YH208-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/427a64be-23d3-4d79-a04d-c8567a5c0d04?additional_query={}", "time": "2026-06-10", "approver": "返工返修流程"}, {"xuhao": "13", "bianma": "C01300494", "name": "主动同步齿轮", "cat": "高精高速", "kehu": "51002051", "ncr": "YH210", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/fc43751e-7e3c-4163-ae09-e638a903f0a7?additional_query={}", "time": "2026-06-02", "approver": "返工返修流程"}, {"xuhao": "14", "bianma": "C01196226", "name": "齿轮轴组件", "cat": "高精高速", "kehu": "51202007", "ncr": "XE033-10", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/099c4013-da46-4e25-a02b-78ae678f88b8?additional_query={}", "time": "2026-04-09", "approver": "张路"}, {"xuhao": "15", "bianma": "C01300341", "name": "大齿轮组件", "cat": "高精高速", "kehu": "51202007", "ncr": "XT593-3", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/01cdb0db-f803-4cfc-b67c-c6ee7648467f?additional_query={}", "time": "2026-05-14", "approver": "返工返修流程"}, {"xuhao": "16", "bianma": "C01300351", "name": "大齿轮组件", "cat": "高精高速", "kehu": "51202007", "ncr": "XU076-2", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/92e1f8e6-d7ca-4425-9100-85762e6d2e78?additional_query={}", "time": "2026-06-14", "approver": ""}, {"xuhao": "17", "bianma": "C01300353", "name": "大齿轮组件", "cat": "高精高速", "kehu": "51202007", "ncr": "XS534-11", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/9491fb5f-7519-428e-a03e-6692bcaa203f?additional_query={}", "time": "2026-06-11", "approver": "返工返修流程"}, {"xuhao": "18", "bianma": "C01300485", "name": "大齿轮", "cat": "子件", "kehu": "", "ncr": "YH088-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/c728d2a1-ba26-4707-bfde-a84b5dda9821?additional_query={}", "time": "2026-06-06", "approver": "返工返修流程"}, {"xuhao": "19", "bianma": "C01310041", "name": "内齿圈", "cat": "散单", "kehu": "51208069", "ncr": "YK570", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/974e389d-be1d-4833-81cc-9896c15e034f?additional_query={}", "time": "2026-06-14", "approver": "佘吉楼"}, {"xuhao": "20", "bianma": "C01310041", "name": "内齿圈", "cat": "散单", "kehu": "51208069", "ncr": "YK576", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/974e389d-be1d-4833-81cc-9896c15e034f?additional_query={}", "time": "2026-06-14", "approver": "佘吉楼"}, {"xuhao": "21", "bianma": "C01310041", "name": "内齿圈", "cat": "散单", "kehu": "51208069", "ncr": "YK574", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/974e389d-be1d-4833-81cc-9896c15e034f?additional_query={}", "time": "2026-06-14", "approver": "佘吉楼"}, {"xuhao": "22", "bianma": "C01310041", "name": "内齿圈", "cat": "散单", "kehu": "51208069", "ncr": "YK573", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/974e389d-be1d-4833-81cc-9896c15e034f?additional_query={}", "time": "2026-06-14", "approver": "佘吉楼"}, {"xuhao": "23", "bianma": "C01310041", "name": "内齿圈", "cat": "散单", "kehu": "51208069", "ncr": "YK572", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/974e389d-be1d-4833-81cc-9896c15e034f?additional_query={}", "time": "2026-06-14", "approver": "佘吉楼"}, {"xuhao": "24", "bianma": "C01310041", "name": "内齿圈", "cat": "散单", "kehu": "51208069", "ncr": "YK571", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/974e389d-be1d-4833-81cc-9896c15e034f?additional_query={}", "time": "2026-06-14", "approver": "佘吉楼"}, {"xuhao": "25", "bianma": "C01310041", "name": "内齿圈", "cat": "散单", "kehu": "51208069", "ncr": "YK567", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/974e389d-be1d-4833-81cc-9896c15e034f?additional_query={}", "time": "2026-06-14", "approver": "佘吉楼"}, {"xuhao": "26", "bianma": "C01310041", "name": "内齿圈", "cat": "散单", "kehu": "51208069", "ncr": "YK569", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/974e389d-be1d-4833-81cc-9896c15e034f?additional_query={}", "time": "2026-06-14", "approver": "佘吉楼"}, {"xuhao": "27", "bianma": "C01310041", "name": "内齿圈", "cat": "散单", "kehu": "51208069", "ncr": "YK568", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/974e389d-be1d-4833-81cc-9896c15e034f?additional_query={}", "time": "2026-06-14", "approver": "佘吉楼"}, {"xuhao": "28", "bianma": "C01310041", "name": "内齿圈", "cat": "散单", "kehu": "51208069", "ncr": "YK575", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/974e389d-be1d-4833-81cc-9896c15e034f?additional_query={}", "time": "2026-06-14", "approver": "佘吉楼"}, {"xuhao": "29", "bianma": "C01310051", "name": "内齿圈", "cat": "散单", "kehu": "51208069", "ncr": "YH476", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/ddb15b41-f2c0-4006-82f1-17adf2906d82?additional_query={}", "time": "2026-06-13", "approver": "返工返修流程"}, {"xuhao": "30", "bianma": "C01310051", "name": "内齿圈", "cat": "散单", "kehu": "51208069", "ncr": "YH477", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/ddb15b41-f2c0-4006-82f1-17adf2906d82?additional_query={}", "time": "2026-06-13", "approver": "返工返修流程"}, {"xuhao": "31", "bianma": "C01310066", "name": "内齿圈", "cat": "散单", "kehu": "51209012", "ncr": "YK390", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/baba5e2c-5d78-4dd5-a71a-1fad576ed58e?additional_query={}", "time": "2026-06-13", "approver": "返工返修流程"}, {"xuhao": "32", "bianma": "CC092359", "name": "一级行星轮", "cat": "散单", "kehu": "51209012", "ncr": "TZ786", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/df1a431a-f232-4241-bc2e-764ca8616e9a?additional_query={}", "time": "2024-11-09", "approver": "返工返修流程"}, {"xuhao": "33", "bianma": "CC092360", "name": "花键联接盘", "cat": "散单", "kehu": "51209012", "ncr": "无零件号", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/652119cad5d94e5e9293edda1240ace6?additional_query={}", "time": "2024-01-26", "approver": "尹唐"}, {"xuhao": "34", "bianma": "CC093020", "name": "花键轴", "cat": "散单", "kehu": "51209012", "ncr": "XW566", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/d7164af4-5027-45ec-802a-fc41529299dd?additional_query={}", "time": "2026-06-10", "approver": "返工返修流程"}, {"xuhao": "35", "bianma": "CC093020", "name": "花键轴", "cat": "散单", "kehu": "51209012", "ncr": "XW567", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/b17b1ebc-f398-4c4a-9b0c-3b8ced46e3dd?additional_query={}", "time": "2026-06-10", "approver": "郁帮缘"}, {"xuhao": "36", "bianma": "C01196162", "name": "齿轮轴", "cat": "油气", "kehu": "571045", "ncr": "YK005", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/e4ffc13a-64ed-496d-a4ad-1505139879f9?additional_query={}", "time": "2026-06-13", "approver": "李猛"}, {"xuhao": "37", "bianma": "CC092679", "name": "齿轮（左）", "cat": "油气", "kehu": "571045", "ncr": "MS306", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/87bcb047-76b1-4c2a-8259-f43a3d34e4c9?additional_query={}", "time": "2026-06-04", "approver": "返工返修流程"}, {"xuhao": "38", "bianma": "C01300374", "name": "斜齿轮", "cat": "散单", "kehu": "571061", "ncr": "YJ957", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/3803590a-dcd6-4376-a6a0-d9b974977ba4?additional_query={}", "time": "2026-06-13", "approver": "返工返修流程"}, {"xuhao": "39", "bianma": "C01300374", "name": "斜齿轮", "cat": "散单", "kehu": "571061", "ncr": "YJ958", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/26499ccb-c8c1-437b-9eb1-366dbc098fff?additional_query={}", "time": "2026-06-13", "approver": ""}, {"xuhao": "40", "bianma": "C01300375", "name": "斜齿轮", "cat": "散单", "kehu": "571061", "ncr": "YJ959", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/2a3697a4-acac-4d7e-8c91-e11b1022a502?additional_query={}", "time": "2026-06-13", "approver": "返工返修流程"}, {"xuhao": "41", "bianma": "C01300375", "name": "斜齿轮", "cat": "散单", "kehu": "571061", "ncr": "YJ960", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/dec783c3-c10a-4e53-8177-2af4e9fae15a?additional_query={}", "time": "2026-06-13", "approver": "返工返修流程"}, {"xuhao": "42", "bianma": "CC091607", "name": "齿轮轴", "cat": "油气", "kehu": "731018", "ncr": "YG823", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/28b497c4-7ba0-446f-b70f-a37c1f181d3e?additional_query={}", "time": "2026-06-13", "approver": ""}, {"xuhao": "43", "bianma": "CC091607", "name": "齿轮轴", "cat": "油气", "kehu": "731018", "ncr": "YH523", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/cc1516b0-0da7-4e2e-a737-d006e99b86a9?additional_query={}", "time": "2026-06-14", "approver": "李猛"}, {"xuhao": "44", "bianma": "C07156048", "name": "驱动轴", "cat": "散单", "kehu": "771004", "ncr": "YH105", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/3abfec39-45e7-4047-950f-27afcee6faee?additional_query={}", "time": "2026-06-06", "approver": "舒大张"}, {"xuhao": "45", "bianma": "C07156048", "name": "驱动轴", "cat": "散单", "kehu": "771004", "ncr": "YH104", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/3abfec39-45e7-4047-950f-27afcee6faee?additional_query={}", "time": "2026-06-06", "approver": "舒大张"}, {"xuhao": "46", "bianma": "CC091386", "name": "齿轮", "cat": "散单", "kehu": "998008", "ncr": "YG663", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/22740a1d-498d-4fd4-8392-a278f4af08ab?additional_query={}", "time": "2026-06-03", "approver": "返工返修流程"}, {"xuhao": "47", "bianma": "CC091725", "name": "齿轮", "cat": "散单", "kehu": "998008", "ncr": "YK398", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/6d959e66-22f5-43e2-94cd-f7251301be92?additional_query={}", "time": "2026-06-13", "approver": "供应商"}, {"xuhao": "48", "bianma": "C14006192", "name": "锁紧环", "cat": "子件", "kehu": "", "ncr": "XR972-5", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/d2dc5fde67064ce2857db46d864787b5?additional_query={}", "time": "2026-06-11", "approver": "返工返修流程"}, {"xuhao": "49", "bianma": "C01300398", "name": "大齿轮", "cat": "高精高速", "kehu": "998038", "ncr": "XR973", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/480d1161-f05c-493c-a5b0-75d37b7ac1ad?additional_query={}", "time": "2026-06-01", "approver": "夏玉祥"}];
+
+function getApproverTag(approver) {
+  if (!approver) return '<span class="tag empty">未分配</span>';
+  if (approver.includes('流程') || approver.includes('返工')) return '<span class="tag flow">' + approver + '</span>';
+  return '<span class="tag person">' + approver + '</span>';
+}
+
+function getCatBadge(cat) {
+  if (cat === '高精高速') return '<span class="cat-tag gaojing">' + cat + '</span>';
+  if (cat === '子件') return '<span class="cat-tag zijian">' + cat + '</span>';
+  return '<span class="cat-tag other">' + (cat || '其他') + '</span>';
+}
+
+function renderTable(tbodyId, data) {
+  var tbody = document.getElementById(tbodyId);
+  tbody.innerHTML = data.map(function(r, i) {
+    return '<tr>' +
+      '<td>' + (i+1) + '</td>' +
+      '<td>' + getCatBadge(r.cat) + '</td>' +
+      '<td>' + r.bianma + '</td>' +
+      '<td class="name">' + r.name + '</td>' +
+      '<td>' + r.kehu + '</td>' +
+      '<td class="ncr"><a href="' + r.link + '" target="_blank" title="打开OA">' + r.ncr + '</a></td>' +
+      '<td>' + getApproverTag(r.approver) + '</td>' +
+      '<td class="hide-mobile">' + r.time + '</td>' +
+      '</tr>';
+  }).join('');
+}
+
+renderTable('tbodyAll', DATA);
+
+var sortState = {};
+function sortTable(tableId, colIdx) {
+  var table = document.getElementById(tableId);
+  var tbody = table.querySelector('tbody');
+  var rows = Array.from(tbody.querySelectorAll('tr'));
+  var key = tableId + '_' + colIdx;
+  sortState[key] = sortState[key] === 'asc' ? 'desc' : 'asc';
+  var dir = sortState[key] === 'asc' ? 1 : -1;
+  rows.sort(function(a, b) {
+    var aVal = a.cells[colIdx].textContent.trim();
+    var bVal = b.cells[colIdx].textContent.trim();
+    return aVal.localeCompare(bVal, 'zh-CN') * dir;
+  });
+  rows.forEach(function(r) { tbody.appendChild(r); });
+  table.querySelectorAll('th').forEach(function(th) { th.classList.remove('sorted'); });
+  table.querySelectorAll('th')[colIdx].classList.add('sorted');
+}
+</script>
+</body>
+</html>
