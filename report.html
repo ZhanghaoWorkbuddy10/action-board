@@ -72,13 +72,14 @@
 <body>
 <div class="container">
     <h1>慢速物料瓶颈工序分析报告</h1>
-    <p class="subtitle">非风产品跟踪V2 — 生成时间：2026-07-29 08:48</p>
+    <p class="subtitle">非风产品跟踪V2 — 生成时间：2026-07-29 10:27</p>
     <p class="method-note">分析方法：<b>以"待加工工序"为核心</b> — 统计当前时点各工序有多少物料在排队等待加工、等待时长，识别瓶颈工序</p>
+    <p class="method-note" style="color:#e67e22;">⚠️ 已剔除等待天数&gt;60天的异常数据 1 款（疑似系统未及时处理 / 实物丢失等特殊情况），不纳入本次分析</p>
     
     <div class="summary-cards">
         <div class="card alert">
             <div class="num">52</div>
-            <div class="num-sub">（总记录 57 条）</div>
+            <div class="num-sub">（总记录 56 条）</div>
             <div class="label">慢速物料（去重编码）</div>
         </div>
         <div class="card warn">
@@ -102,16 +103,6 @@
             <tbody>
         <tr>
             <td class="num-cell"><b>1</b></td>
-            <td class="proc-name">🔴 渗碳淬火</td>
-            <td class="num-cell">5<span class="unit">款</span></td>
-            <td class="num-cell">17<span class="unit">件</span></td>
-            <td class="num-cell">142.2<span class="unit">天</span></td>
-            <td class="num-cell">630<span class="unit">天</span></td>
-            <td class="num-cell">4<span class="unit">款</span></td>
-            <td class="num-cell score">1106.6</td>
-        </tr>
-        <tr>
-            <td class="num-cell"><b>2</b></td>
             <td class="proc-name">🔴 精车</td>
             <td class="num-cell">23<span class="unit">款</span></td>
             <td class="num-cell">76<span class="unit">件</span></td>
@@ -121,7 +112,7 @@
             <td class="num-cell score">285.1</td>
         </tr>
         <tr>
-            <td class="num-cell"><b>3</b></td>
+            <td class="num-cell"><b>2</b></td>
             <td class="proc-name">🔴 外圆磨</td>
             <td class="num-cell">3<span class="unit">款</span></td>
             <td class="num-cell">3<span class="unit">件</span></td>
@@ -129,6 +120,16 @@
             <td class="num-cell">45<span class="unit">天</span></td>
             <td class="num-cell">6<span class="unit">款</span></td>
             <td class="num-cell score">155.0</td>
+        </tr>
+        <tr>
+            <td class="num-cell"><b>3</b></td>
+            <td class="proc-name">🔴 渗碳淬火</td>
+            <td class="num-cell">4<span class="unit">款</span></td>
+            <td class="num-cell">16<span class="unit">件</span></td>
+            <td class="num-cell">20.2<span class="unit">天</span></td>
+            <td class="num-cell">53<span class="unit">天</span></td>
+            <td class="num-cell">4<span class="unit">款</span></td>
+            <td class="num-cell score">153.8</td>
         </tr>
         <tr>
             <td class="num-cell"><b>4</b></td>
@@ -158,67 +159,6 @@
         <div class="detail-card rank-1">
             <div class="detail-header">
                 <span class="rank-badge" style="background:#e74c3c">1</span>
-                <strong class="detail-title">渗碳淬火</strong>
-                <span class="detail-score">瓶颈评分 1106.6</span>
-            </div>
-            <div class="detail-stats">
-                <span class="stat"><b>5</b> 款物料等待</span>
-                <span class="stat">平均等待 <b>142.2</b> 天</span>
-                <span class="stat">最长 <b>630</b> 天</span>
-                <span class="stat">当前在加工 <b>4</b> 款</span>
-            </div>
-            <div class="detail-from">上道工序来源：滚齿(4款)、倒角(1款)</div>
-            <div class="detail-table-wrap">
-            <table class="detail-table">
-                <thead><tr><th>存货编码</th><th>存货名称</th><th>产品分类</th><th>当前工序</th><th>等待天数</th><th>在制件数</th></tr></thead>
-                <tbody>
-                <tr>
-                    <td>CC090532</td>
-                    <td>齿轴</td>
-                    <td class="cat-油气">油气</td>
-                    <td>滚齿</td>
-                    <td class="wait-high">630天</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>C01196322</td>
-                    <td>整体式半轴一级太阳轮</td>
-                    <td class="cat-散单">散单</td>
-                    <td>滚齿</td>
-                    <td class="wait-high">53天</td>
-                    <td>2</td>
-                </tr>
-                <tr>
-                    <td>C01250031</td>
-                    <td>二级太阳轮</td>
-                    <td class="cat-散单">散单</td>
-                    <td>滚齿</td>
-                    <td class="wait-mid">11天</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>C01196295</td>
-                    <td>齿轮轴</td>
-                    <td class="cat-高精高速">高精高速</td>
-                    <td>滚齿</td>
-                    <td class="wait-mid">10天</td>
-                    <td>7</td>
-                </tr>
-                <tr>
-                    <td>C01246040</td>
-                    <td>输入太阳轮轴</td>
-                    <td class="cat-齿轮箱-普通">齿轮箱-普通</td>
-                    <td>倒角</td>
-                    <td class="wait-mid">7天</td>
-                    <td>4</td>
-                </tr></tbody>
-            </table>
-            </div>
-            <div class="detail-count">共 5 条明细</div>
-        </div>
-        <div class="detail-card rank-2">
-            <div class="detail-header">
-                <span class="rank-badge" style="background:#f39c12">2</span>
                 <strong class="detail-title">精车</strong>
                 <span class="detail-score">瓶颈评分 285.1</span>
             </div>
@@ -421,9 +361,9 @@
             </div>
             <div class="detail-count">共 23 条明细</div>
         </div>
-        <div class="detail-card rank-3">
+        <div class="detail-card rank-2">
             <div class="detail-header">
-                <span class="rank-badge" style="background:#f39c12">3</span>
+                <span class="rank-badge" style="background:#f39c12">2</span>
                 <strong class="detail-title">外圆磨</strong>
                 <span class="detail-score">瓶颈评分 155.0</span>
             </div>
@@ -465,6 +405,59 @@
             </table>
             </div>
             <div class="detail-count">共 3 条明细</div>
+        </div>
+        <div class="detail-card rank-3">
+            <div class="detail-header">
+                <span class="rank-badge" style="background:#f39c12">3</span>
+                <strong class="detail-title">渗碳淬火</strong>
+                <span class="detail-score">瓶颈评分 153.8</span>
+            </div>
+            <div class="detail-stats">
+                <span class="stat"><b>4</b> 款物料等待</span>
+                <span class="stat">平均等待 <b>20.2</b> 天</span>
+                <span class="stat">最长 <b>53</b> 天</span>
+                <span class="stat">当前在加工 <b>4</b> 款</span>
+            </div>
+            <div class="detail-from">上道工序来源：滚齿(3款)、倒角(1款)</div>
+            <div class="detail-table-wrap">
+            <table class="detail-table">
+                <thead><tr><th>存货编码</th><th>存货名称</th><th>产品分类</th><th>当前工序</th><th>等待天数</th><th>在制件数</th></tr></thead>
+                <tbody>
+                <tr>
+                    <td>C01196322</td>
+                    <td>整体式半轴一级太阳轮</td>
+                    <td class="cat-散单">散单</td>
+                    <td>滚齿</td>
+                    <td class="wait-high">53天</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>C01250031</td>
+                    <td>二级太阳轮</td>
+                    <td class="cat-散单">散单</td>
+                    <td>滚齿</td>
+                    <td class="wait-mid">11天</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>C01196295</td>
+                    <td>齿轮轴</td>
+                    <td class="cat-高精高速">高精高速</td>
+                    <td>滚齿</td>
+                    <td class="wait-mid">10天</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>C01246040</td>
+                    <td>输入太阳轮轴</td>
+                    <td class="cat-齿轮箱-普通">齿轮箱-普通</td>
+                    <td>倒角</td>
+                    <td class="wait-mid">7天</td>
+                    <td>4</td>
+                </tr></tbody>
+            </table>
+            </div>
+            <div class="detail-count">共 4 条明细</div>
         </div>
         <div class="detail-card rank-other">
             <div class="detail-header">
@@ -549,16 +542,6 @@
                 <th>工序状态</th><th>待加工工序</th><th>等待天数</th><th>在制件数</th>
             </tr></thead>
             <tbody>
-        <tr>
-            <td>CC090532</td>
-            <td>齿轴</td>
-            <td class="cat-油气">油气</td>
-            <td>滚齿</td>
-            <td>自制-完工</td>
-            <td class="proc-name">渗碳淬火</td>
-            <td class="wait-high">630</td>
-            <td>1</td>
-        </tr>
         <tr>
             <td>C01196322</td>
             <td>整体式半轴一级太阳轮</td>
@@ -846,6 +829,16 @@
             <td>加工中心</td>
             <td>自制-完工</td>
             <td class="proc-name">插齿</td>
+            <td class="wait-mid">8</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>C01300254</td>
+            <td>齿轮（右）</td>
+            <td class="cat-油气">油气</td>
+            <td>线切割</td>
+            <td>自制-完工</td>
+            <td class="proc-name">加工中心</td>
             <td class="wait-mid">8</td>
             <td>1</td>
         </tr></tbody>
