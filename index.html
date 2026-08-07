@@ -72,11 +72,13 @@
   }
   .trend-box { background:#fff; border-radius:10px; padding:18px; box-shadow:0 1px 3px rgba(0,0,0,.06); margin-top:18px; }
   .trend-box h3 { font-size:15px; margin-bottom:4px; }
-  .trend-box .sub { font-size:12px; color:#8a97a8; margin-bottom:12px; }
-  .legend { display:flex; gap:18px; flex-wrap:wrap; margin-bottom:8px; }
-  .legend .lg { display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#5a6b7e; }
-  .legend .lg i { width:12px; height:12px; border-radius:3px; display:inline-block; }
-  #trendChart svg { display:block; }
+  .trend-box .sub { font-size:12px; color:#8a97a8; margin-bottom:14px; }
+  .trend-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  .trend-card { border:1px solid #eef1f5; border-radius:8px; padding:14px; }
+  .trend-card h4 { font-size:14px; margin-bottom:6px; display:flex; align-items:center; gap:8px; }
+  .trend-card h4 i { width:10px; height:10px; border-radius:3px; display:inline-block; }
+  .trend-card .pt-val { font-size:11px; font-weight:600; }
+  @media (max-width: 768px) { .trend-grid { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -100,10 +102,8 @@
       </div>
       <div class="trend-box">
         <h3>待加工数量变化趋势</h3>
-        <p class="sub">纵向为各模块「当前待加工」数量，横向为更新时间点（早晨 / 下午）。下降慢的模块说明消化速度偏慢。</p>
-        <div class="legend" id="trendLegend"></div>
-        <div id="trendChart"></div>
-        <div id="trendTable"></div>
+        <p class="sub">各模块「当前待加工」数量随时间变化，横向为更新时间点（早晨 / 下午），折点显示具体数值。下降慢的模块说明消化速度偏慢。</p>
+        <div class="trend-grid" id="trendGrid"></div>
       </div>
       <p class="sub" style="margin-top:10px;">提示：点击左侧菜单切换查看各模块明细。</p>
     </section>
@@ -209,27 +209,24 @@ function exportExcel(){
 document.getElementById('exportBtn').onclick = exportExcel;
 document.getElementById('printBtn').onclick = function(){ window.print(); };
 
-// 待加工趋势折线图
+// 待加工趋势折线图（四个模块分别展示，折点显示数值）
 const TREND_META = [
   {key:'入库', name:'入库', color:'#4dabf7'},
   {key:'酸蚀检验', name:'酸蚀检验', color:'#51cf66'},
   {key:'探伤', name:'探伤', color:'#ff922b'},
   {key:'立磨', name:'立磨', color:'#cc5de8'},
 ];
-function drawTrend(){
-  const wrap = document.getElementById('trendChart');
-  const arr = DATA.trend || [];
-  if(!arr.length){ wrap.innerHTML='<p class="sub">暂无趋势数据</p>'; return; }
-  const W=760,H=340,m={l:52,r:20,t:34,b:54};
+function drawOneTrend(t, arr){
+  const W=420,H=260,m={l:46,r:16,t:22,b:46};
   const pw=W-m.l-m.r, ph=H-m.t-m.b;
   let maxY=0;
-  arr.forEach(d=> TREND_META.forEach(t=>{ const v=+d[t.key]||0; if(v>maxY)maxY=v; }));
-  const niceMax = Math.max(50, Math.ceil(maxY/50)*50);
+  arr.forEach(d=>{ const v=+d[t.key]||0; if(v>maxY)maxY=v; });
+  const niceMax = Math.max(20, Math.ceil(maxY/20)*20);
   const n=arr.length;
   const X = i => n<=1 ? m.l+pw/2 : m.l + pw*i/(n-1);
   const Y = v => m.t + ph*(1 - v/niceMax);
   let svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" font-family="-apple-system,'Microsoft YaHei',sans-serif">`;
-  const steps=5;
+  const steps=4;
   for(let s=0;s<=steps;s++){
     const val=niceMax*s/steps, yy=Y(val);
     svg+=`<line x1="${m.l}" y1="${yy}" x2="${W-m.r}" y2="${yy}" stroke="#eef1f5"/>`;
@@ -240,18 +237,23 @@ function drawTrend(){
   arr.forEach((d,i)=>{
     svg+=`<text x="${X(i)}" y="${m.t+ph+18}" text-anchor="middle" font-size="11" fill="#5a6b7e">${esc(d.label)}</text>`;
   });
-  TREND_META.forEach(t=>{
-    const pts = arr.map((d,i)=>`${X(i)},${Y(+d[t.key]||0)}`).join(' ');
-    svg+=`<polyline points="${pts}" fill="none" stroke="${t.color}" stroke-width="2.5"/>`;
-    arr.forEach((d,i)=>{ svg+=`<circle cx="${X(i)}" cy="${Y(+d[t.key]||0)}" r="3.5" fill="${t.color}"/>`; });
+  const pts = arr.map((d,i)=>`${X(i)},${Y(+d[t.key]||0)}`).join(' ');
+  svg+=`<polyline points="${pts}" fill="none" stroke="${t.color}" stroke-width="2.5"/>`;
+  arr.forEach((d,i)=>{
+    const v=+d[t.key]||0, cx=X(i), cy=Y(v);
+    const showAbove = (cy - 14) > m.t;
+    const ty = showAbove ? cy-9 : cy+16;
+    svg+=`<circle cx="${cx}" cy="${cy}" r="3.5" fill="${t.color}"/>`;
+    svg+=`<text class="pt-val" x="${cx}" y="${ty}" text-anchor="middle" fill="${t.color}">${v}</text>`;
   });
   svg+=`</svg>`;
-  wrap.innerHTML = svg;
-  document.getElementById('trendLegend').innerHTML =
-    TREND_META.map(t=>`<span class="lg"><i style="background:${t.color}"></i>${t.name}</span>`).join('');
-  const head='<tr><th>时间</th>'+TREND_META.map(t=>`<th>${t.name}</th>`).join('')+'</tr>';
-  const body=arr.map(d=>`<tr><td>${esc(d.label)}</td>`+TREND_META.map(t=>`<td class="num">${+d[t.key]||0}</td>`).join('')+'</tr>').join('');
-  document.getElementById('trendTable').innerHTML=`<table class="data" style="margin-top:14px">${head}${body}</table>`;
+  return `<div class="trend-card"><h4><i style="background:${t.color}"></i>${t.name}</h4>${svg}</div>`;
+}
+function drawTrend(){
+  const grid = document.getElementById('trendGrid');
+  const arr = DATA.trend || [];
+  if(!arr.length){ grid.innerHTML='<p class="sub">暂无趋势数据</p>'; return; }
+  grid.innerHTML = TREND_META.map(t=>drawOneTrend(t, arr)).join('');
 }
 drawTrend();
 
