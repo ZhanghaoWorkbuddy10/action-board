@@ -67,13 +67,21 @@
         @media (max-width: 768px) {
             .summary-cards { grid-template-columns: repeat(2, 1fr); }
         }
+        .device-block { margin: 10px 0 6px; padding: 8px 10px; background: #fff8f7; border: 1px solid #f7d9d4; border-radius: 6px; }
+        .device-title { font-size: 13px; font-weight: 600; color: #c0392b; margin-bottom: 6px; }
+        .device-table { width: 100%; font-size: 12px; border-collapse: collapse; }
+        .device-table th { background: #fbeae7; padding: 5px 8px; text-align: left; font-weight: 600; color: #c0392b; }
+        .device-table td { padding: 4px 8px; border-bottom: 1px solid #f4e3df; }
+        .device-table tr.dev-bk td { color: #e74c3c; font-weight: 700; background: #ffeceb; }
+        .device-table tr.dev-nm td { color: #95a5a6; }
+        .device-note { font-size: 11px; color: #95a5a6; margin-top: 4px; }
 </style>
 </head>
 <body>
 <div class="container">
     <h1>慢速物料瓶颈工序分析报告</h1>
-    <p class="subtitle">非风产品跟踪V2 — 生成时间：2026-08-27 08:46</p>
-    <p class="method-note">分析方法：<b>以"待加工工序"为核心</b> — 统计当前时点各工序有多少物料在排队等待加工、等待时长，识别瓶颈工序</p>
+    <p class="subtitle">非风产品跟踪V2 — 生成时间：2026-08-27 09:12</p>
+    <p class="method-note">分析口径：基于明确的交付需求，以<b>各设备前待加工数量</b>为核心，识别当前时点瓶颈设备；并按"待加工工序"统计等待物料数/等待时长识别瓶颈工序。 设备映射来源：非远景产品加工任务汇总_V0824.xlsx</p>
     <p class="method-note" style="color:#e67e22;">⚠️ 已剔除等待天数&gt;60天的异常数据 5 款（疑似系统未及时处理 / 实物丢失等特殊情况），不纳入本次分析</p>
     
     <div class="summary-cards">
@@ -169,6 +177,7 @@
                 <span class="stat">当前在加工 <b>29</b> 款</span>
             </div>
             <div class="detail-from">上道工序来源：调质(18款)、清理喷丸(4款)、渗碳淬火(1款)</div>
+            <div class="device-block"><div class="device-title">设备负荷分布 · 瓶颈设备：<b>C26/C30</b></div><table class="device-table"><thead><tr><th>设备</th><th>待加工件数</th></tr></thead><tbody><tr class="dev-bk"><td>C26/C30</td><td>55</td></tr><tr class=""><td>Z-C01</td><td>26</td></tr><tr class=""><td>C30</td><td>8</td></tr><tr class=""><td>C26</td><td>7</td></tr><tr class=""><td>C06</td><td>3</td></tr><tr class=""><td>C08</td><td>2</td></tr><tr class=""><td>C19</td><td>1</td></tr></tbody></table><div class="device-note">设备映射来源：桌面最新 V08XX（每周更新）；本工序待加工件数按设备汇总</div></div>
             <div class="detail-table-wrap">
             <table class="detail-table">
                 <thead><tr><th>存货编码</th><th>存货名称</th><th>产品分类</th><th>当前工序</th><th>等待天数</th><th>在制件数</th></tr></thead>
@@ -374,6 +383,7 @@
                 <span class="stat">当前在加工 <b>9</b> 款</span>
             </div>
             <div class="detail-from">上道工序来源：精车(5款)、检测(1款)、齿检仪检测(1款)</div>
+            <div class="device-block"><div class="device-title">设备负荷分布 · 瓶颈设备：<b>Z60/Z61</b></div><table class="device-table"><thead><tr><th>设备</th><th>待加工件数</th></tr></thead><tbody><tr class="dev-bk"><td>Z60/Z61</td><td>10</td></tr><tr class=""><td>Z53</td><td>9</td></tr><tr class=""><td>Z16</td><td>2</td></tr></tbody></table><div class="device-note">设备映射来源：桌面最新 V08XX（每周更新）；本工序待加工件数按设备汇总</div></div>
             <div class="detail-table-wrap">
             <table class="detail-table">
                 <thead><tr><th>存货编码</th><th>存货名称</th><th>产品分类</th><th>当前工序</th><th>等待天数</th><th>在制件数</th></tr></thead>
@@ -451,6 +461,7 @@
                 <span class="stat">当前在加工 <b>9</b> 款</span>
             </div>
             <div class="detail-from">上道工序来源：半精车(3款)、加工中心(3款)、精车(2款)、摇臂钻(1款)</div>
+            <div class="device-block"><div class="device-title">设备负荷分布 · 瓶颈设备：<b>G05</b></div><table class="device-table"><thead><tr><th>设备</th><th>待加工件数</th></tr></thead><tbody><tr class="dev-bk"><td>G05</td><td>20</td></tr><tr class=""><td>G04</td><td>16</td></tr><tr class=""><td>G30</td><td>10</td></tr><tr class=""><td>G02</td><td>3</td></tr></tbody></table><div class="device-note">设备映射来源：桌面最新 V08XX（每周更新）；本工序待加工件数按设备汇总</div></div>
             <div class="detail-table-wrap">
             <table class="detail-table">
                 <thead><tr><th>存货编码</th><th>存货名称</th><th>产品分类</th><th>当前工序</th><th>等待天数</th><th>在制件数</th></tr></thead>
@@ -544,6 +555,7 @@
                 <span class="stat">当前在加工 <b>3</b> 款</span>
             </div>
             <div class="detail-from">上道工序来源：外圆磨(1款)</div>
+            <div class="device-block"><div class="device-title">设备负荷分布 · 无自有设备（委外/未指派为主）</div><table class="device-table"><thead><tr><th>设备</th><th>待加工件数</th></tr></thead><tbody><tr class="dev-nm"><td>未指派</td><td>1</td></tr></tbody></table><div class="device-note">设备映射来源：桌面最新 V08XX（每周更新）；本工序待加工件数按设备汇总</div></div>
             <div class="detail-table-wrap">
             <table class="detail-table">
                 <thead><tr><th>存货编码</th><th>存货名称</th><th>产品分类</th><th>当前工序</th><th>等待天数</th><th>在制件数</th></tr></thead>
@@ -573,6 +585,7 @@
                 <span class="stat">当前在加工 <b>11</b> 款</span>
             </div>
             <div class="detail-from">上道工序来源：外圆磨(4款)、三坐标检测(3款)、摇臂钻2(1款)、检测(1款)</div>
+            <div class="device-block"><div class="device-title">设备负荷分布 · 无自有设备（委外/未指派为主）</div><table class="device-table"><thead><tr><th>设备</th><th>待加工件数</th></tr></thead><tbody><tr class="dev-nm"><td>未指派</td><td>11</td></tr></tbody></table><div class="device-note">设备映射来源：桌面最新 V08XX（每周更新）；本工序待加工件数按设备汇总</div></div>
             <div class="detail-table-wrap">
             <table class="detail-table">
                 <thead><tr><th>存货编码</th><th>存货名称</th><th>产品分类</th><th>当前工序</th><th>等待天数</th><th>在制件数</th></tr></thead>
@@ -966,7 +979,7 @@
     </div>
     <div class="footer">
         <div class="formula">评分公式：等待物料数×10 + 平均等待天数×3 + 最大等待天数×1</div>
-        <br>数据来源：非风产品跟踪V2_全部需求 - Copy.xlsm
+        <br>数据来源：非风产品跟踪V2_全部需求 - Copy.xlsm · 设备映射：非远景产品加工任务汇总_V0824.xlsx
     </div>
 </div>
 </body>
