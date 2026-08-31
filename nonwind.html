@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>非风产品跟踪 · 2026年8月</title>
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif; background:#f5f7fa; color:#1f2d3d; }
+  .layout { display:flex; min-height:100vh; }
+  .sidebar { width:220px; background:#1f2d3d; color:#cfd8e3; padding:24px 0; flex-shrink:0; }
+  .sidebar h1 { font-size:15px; color:#fff; padding:0 20px 18px; line-height:1.5; border-bottom:1px solid #34465c; }
+  .nav { margin-top:14px; }
+  .nav button { display:block; width:100%; text-align:left; background:none; border:none; color:#cfd8e3;
+    padding:13px 22px; font-size:14px; cursor:pointer; transition:.15s; border-left:3px solid transparent; }
+  .nav button:hover { background:#2a3b4f; color:#fff; }
+  .nav button.active { background:#2a3b4f; color:#fff; border-left-color:#4dabf7; font-weight:600; }
+  .main { flex:1; padding:28px 36px; overflow:auto; }
+  .topbar { display:flex; align-items:baseline; justify-content:center; margin-bottom:22px; text-align:center; }
+  .topbar h2 { font-size:22px; }
+  .topbar .sub { color:#8a97a8; font-size:13px; }
+  .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:26px; }
+  .card { background:#fff; border-radius:10px; padding:18px; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+  .card .t { font-size:13px; color:#8a97a8; margin-bottom:10px; }
+  .card .nums { display:flex; gap:14px; }
+  .card .nums div { flex:1; }
+  .card .nums b { display:block; font-size:20px; }
+  .card .nums span { font-size:11px; color:#8a97a8; }
+  .summary-table { background:#fff; border-radius:10px; padding:18px; box-shadow:0 1px 3px rgba(0,0,0,.06); margin-bottom:12px; }
+  .summary-table table { width:100%; border-collapse:collapse; }
+  .summary-table th, .summary-table td { padding:10px 12px; text-align:center; border-bottom:1px solid #eef1f5; }
+  .summary-table th { color:#8a97a8; font-weight:600; font-size:13px; }
+  .panel { display:none; }
+  .panel.active { display:block; }
+  .toolbar { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+  .toolbar input { padding:9px 12px; border:1px solid #d9e0e8; border-radius:8px; font-size:14px; width:280px; outline:none; }
+  .toolbar input:focus { border-color:#4dabf7; }
+  .toolbar .cnt { color:#8a97a8; font-size:13px; }
+  .tbl-wrap { background:#fff; border-radius:10px; box-shadow:0 1px 3px rgba(0,0,0,.06); overflow:auto; }
+  table.data { width:100%; border-collapse:collapse; font-size:13px; }
+  table.data th, table.data td { padding:10px 14px; text-align:center; border-bottom:1px solid #eef1f5; white-space:nowrap; }
+  table.data thead th { position:sticky; top:0; background:#f8fafc; color:#5a6b7e; font-weight:600; cursor:pointer; user-select:none; }
+  table.data thead th:hover { color:#1f2d3d; }
+  table.data tbody tr:hover { background:#f5f9ff; }
+  table.data td.num { text-align:center; font-variant-numeric:tabular-nums; }
+  .tag { display:inline-block; padding:2px 8px; border-radius:10px; font-size:12px; background:#eef6ff; color:#2f6fb3; }
+  a.github { color:#4dabf7; text-decoration:none; }
+  .btn { padding:9px 16px; border:none; border-radius:8px; background:#4dabf7; color:#fff; font-size:14px; cursor:pointer; white-space:nowrap; }
+  .btn:hover { background:#3a96e0; }
+  .btn.ghost { background:#eef1f5; color:#1f2d3d; }
+  @media (max-width: 768px) {
+    .layout { flex-direction:column; }
+    .sidebar { width:100%; padding:12px 0; }
+    .sidebar h1 { padding:8px 14px 10px; font-size:14px; border-bottom:none; }
+    .nav { display:flex; overflow-x:auto; margin-top:6px; white-space:nowrap; }
+    .nav button { display:inline-block; width:auto; padding:10px 14px; border-left:none; border-bottom:3px solid transparent; }
+    .nav button.active { border-left:none; border-bottom-color:#4dabf7; }
+    .main { padding:16px; }
+    .cards { grid-template-columns:repeat(2,1fr); }
+    table.data { font-size:12px; }
+  }
+  @media (max-width: 420px) {
+    .cards { grid-template-columns:1fr; }
+  }
+  @media print {
+    .sidebar, .toolbar, .cards, .summary-table, .sub, .topbar .sub { display:none !important; }
+    .layout { display:block; }
+    .main { padding:0; }
+    .tbl-wrap { overflow:visible; }
+    table.data th, table.data td { border:1px solid #d9e0e8; }
+  }
+  .trend-box { background:#fff; border-radius:10px; padding:18px; box-shadow:0 1px 3px rgba(0,0,0,.06); margin-top:18px; }
+  .trend-box h3 { font-size:15px; margin-bottom:4px; }
+  .trend-box .sub { font-size:12px; color:#8a97a8; margin-bottom:14px; }
+  .trend-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  .trend-card { border:1px solid #eef1f5; border-radius:8px; padding:14px; }
+  .trend-card h4 { font-size:14px; margin-bottom:6px; display:flex; align-items:center; gap:8px; }
+  .trend-card h4 i { width:10px; height:10px; border-radius:3px; display:inline-block; }
+  .trend-card .pt-val { font-size:11px; font-weight:600; }
+  @media (max-width: 768px) { .trend-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <h1>非风产品跟踪<br>2026年8月</h1>
+    <nav class="nav" id="nav"></nav>
+  </aside>
+  <main class="main">
+    <div class="topbar">
+      <h2 id="pageTitle">总览</h2>
+      <div class="sub">数据源：非风产品跟踪V2_当月需求.xlsm · 生成 2026-08-31</div>
+    </div>
+    <section class="panel active" id="p-overview">
+      <div class="cards" id="cards"></div>
+      <div class="summary-table">
+        <table>
+          <thead><tr><th>类别</th><th>本月还需</th><th>本周还需</th><th>当前待加工</th></tr></thead>
+          <tbody id="sumBody"></tbody>
+        </table>
+      </div>
+      <div class="trend-box">
+        <h3>待加工数量变化趋势</h3>
+        <p class="sub">各模块「当前待加工」数量随时间变化，横向为更新时间点（早晨 / 下午），折点显示具体数值。下降慢的模块说明消化速度偏慢。</p>
+        <div class="trend-grid" id="trendGrid"></div>
+      </div>
+      <p class="sub" style="margin-top:10px;">提示：点击左侧菜单切换查看各模块明细。</p>
+    </section>
+    <section class="panel" id="p-module">
+      <div class="toolbar">
+        <input id="search" placeholder="搜索存货编码 / 名称…" />
+        <span class="cnt" id="cnt"></span>
+        <button class="btn" id="exportBtn">导出 Excel</button>
+        <button class="btn ghost" id="printBtn">打印</button>
+      </div>
+      <div class="tbl-wrap"><table class="data" id="modTable"></table></div>
+    </section>
+  </main>
+</div>
+<script>
+const DATA = {"modules": [{"name": "还需入库", "cols": ["存货编码", "存货名称", "产品分类", "本月还需入库", "最近断点时间", "本周还需入库", "当前等待入库"], "rows": [["C01196323", "整体式半轴一级太阳轮", "散单", "2", "2026-08-01", "2", "2"], ["C07106018", "旋转轴", "散单", "1", "2026-08-05", "1", "0"], ["C07116020", "驱动轴", "散单", "1", "2026-08-05", "1", "0"], ["C01196287", "低速齿轮组34", "高精高速", "1", "2026-08-05", "1", "0"], ["C01196302", "高速齿轮组38", "高精高速", "1", "2026-08-05", "1", "0"], ["C01196107", "低速小齿轮组件", "高精高速", "10", "2026-08-05", "10", "0"], ["C01196109", "高速小齿轮组件", "高精高速", "1", "2026-08-05", "1", "0"], ["C01196295", "低速齿轮轴", "高精高速", "2", "2026-08-05", "2", "0"], ["C01196296", "高速齿轮轴", "高精高速", "6", "2026-08-05", "6", "2"], ["C01196347", "高速齿轮轴组件", "高精高速", "1", "2026-08-05", "1", "0"], ["C01300331", "主齿轮组", "高精高速", "5", "2026-08-10", "5", "0"], ["C01300504", "大齿轮组件", "高精高速", "1", "2026-08-10", "1", "1"], ["C01000045", "成品齿轮#", "散单", "1", "2026-08-11", "1", "1"], ["C01000046", "后炮齿轮组件#", "散单", "11", "2026-08-11", "11", "11"], ["C05000064", "法兰盘#", "散单", "4", "2026-08-11", "4", "4"], ["C01196341", "低速齿轮组", "高精高速", "1", "2026-08-15", "1", "0"], ["C01196343", "高速齿轮组", "高精高速", "1", "2026-08-15", "1", "0"], ["CC092467", "花键轴", "散单", "1", "2026-08-15", "1", "1"], ["C01196356", "一二级高速轴组件", "高精高速", "2", "2026-08-15", "2", "0"], ["C01196358", "三级高速轴组件", "高精高速", "1", "2026-08-15", "1", "0"], ["C01300509", "大齿轮组件", "高精高速", "2", "2026-08-15", "2", "0"], ["C01196308", "齿轴", "高精高速", "1", "2026-08-18", "1", "0"], ["C01196309", "齿轴", "高精高速", "1", "2026-08-18", "1", "0"], ["C01300401", "大齿轮组件", "高精高速", "1", "2026-08-18", "1", "0"], ["C01300253", "齿轮（左）", "油气", "12", "2026-08-20", "12", "0"], ["CC090532", "轴", "油气", "8", "2026-08-20", "8", "0"], ["C01196370", "一二级高速轴组件", "高精高速", "3", "2026-08-20", "3", "0"], ["C01196372", "三四级高速轴组件", "高精高速", "3", "2026-08-20", "3", "0"], ["C01300514", "输入转子", "高精高速", "3", "2026-08-20", "3", "0"], ["AJS00037", "行星齿轮箱", "齿轮箱", "1", "2026-08-20", "1", "0"], ["C01196228", "齿轮轴组件", "高精高速", "5", "2026-08-20", "5", "0"], ["C01196058", "高速轴组件1", "高精高速", "1", "2026-08-20", "1", "0"], ["C01300089", "大齿轮组件", "高精高速", "1", "2026-08-20", "1", "0"], ["C01300010", "大齿轮组件", "高精高速", "1", "2026-08-23", "1", "0"], ["C01196368", "低速齿轮组34", "高精高速", "5", "2026-08-28", "5", "0"], ["C01300219", "主齿轮组", "高精高速", "2", "2026-08-28", "2", "0"], ["CC091607", "齿轮轴", "油气", "6", "2026-08-29", "6", "4"], ["C01300374", "斜齿轮", "散单", "1", "2026-08-30", "1", "0"], ["C01300375", "斜齿轮", "散单", "1", "2026-08-30", "1", "1"], ["BLB00005", "轮边减速机", "齿轮箱", "2", "2026-08-30", "2", "1"], ["C01196322", "整体式半轴一级太阳轮", "散单", "10", "2026-08-30", "10", "8"], ["C01250031", "二级太阳轮", "散单", "3", "2026-08-30", "3", "0"], ["C01196226", "齿轮轴组件", "高精高速", "2", "2026-08-30", "2", "0"], ["JC095136", "一级行星轮", "风电项目（非远景）", "21", "2026-08-31", "21", "0"], ["C01300254", "齿轮（右）", "油气", "17", "", "17", "5"], ["CC092879", "齿轮（左）", "油气", "14", "", "14", "0"], ["CC092880", "齿轮（右）", "油气", "16", "", "16", "0"], ["C01216031", "二级行星轮", "散单", "1", "", "1", "0"], ["C01196360", "一二级高速轴组件", "高精高速", "1", "", "1", "0"]]}, {"name": "还需探伤", "cols": ["存货编码", "存货名称", "产品分类", "本月还需探伤", "本周还需探伤", "当前等待探伤", "最近断点时间"], "rows": [["C07106018", "旋转轴", "散单", "1", "1", "0", "2026-08-05"], ["C07116020", "驱动轴", "散单", "1", "1", "0", "2026-08-05"], ["C01196287", "低速齿轮组34", "高精高速", "1", "1", "1", "2026-08-05"], ["C01196107", "低速小齿轮组件", "高精高速", "10", "10", "0", "2026-08-05"], ["C01196109", "高速小齿轮组件", "高精高速", "1", "1", "0", "2026-08-05"], ["C01196295", "低速齿轮轴", "高精高速", "2", "2", "0", "2026-08-05"], ["C01196296", "高速齿轮轴", "高精高速", "4", "4", "0", "2026-08-05"], ["C01300331", "主齿轮组", "高精高速", "5", "5", "4", "2026-08-10"], ["C01196341", "低速齿轮组", "高精高速", "1", "1", "1", "2026-08-15"], ["C01196343", "高速齿轮组", "高精高速", "1", "1", "1", "2026-08-15"], ["C01196356", "一二级高速轴组件", "高精高速", "2", "2", "2", "2026-08-15"], ["C01196358", "三级高速轴组件", "高精高速", "1", "1", "1", "2026-08-15"], ["C01196360", "一二级高速轴组件", "高精高速", "1", "1", "1", "2026-08-15"], ["C01300401", "大齿轮组件", "高精高速", "1", "1", "1", "2026-08-18"], ["C01300253", "齿轮（左）", "油气", "2", "2", "0", "2026-08-20"], ["C01300254", "齿轮（右）", "油气", "9", "9", "0", "2026-08-20"], ["C01196228", "齿轮轴组件", "高精高速", "5", "5", "0", "2026-08-20"], ["C01300219", "主齿轮组", "高精高速", "1", "1", "1", "2026-08-28"], ["CC091607", "齿轮轴", "油气", "2", "2", "0", "2026-08-29"], ["C01196322", "整体式半轴一级太阳轮", "散单", "2", "2", "0", "2026-08-30"], ["C01216031", "二级行星轮", "散单", "1", "1", "0", "2026-08-30"], ["C01250031", "二级太阳轮", "散单", "3", "3", "3", "2026-08-30"], ["C01196226", "齿轮轴组件", "高精高速", "2", "2", "0", "2026-08-30"]]}, {"name": "还需动平衡", "cols": ["存货编码", "存货名称", "产品分类", "本月还需动平衡", "本周还需动平衡", "当前等待动平衡", "最近断点时间"], "rows": [["C01300331", "主齿轮组", "高精高速", "5", "5", "0", "2026-08-10"], ["C01196308", "齿轴", "高精高速", "1", "1", "1", "2026-08-18"], ["C01196309", "齿轴", "高精高速", "1", "1", "1", "2026-08-18"], ["C01300401", "大齿轮组件", "高精高速", "1", "1", "0", "2026-08-18"], ["C01300219", "主齿轮组", "高精高速", "2", "2", "1", "2026-08-28"], ["C01300374", "斜齿轮", "散单", "1", "1", "1", "2026-08-30"]]}, {"name": "还需磨齿", "cols": ["存货编码", "存货名称", "产品分类", "本月还需磨齿", "本周还需磨齿", "当前等待磨齿", "最近断点时间"], "rows": [["C01196295", "低速齿轮轴", "高精高速", "2", "2", "0", "2026-08-05"], ["C01196296", "高速齿轮轴", "高精高速", "4", "4", "0", "2026-08-05"], ["C01300331", "主齿轮组", "高精高速", "1", "1", "1", "2026-08-10"], ["CC090532", "轴", "油气", "8", "8", "0", "2026-08-20"], ["CC092879", "齿轮（左）", "油气", "14", "14", "0", "2026-08-20"], ["CC092880", "齿轮（右）", "油气", "16", "16", "0", "2026-08-20"], ["CC091607", "齿轮轴", "油气", "2", "2", "2", "2026-08-29"], ["C01196322", "整体式半轴一级太阳轮", "散单", "2", "2", "0", "2026-08-30"], ["C01216031", "二级行星轮", "散单", "1", "1", "0", "2026-08-30"]]}], "summary": [{"name": "还需入库", "本月": 199, "本周": 199, "当前": 41}, {"name": "还需探伤", "本月": 59, "本周": 59, "当前": 16}, {"name": "还需动平衡", "本月": 11, "本周": 11, "当前": 4}, {"name": "还需磨齿", "本月": 50, "本周": 50, "当前": 3}], "trend": [{"label": "8/31下午", "入库": 41, "探伤": 16, "动平衡": 4, "磨齿": 3}]};
+const nav = document.getElementById('nav');
+const overview = document.getElementById('p-overview');
+const moduleP = document.getElementById('p-module');
+const pageTitle = document.getElementById('pageTitle');
+const esc = s => (s===null||s===undefined?'':String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// summary cards + table
+const cards = document.getElementById('cards');
+const sumBody = document.getElementById('sumBody');
+DATA.summary.forEach(m => {
+  const c = document.createElement('div'); c.className='card';
+  c.innerHTML = `<div class="t">${esc(m.name)}</div><div class="nums">
+    <div><b>${m['本月']}</b><span>本月还需</span></div>
+    <div><b>${m['本周']}</b><span>本周还需</span></div>
+    <div><b>${m['当前']}</b><span>当前待加工</span></div></div>`;
+  cards.appendChild(c);
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${esc(m.name)}</td><td class="num">${m['本月']}</td><td class="num">${m['本周']}</td><td class="num">${m['当前']}</td>`;
+  sumBody.appendChild(tr);
+});
+
+// nav
+const modByName = {};
+DATA.modules.forEach(m => modByName[m.name]=m);
+let items = [{key:'overview', label:'总览'}].concat(DATA.modules.map(m=>({key:m.name, label:m.name})));
+items.forEach(it => {
+  const b = document.createElement('button');
+  b.textContent = it.label; b.dataset.key = it.key;
+  b.onclick = () => show(it.key);
+  nav.appendChild(b);
+});
+
+let curRows=[], curCols=[], sortIdx=-1, sortAsc=true;
+function show(key){
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active', b.dataset.key===key));
+  if(key==='overview'){ overview.classList.add('active'); moduleP.classList.remove('active'); pageTitle.textContent='总览'; return; }
+  overview.classList.remove('active'); moduleP.classList.add('active');
+  const m = modByName[key]; pageTitle.textContent = m.name;
+  curCols = m.cols; curRows = m.rows.slice();
+  sortIdx=-1; document.getElementById('search').value='';
+  renderTable();
+}
+
+function renderTable(){
+  const t = document.getElementById('modTable');
+  t.innerHTML='';
+  const thead = document.createElement('thead'); const hr=document.createElement('tr');
+  curCols.forEach((c,i)=>{ const th=document.createElement('th'); th.textContent=c; th.onclick=()=>{ if(sortIdx===i){sortAsc=!sortAsc;}else{sortIdx=i;sortAsc=true;} sortRows(); renderTable(); };
+    hr.appendChild(th); });
+  thead.appendChild(hr); t.appendChild(thead);
+  const tb=document.createElement('tbody');
+  curRows.forEach(r=>{ const tr=document.createElement('tr');
+    curCols.forEach((c,i)=>{ const td=document.createElement('td'); td.textContent=r[i]; if(!isNaN(r[i])&&r[i]!=='') td.className='num'; tr.appendChild(td); });
+    tb.appendChild(tr); });
+  t.appendChild(tb);
+  document.getElementById('cnt').textContent = `共 ${curRows.length} 行`;
+}
+
+function sortRows(){
+  curRows.sort((a,b)=>{ const x=a[sortIdx], y=b[sortIdx];
+    const nx=parseFloat(x), ny=parseFloat(y);
+    if(!isNaN(nx)&&!isNaN(ny)) return sortAsc?nx-ny:ny-nx;
+    return sortAsc? String(x).localeCompare(String(y),'zh') : String(y).localeCompare(String(x),'zh'); });
+}
+
+document.getElementById('search').addEventListener('input', e=>{
+  const q=e.target.value.trim().toLowerCase();
+  const base = modByName[pageTitle.textContent] ? modByName[pageTitle.textContent].rows : [];
+  curRows = base.filter(r=> r.join(' ').toLowerCase().includes(q));
+  renderTable();
+});
+
+function exportExcel(){
+  const name = pageTitle.textContent;
+  const m = modByName[name];
+  if(!m){ return; }
+  if(typeof XLSX === 'undefined'){ alert('导出组件未加载，请联网后重试'); return; }
+  const aoa = [m.cols].concat(m.rows.map(r => r.map(v => {
+    const n = parseFloat(v);
+    return (!isNaN(n) && v !== '' && v !== null) ? n : v;
+  })));
+  const ws = XLSX.utils.aoa_to_sheet(aoa);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, name.slice(0, 31));
+  XLSX.writeFile(wb, name + '.xlsx');
+}
+document.getElementById('exportBtn').onclick = exportExcel;
+document.getElementById('printBtn').onclick = function(){ window.print(); };
+
+// 待加工趋势折线图（四个模块分别展示，折点显示数值）
+const TREND_META = [
+  {key:'入库', name:'入库', color:'#4dabf7'},
+  {key:'探伤', name:'探伤', color:'#ff922b'},
+  {key:'动平衡', name:'动平衡', color:'#51cf66'},
+  {key:'磨齿', name:'磨齿', color:'#cc5de8'},
+];
+function drawOneTrend(t, arr){
+  const W=420,H=260,m={l:46,r:16,t:22,b:46};
+  const pw=W-m.l-m.r, ph=H-m.t-m.b;
+  let maxY=0;
+  arr.forEach(d=>{ const v=+d[t.key]||0; if(v>maxY)maxY=v; });
+  const niceMax = Math.max(20, Math.ceil(maxY/20)*20);
+  const n=arr.length;
+  const X = i => n<=1 ? m.l+pw/2 : m.l + pw*i/(n-1);
+  const Y = v => m.t + ph*(1 - v/niceMax);
+  let svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" font-family="-apple-system,'Microsoft YaHei',sans-serif">`;
+  const steps=4;
+  for(let s=0;s<=steps;s++){
+    const val=niceMax*s/steps, yy=Y(val);
+    svg+=`<line x1="${m.l}" y1="${yy}" x2="${W-m.r}" y2="${yy}" stroke="#eef1f5"/>`;
+    svg+=`<text x="${m.l-8}" y="${yy+4}" text-anchor="end" font-size="11" fill="#8a97a8">${Math.round(val)}</text>`;
+  }
+  svg+=`<line x1="${m.l}" y1="${m.t}" x2="${m.l}" y2="${m.t+ph}" stroke="#cfd8e3"/>`;
+  svg+=`<line x1="${m.l}" y1="${m.t+ph}" x2="${W-m.r}" y2="${m.t+ph}" stroke="#cfd8e3"/>`;
+  arr.forEach((d,i)=>{
+    svg+=`<text x="${X(i)}" y="${m.t+ph+18}" text-anchor="middle" font-size="11" fill="#5a6b7e">${esc(d.label)}</text>`;
+  });
+  const pts = arr.map((d,i)=>`${X(i)},${Y(+d[t.key]||0)}`).join(' ');
+  svg+=`<polyline points="${pts}" fill="none" stroke="${t.color}" stroke-width="2.5"/>`;
+  arr.forEach((d,i)=>{
+    const v=+d[t.key]||0, cx=X(i), cy=Y(v);
+    const showAbove = (cy - 14) > m.t;
+    const ty = showAbove ? cy-9 : cy+16;
+    svg+=`<circle cx="${cx}" cy="${cy}" r="3.5" fill="${t.color}"/>`;
+    svg+=`<text class="pt-val" x="${cx}" y="${ty}" text-anchor="middle" fill="${t.color}">${v}</text>`;
+  });
+  svg+=`</svg>`;
+  return `<div class="trend-card"><h4><i style="background:${t.color}"></i>${t.name}</h4>${svg}</div>`;
+}
+function drawTrend(){
+  const grid = document.getElementById('trendGrid');
+  const arr = DATA.trend || [];
+  if(!arr.length){ grid.innerHTML='<p class="sub">暂无趋势数据</p>'; return; }
+  grid.innerHTML = TREND_META.map(t=>drawOneTrend(t, arr)).join('');
+}
+drawTrend();
+
+show('overview');
+</script>
+</body>
+</html>
