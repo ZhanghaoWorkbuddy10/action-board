@@ -33,22 +33,46 @@
   .summary-table th { color:#8a97a8; font-weight:600; font-size:13px; }
   .panel { display:none; }
   .panel.active { display:block; }
-  .toolbar { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+  .toolbar { display:flex; align-items:center; gap:12px; margin-bottom:14px; flex-wrap:wrap; }
   .toolbar input { padding:9px 12px; border:1px solid #d9e0e8; border-radius:8px; font-size:14px; width:280px; outline:none; }
   .toolbar input:focus { border-color:#4dabf7; }
   .toolbar .cnt { color:#8a97a8; font-size:13px; }
-  .tbl-wrap { background:#fff; border-radius:10px; box-shadow:0 1px 3px rgba(0,0,0,.06); overflow:auto; }
+  .tbl-wrap { background:#fff; border-radius:10px; box-shadow:0 1px 3px rgba(0,0,0,.06); overflow:auto; position:relative; }
   table.data { width:100%; border-collapse:collapse; font-size:13px; }
   table.data th, table.data td { padding:10px 14px; text-align:center; border-bottom:1px solid #eef1f5; white-space:nowrap; }
   table.data thead th { position:sticky; top:0; background:#f8fafc; color:#5a6b7e; font-weight:600; cursor:pointer; user-select:none; }
   table.data thead th:hover { color:#1f2d3d; }
+  table.data thead th .th-in { display:inline-flex; align-items:center; gap:4px; }
+  table.data thead th .filter-ico { cursor:pointer; color:#b6c2d1; font-size:11px; line-height:1; padding:2px 3px; border-radius:4px; }
+  table.data thead th .filter-ico:hover { background:#e8f1fb; color:#4dabf7; }
+  table.data thead th.filtered { color:#4dabf7; }
+  table.data thead th.filtered .filter-ico { color:#4dabf7; }
   table.data tbody tr:hover { background:#f5f9ff; }
   table.data td.num { text-align:center; font-variant-numeric:tabular-nums; }
+  .filter-bar { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; font-size:13px; color:#5a6b7e; }
+  .filter-bar .chip { display:inline-flex; align-items:center; gap:6px; background:#eef6ff; color:#2f6fb3; border:1px solid #cfe4f9; border-radius:12px; padding:3px 10px; }
+  .filter-bar .chip b { font-weight:600; }
+  .filter-bar .chip .x { cursor:pointer; font-weight:700; }
+  .filter-bar .clear-all { cursor:pointer; color:#4dabf7; }
   .tag { display:inline-block; padding:2px 8px; border-radius:10px; font-size:12px; background:#eef6ff; color:#2f6fb3; }
   a.github { color:#4dabf7; text-decoration:none; }
   .btn { padding:9px 16px; border:none; border-radius:8px; background:#4dabf7; color:#fff; font-size:14px; cursor:pointer; white-space:nowrap; }
   .btn:hover { background:#3a96e0; }
   .btn.ghost { background:#eef1f5; color:#1f2d3d; }
+  .btn.sm { padding:5px 14px; font-size:13px; }
+  .filter-pop { position:absolute; z-index:1000; background:#fff; border:1px solid #d9e0e8; border-radius:8px; box-shadow:0 6px 20px rgba(0,0,0,.15); width:240px; padding:10px; font-size:13px; }
+  .filter-pop .fp-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+  .filter-pop .fp-head input { flex:1; padding:6px 8px; border:1px solid #d9e0e8; border-radius:6px; font-size:13px; outline:none; margin-right:8px; }
+  .filter-pop .fp-head input:focus { border-color:#4dabf7; }
+  .filter-pop .fp-count { color:#8a97a8; font-size:12px; white-space:nowrap; }
+  .filter-pop .fp-actions { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; color:#5a6b7e; }
+  .filter-pop .fp-actions label { cursor:pointer; display:inline-flex; align-items:center; gap:4px; }
+  .filter-pop .fp-clear { background:none; border:none; color:#4dabf7; cursor:pointer; font-size:13px; }
+  .filter-pop .fp-list { max-height:240px; overflow:auto; border-top:1px solid #eef1f5; border-bottom:1px solid #eef1f5; padding:4px 0; }
+  .filter-pop .fp-item { display:flex; align-items:center; gap:6px; padding:4px 6px; cursor:pointer; border-radius:4px; }
+  .filter-pop .fp-item:hover { background:#f5f9ff; }
+  .filter-pop .fp-item input { margin:0; }
+  .filter-pop .fp-foot { margin-top:8px; text-align:right; }
   @media (max-width: 768px) {
     .layout { flex-direction:column; }
     .sidebar { width:100%; padding:12px 0; }
@@ -64,7 +88,7 @@
     .cards { grid-template-columns:1fr; }
   }
   @media print {
-    .sidebar, .toolbar, .cards, .summary-table, .sub, .topbar .sub { display:none !important; }
+    .sidebar, .toolbar, .cards, .summary-table, .sub, .topbar .sub, .filter-bar { display:none !important; }
     .layout { display:block; }
     .main { padding:0; }
     .tbl-wrap { overflow:visible; }
@@ -114,16 +138,19 @@
         <button class="btn" id="exportBtn">导出 Excel</button>
         <button class="btn ghost" id="printBtn">打印</button>
       </div>
+      <div class="filter-bar" id="filterBar"></div>
       <div class="tbl-wrap"><table class="data" id="modTable"></table></div>
     </section>
   </main>
 </div>
 <script>
 const DATA = {"modules": [{"name": "还需入库", "cols": ["存货编码", "存货名称", "产品分类", "本月还需入库", "最近断点时间", "本周还需入库", "当前等待入库"], "rows": [["C01196323", "整体式半轴一级太阳轮", "散单", "2", "2026-08-01", "2", "2"], ["C07106018", "旋转轴", "散单", "1", "2026-08-05", "1", "0"], ["C07116020", "驱动轴", "散单", "1", "2026-08-05", "1", "0"], ["C01196287", "低速齿轮组34", "高精高速", "1", "2026-08-05", "1", "0"], ["C01196302", "高速齿轮组38", "高精高速", "1", "2026-08-05", "1", "0"], ["C01196107", "低速小齿轮组件", "高精高速", "10", "2026-08-05", "10", "0"], ["C01196109", "高速小齿轮组件", "高精高速", "1", "2026-08-05", "1", "0"], ["C01196295", "低速齿轮轴", "高精高速", "2", "2026-08-05", "2", "0"], ["C01196296", "高速齿轮轴", "高精高速", "6", "2026-08-05", "6", "2"], ["C01196347", "高速齿轮轴组件", "高精高速", "1", "2026-08-05", "1", "0"], ["C01300331", "主齿轮组", "高精高速", "5", "2026-08-10", "5", "0"], ["C01300504", "大齿轮组件", "高精高速", "1", "2026-08-10", "1", "1"], ["C01000045", "成品齿轮#", "散单", "1", "2026-08-11", "1", "1"], ["C01000046", "后炮齿轮组件#", "散单", "11", "2026-08-11", "11", "11"], ["C05000064", "法兰盘#", "散单", "4", "2026-08-11", "4", "4"], ["C01196341", "低速齿轮组", "高精高速", "1", "2026-08-15", "1", "0"], ["C01196343", "高速齿轮组", "高精高速", "1", "2026-08-15", "1", "0"], ["CC092467", "花键轴", "散单", "1", "2026-08-15", "1", "1"], ["C01196356", "一二级高速轴组件", "高精高速", "2", "2026-08-15", "2", "0"], ["C01196358", "三级高速轴组件", "高精高速", "1", "2026-08-15", "1", "0"], ["C01300509", "大齿轮组件", "高精高速", "2", "2026-08-15", "2", "0"], ["C01196308", "齿轴", "高精高速", "1", "2026-08-18", "1", "0"], ["C01196309", "齿轴", "高精高速", "1", "2026-08-18", "1", "0"], ["C01300401", "大齿轮组件", "高精高速", "1", "2026-08-18", "1", "0"], ["C01300253", "齿轮（左）", "油气", "12", "2026-08-20", "12", "0"], ["CC090532", "轴", "油气", "8", "2026-08-20", "8", "0"], ["C01196370", "一二级高速轴组件", "高精高速", "3", "2026-08-20", "3", "0"], ["C01196372", "三四级高速轴组件", "高精高速", "3", "2026-08-20", "3", "0"], ["C01300514", "输入转子", "高精高速", "3", "2026-08-20", "3", "0"], ["AJS00037", "行星齿轮箱", "齿轮箱", "1", "2026-08-20", "1", "0"], ["C01196228", "齿轮轴组件", "高精高速", "5", "2026-08-20", "5", "0"], ["C01196058", "高速轴组件1", "高精高速", "1", "2026-08-20", "1", "0"], ["C01300089", "大齿轮组件", "高精高速", "1", "2026-08-20", "1", "0"], ["C01300010", "大齿轮组件", "高精高速", "1", "2026-08-23", "1", "0"], ["C01196368", "低速齿轮组34", "高精高速", "5", "2026-08-28", "5", "0"], ["C01300219", "主齿轮组", "高精高速", "2", "2026-08-28", "2", "0"], ["CC091607", "齿轮轴", "油气", "6", "2026-08-29", "6", "4"], ["C01300374", "斜齿轮", "散单", "1", "2026-08-30", "1", "0"], ["C01300375", "斜齿轮", "散单", "1", "2026-08-30", "1", "1"], ["BLB00005", "轮边减速机", "齿轮箱", "2", "2026-08-30", "2", "1"], ["C01196322", "整体式半轴一级太阳轮", "散单", "10", "2026-08-30", "10", "8"], ["C01250031", "二级太阳轮", "散单", "3", "2026-08-30", "3", "0"], ["C01196226", "齿轮轴组件", "高精高速", "2", "2026-08-30", "2", "0"], ["JC095136", "一级行星轮", "风电项目（非远景）", "21", "2026-08-31", "21", "0"], ["C01300254", "齿轮（右）", "油气", "17", "", "17", "5"], ["CC092879", "齿轮（左）", "油气", "14", "", "14", "0"], ["CC092880", "齿轮（右）", "油气", "16", "", "16", "0"], ["C01216031", "二级行星轮", "散单", "1", "", "1", "0"], ["C01196360", "一二级高速轴组件", "高精高速", "1", "", "1", "0"]]}, {"name": "还需探伤", "cols": ["存货编码", "存货名称", "产品分类", "本月还需探伤", "本周还需探伤", "当前等待探伤", "最近断点时间"], "rows": [["C07106018", "旋转轴", "散单", "1", "1", "0", "2026-08-05"], ["C07116020", "驱动轴", "散单", "1", "1", "0", "2026-08-05"], ["C01196287", "低速齿轮组34", "高精高速", "1", "1", "1", "2026-08-05"], ["C01196107", "低速小齿轮组件", "高精高速", "10", "10", "0", "2026-08-05"], ["C01196109", "高速小齿轮组件", "高精高速", "1", "1", "0", "2026-08-05"], ["C01196295", "低速齿轮轴", "高精高速", "2", "2", "0", "2026-08-05"], ["C01196296", "高速齿轮轴", "高精高速", "4", "4", "0", "2026-08-05"], ["C01300331", "主齿轮组", "高精高速", "5", "5", "4", "2026-08-10"], ["C01196341", "低速齿轮组", "高精高速", "1", "1", "1", "2026-08-15"], ["C01196343", "高速齿轮组", "高精高速", "1", "1", "1", "2026-08-15"], ["C01196356", "一二级高速轴组件", "高精高速", "2", "2", "2", "2026-08-15"], ["C01196358", "三级高速轴组件", "高精高速", "1", "1", "1", "2026-08-15"], ["C01196360", "一二级高速轴组件", "高精高速", "1", "1", "1", "2026-08-15"], ["C01300401", "大齿轮组件", "高精高速", "1", "1", "1", "2026-08-18"], ["C01300253", "齿轮（左）", "油气", "2", "2", "0", "2026-08-20"], ["C01300254", "齿轮（右）", "油气", "9", "9", "0", "2026-08-20"], ["C01196228", "齿轮轴组件", "高精高速", "5", "5", "0", "2026-08-20"], ["C01300219", "主齿轮组", "高精高速", "1", "1", "1", "2026-08-28"], ["CC091607", "齿轮轴", "油气", "2", "2", "0", "2026-08-29"], ["C01196322", "整体式半轴一级太阳轮", "散单", "2", "2", "0", "2026-08-30"], ["C01216031", "二级行星轮", "散单", "1", "1", "0", "2026-08-30"], ["C01250031", "二级太阳轮", "散单", "3", "3", "3", "2026-08-30"], ["C01196226", "齿轮轴组件", "高精高速", "2", "2", "0", "2026-08-30"]]}, {"name": "还需动平衡", "cols": ["存货编码", "存货名称", "产品分类", "本月还需动平衡", "本周还需动平衡", "当前等待动平衡", "最近断点时间"], "rows": [["C01300331", "主齿轮组", "高精高速", "5", "5", "0", "2026-08-10"], ["C01196308", "齿轴", "高精高速", "1", "1", "1", "2026-08-18"], ["C01196309", "齿轴", "高精高速", "1", "1", "1", "2026-08-18"], ["C01300401", "大齿轮组件", "高精高速", "1", "1", "0", "2026-08-18"], ["C01300219", "主齿轮组", "高精高速", "2", "2", "1", "2026-08-28"], ["C01300374", "斜齿轮", "散单", "1", "1", "1", "2026-08-30"]]}, {"name": "还需磨齿", "cols": ["存货编码", "存货名称", "产品分类", "本月还需磨齿", "本周还需磨齿", "当前等待磨齿", "最近断点时间"], "rows": [["C01196295", "低速齿轮轴", "高精高速", "2", "2", "0", "2026-08-05"], ["C01196296", "高速齿轮轴", "高精高速", "4", "4", "0", "2026-08-05"], ["C01300331", "主齿轮组", "高精高速", "1", "1", "1", "2026-08-10"], ["CC090532", "轴", "油气", "8", "8", "0", "2026-08-20"], ["CC092879", "齿轮（左）", "油气", "14", "14", "0", "2026-08-20"], ["CC092880", "齿轮（右）", "油气", "16", "16", "0", "2026-08-20"], ["CC091607", "齿轮轴", "油气", "2", "2", "2", "2026-08-29"], ["C01196322", "整体式半轴一级太阳轮", "散单", "2", "2", "0", "2026-08-30"], ["C01216031", "二级行星轮", "散单", "1", "1", "0", "2026-08-30"]]}], "summary": [{"name": "还需入库", "本月": 199, "本周": 199, "当前": 41}, {"name": "还需探伤", "本月": 59, "本周": 59, "当前": 16}, {"name": "还需动平衡", "本月": 11, "本周": 11, "当前": 4}, {"name": "还需磨齿", "本月": 50, "本周": 50, "当前": 3}], "trend": [{"label": "8/31下午", "入库": 41, "探伤": 16, "动平衡": 4, "磨齿": 3}]};
+const EMPTY = "__EMPTY__";
 const nav = document.getElementById('nav');
 const overview = document.getElementById('p-overview');
 const moduleP = document.getElementById('p-module');
 const pageTitle = document.getElementById('pageTitle');
+const filterBar = document.getElementById('filterBar');
 const esc = s => (s===null||s===undefined?'':String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 // summary cards + table
@@ -152,30 +179,72 @@ items.forEach(it => {
   nav.appendChild(b);
 });
 
-let curRows=[], curCols=[], sortIdx=-1, sortAsc=true;
-function show(key){
-  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active', b.dataset.key===key));
-  if(key==='overview'){ overview.classList.add('active'); moduleP.classList.remove('active'); pageTitle.textContent='总览'; return; }
-  overview.classList.remove('active'); moduleP.classList.add('active');
-  const m = modByName[key]; pageTitle.textContent = m.name;
-  curCols = m.cols; curRows = m.rows.slice();
-  sortIdx=-1; document.getElementById('search').value='';
-  renderTable();
+let curCols=[], curBase=[], curDistinct=[], curRows=[], sortIdx=-1, sortAsc=true;
+let filters = {};  // colIdx -> Set(allowed display values), absent or size 0 = 全部
+
+function getDistinct(colIdx){
+  const set = new Set();
+  curBase.forEach(r => set.add(r[colIdx]==='' ? EMPTY : String(r[colIdx])));
+  return Array.from(set).sort((a,b)=>String(a).localeCompare(String(b),'zh'));
+}
+
+function computeRows(){
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  curRows = curBase.filter(r => {
+    if(q && !r.join(' ').toLowerCase().includes(q)) return false;
+    for(const ci in filters){
+      const allow = filters[ci];
+      if(allow && allow.size > 0){
+        const v = r[ci]==='' ? EMPTY : String(r[ci]);
+        if(!allow.has(v)) return false;
+      }
+    }
+    return true;
+  });
 }
 
 function renderTable(){
   const t = document.getElementById('modTable');
   t.innerHTML='';
   const thead = document.createElement('thead'); const hr=document.createElement('tr');
-  curCols.forEach((c,i)=>{ const th=document.createElement('th'); th.textContent=c; th.onclick=()=>{ if(sortIdx===i){sortAsc=!sortAsc;}else{sortIdx=i;sortAsc=true;} sortRows(); renderTable(); };
-    hr.appendChild(th); });
+  curCols.forEach((c,i)=>{
+    const th=document.createElement('th');
+    const span=document.createElement('span'); span.className='hlabel'; span.textContent=c;
+    span.onclick=()=>{ if(sortIdx===i){sortAsc=!sortAsc;}else{sortIdx=i;sortAsc=true;} sortRows(); renderTable(); };
+    const ico=document.createElement('span'); ico.className='filter-ico'; ico.textContent='▾'; ico.title='筛选';
+    ico.onclick=(e)=>{ e.stopPropagation(); openFilter(i, th); };
+    const inner=document.createElement('span'); inner.className='th-in'; inner.appendChild(span); inner.appendChild(ico);
+    th.appendChild(inner);
+    if(filters[i] && filters[i].size>0 && filters[i].size < curDistinct[i].length) th.classList.add('filtered');
+    hr.appendChild(th);
+  });
   thead.appendChild(hr); t.appendChild(thead);
   const tb=document.createElement('tbody');
   curRows.forEach(r=>{ const tr=document.createElement('tr');
     curCols.forEach((c,i)=>{ const td=document.createElement('td'); td.textContent=r[i]; if(!isNaN(r[i])&&r[i]!=='') td.className='num'; tr.appendChild(td); });
     tb.appendChild(tr); });
   t.appendChild(tb);
-  document.getElementById('cnt').textContent = `共 ${curRows.length} 行`;
+  document.getElementById('cnt').textContent = `共 ${curRows.length} 行` + (curRows.length!==curBase.length ? `（已筛选，总 ${curBase.length}）` : '');
+  renderFilterBar();
+}
+
+function renderFilterBar(){
+  filterBar.innerHTML='';
+  const active = Object.keys(filters).filter(ci => filters[ci] && filters[ci].size>0 && filters[ci].size < curDistinct[ci].length);
+  if(active.length===0) return;
+  const lab=document.createElement('span'); lab.textContent='筛选：'; filterBar.appendChild(lab);
+  active.forEach(ci=>{
+    const colName = curCols[ci];
+    const vals = Array.from(filters[ci]);
+    const disp = vals.map(v=>v===EMPTY?'(空)':v).join('、');
+    const chip=document.createElement('span'); chip.className='chip';
+    chip.innerHTML = `<b>${esc(colName)}</b>: ${esc(disp)} <span class="x" data-ci="${ci}">✕</span>`;
+    chip.querySelector('.x').onclick=()=>{ delete filters[ci]; computeRows(); renderTable(); };
+    filterBar.appendChild(chip);
+  });
+  const clearAll=document.createElement('span'); clearAll.className='clear-all'; clearAll.textContent='清除全部';
+  clearAll.onclick=()=>{ filters={}; computeRows(); renderTable(); };
+  filterBar.appendChild(clearAll);
 }
 
 function sortRows(){
@@ -185,19 +254,75 @@ function sortRows(){
     return sortAsc? String(x).localeCompare(String(y),'zh') : String(y).localeCompare(String(x),'zh'); });
 }
 
-document.getElementById('search').addEventListener('input', e=>{
-  const q=e.target.value.trim().toLowerCase();
-  const base = modByName[pageTitle.textContent] ? modByName[pageTitle.textContent].rows : [];
-  curRows = base.filter(r=> r.join(' ').toLowerCase().includes(q));
-  renderTable();
-});
+function openFilter(colIdx, th){
+  closeFilter();
+  const vals = getDistinct(colIdx);
+  const sel = filters[colIdx] ? new Set(filters[colIdx]) : new Set(vals);
+  const pop=document.createElement('div'); pop.className='filter-pop'; pop.id='filterPop';
+  let html = `<div class="fp-head"><input class="fp-search" placeholder="搜索值…"><span class="fp-count"></span></div>`;
+  html += `<div class="fp-actions"><label><input type="checkbox" class="fp-all"> 全选</label><button class="fp-clear">清空</button></div>`;
+  html += `<div class="fp-list"></div>`;
+  html += `<div class="fp-foot"><button class="fp-ok btn sm">完成</button></div>`;
+  pop.innerHTML=html;
+  document.body.appendChild(pop);
+  const rect=th.getBoundingClientRect();
+  const wrapRect=document.querySelector('.tbl-wrap').getBoundingClientRect();
+  pop.style.top=(window.scrollY + rect.bottom + 4)+'px';
+  let left = window.scrollX + rect.left;
+  if(left + 240 > window.scrollX + window.innerWidth) left = window.scrollX + window.innerWidth - 250;
+  pop.style.left = left+'px';
+  const listEl=pop.querySelector('.fp-list');
+  const allCb=pop.querySelector('.fp-all');
+  function renderList(){
+    const q=pop.querySelector('.fp-search').value.trim().toLowerCase();
+    let h='';
+    vals.forEach(v=>{
+      const disp = v===EMPTY ? '(空)' : v;
+      if(q && !String(disp).toLowerCase().includes(q)) return;
+      const checked = sel.has(v) ? 'checked' : '';
+      h += `<label class="fp-item"><input type="checkbox" value="${esc(v)}" ${checked}> <span>${esc(disp)}</span></label>`;
+    });
+    listEl.innerHTML=h;
+    pop.querySelector('.fp-count').textContent = sel.size+'/'+vals.length;
+    allCb.checked = (sel.size===vals.length);
+    listEl.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+      cb.onchange=()=>{ if(cb.checked) sel.add(cb.value); else sel.delete(cb.value); applyLive(); };
+    });
+  }
+  function applyLive(){
+    filters[colIdx] = new Set(sel);
+    computeRows(); renderTable();
+  }
+  pop.querySelector('.fp-search').addEventListener('input', renderList);
+  allCb.addEventListener('change', e=>{
+    if(e.target.checked){ vals.forEach(v=>sel.add(v)); } else { sel.clear(); }
+    renderList(); applyLive();
+  });
+  pop.querySelector('.fp-clear').addEventListener('click', ()=>{ sel.clear(); renderList(); applyLive(); });
+  pop.querySelector('.fp-ok').addEventListener('click', closeFilter);
+  renderList();
+  setTimeout(()=>{ document.addEventListener('click', outsideClose); }, 0);
+  function outsideClose(ev){ if(!pop.contains(ev.target)) closeFilter(); }
+  pop._outside = outsideClose;
+}
+function closeFilter(){
+  const p=document.getElementById('filterPop');
+  if(p){ if(p._outside) document.removeEventListener('click', p._outside); p.remove(); }
+}
+
+document.getElementById('search').addEventListener('input', e=>{ computeRows(); renderTable(); });
 
 function exportExcel(){
   const name = pageTitle.textContent;
   const m = modByName[name];
   if(!m){ return; }
   if(typeof XLSX === 'undefined'){ alert('导出组件未加载，请联网后重试'); return; }
-  const aoa = [m.cols].concat(m.rows.map(r => r.map(v => {
+  const rowsForExport = curRows.map(r => {
+    const out = r.slice();
+    // 把空送占位还原为原生空（导出更干净）
+    return out;
+  });
+  const aoa = [m.cols].concat(rowsForExport.map(r => r.map(v => {
     const n = parseFloat(v);
     return (!isNaN(n) && v !== '' && v !== null) ? n : v;
   })));
@@ -256,6 +381,17 @@ function drawTrend(){
   grid.innerHTML = TREND_META.map(t=>drawOneTrend(t, arr)).join('');
 }
 drawTrend();
+
+function show(key){
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active', b.dataset.key===key));
+  if(key==='overview'){ overview.classList.add('active'); moduleP.classList.remove('active'); pageTitle.textContent='总览'; return; }
+  overview.classList.remove('active'); moduleP.classList.add('active');
+  const m = modByName[key]; pageTitle.textContent = m.name;
+  curCols = m.cols; curBase = m.rows.slice();
+  curDistinct = curCols.map((c,i)=>getDistinct(i));
+  filters = {}; sortIdx=-1; document.getElementById('search').value='';
+  computeRows(); renderTable();
+}
 
 show('overview');
 </script>
