@@ -1,0 +1,619 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>工序-设备瓶颈分析 V0831</title>
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--ink:#202124;--sub:#5f6368;--line:#dadce0;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.5;}
+.wrap{max-width:880px;margin:0 auto;padding:12px 12px 60px;}
+header{background:linear-gradient(135deg,#b71c1c,#e53935);color:#fff;padding:16px 14px;border-radius:10px;margin-bottom:12px;}
+header h1{margin:0 0 4px;font-size:18px;}
+header .meta{font-size:12px;opacity:.92;}
+.toolbar{position:sticky;top:0;background:var(--bg);padding:8px 0 6px;z-index:5;}
+.toolbar input{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;font-size:14px;}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+.chip{font-size:12px;padding:4px 10px;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--sub);cursor:pointer;white-space:nowrap;}
+.chip.on{background:#b71c1c;color:#fff;border-color:#b71c1c;}
+.card{background:var(--card);border-radius:10px;margin-bottom:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);}
+.ch{padding:10px 12px;display:flex;justify-content:space-between;align-items:center;background:#fff;border-bottom:1px solid var(--line);}
+.ct{font-size:15px;font-weight:700;}
+.cb{font-size:12px;color:var(--sub);}
+.cstat{padding:6px 12px;font-size:12px;color:var(--sub);background:#faf9f7;}
+.cstat b{color:#202124;}
+.dlist{padding:8px 12px 10px;}
+.drow{display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px dashed #ececec;}
+.drow:last-child{border-bottom:none;}
+.dr{width:96px;flex:0 0 auto;font-size:12px;word-break:break-all;}
+.barwrap{flex:1;height:8px;background:#eef0f3;border-radius:4px;overflow:hidden;}
+.bar{height:100%;border-radius:4px;}
+.dq{width:34px;text-align:right;font-weight:600;font-size:12px;}
+.dp{width:34px;text-align:right;color:var(--sub);font-size:11px;}
+.dev-bk .dr{color:#d93025;font-weight:700;}
+.dev-nm{opacity:.65;}
+.empty{color:var(--sub);font-size:12px;padding:6px 0;}
+.note{font-size:11px;color:var(--sub);background:#fff8e1;border:1px solid #ffe082;border-radius:8px;padding:8px 10px;margin:6px 0 12px;}
+.hide{display:none!important;}
+</style></head><body><div class="wrap">
+<header><h1>工序-设备瓶颈分析 · 非远景产品加工任务汇总 V0831</h1>
+<div class="meta">数据口径:每个工序 Sheet 中"需要本工序"的在制品,按<b>设备</b>汇总<b>在制件数</b>;剔除"当前工序==本工序且状态含完工"(已在本工序完工)。<br>
+瓶颈设备=各工序自有设备中待加工件数最大者;委外/TBD/未指派不计为设备瓶颈。</div></header>
+<div class="toolbar">
+  <input id="q" placeholder="搜索工序名或设备号(如 精车 / C04 / M06)">
+  <div class="chips" id="chips">
+    <span class="chip on" data-f="all">全部(14)</span>
+    <span class="chip" data-f="hasbk">仅自有设备工序</span>
+    <span class="chip" data-f="top">仅高负荷(>50件)</span>
+  </div>
+</div>
+<div class="note">总待加工件数 <b>4075</b> · 工序 14 道 · 涉及自有设备 94 台</div>
+<div id="cards"><div class="card" data-proc="半精车" data-total="138" data-bk="C26">
+      <div class="ch" style="border-left:5px solid #d93025">
+        <div class="ct">半精车</div>
+        <div class="cb">瓶颈设备: C26 <b>32</b>件</div>
+      </div>
+      <div class="cstat">总待加工 <b>138</b>件 · 36条在制 · 已完工剔除 0条</div>
+      <div class="dlist"><div class="drow dev-nm">
+          <span class="dr">委外（委外/非设备）</span>
+          <div class="barwrap"><div class="bar" style="width:63.0%;background:#9aa0a6"></div></div>
+          <span class="dq">87</span><span class="dp">63%</span>
+        </div><div class="drow dev-bk">
+          <span class="dr">C26</span>
+          <div class="barwrap"><div class="bar" style="width:23.2%;background:#d93025"></div></div>
+          <span class="dq">32</span><span class="dp">23%</span>
+        </div><div class="drow ">
+          <span class="dr">C03</span>
+          <div class="barwrap"><div class="bar" style="width:7.2%;background:#1a73e8"></div></div>
+          <span class="dq">10</span><span class="dp">7%</span>
+        </div><div class="drow ">
+          <span class="dr">Z-C01</span>
+          <div class="barwrap"><div class="bar" style="width:2.9%;background:#1a73e8"></div></div>
+          <span class="dq">4</span><span class="dp">3%</span>
+        </div><div class="drow ">
+          <span class="dr">C15</span>
+          <div class="barwrap"><div class="bar" style="width:2.2%;background:#1a73e8"></div></div>
+          <span class="dq">3</span><span class="dp">2%</span>
+        </div><div class="drow ">
+          <span class="dr">C05</span>
+          <div class="barwrap"><div class="bar" style="width:0.7%;background:#1a73e8"></div></div>
+          <span class="dq">1</span><span class="dp">1%</span>
+        </div><div class="drow ">
+          <span class="dr">C30</span>
+          <div class="barwrap"><div class="bar" style="width:0.7%;background:#1a73e8"></div></div>
+          <span class="dq">1</span><span class="dp">1%</span>
+        </div></div>
+    </div><div class="card" data-proc="调质" data-total="102" data-bk="R16">
+      <div class="ch" style="border-left:5px solid #d93025">
+        <div class="ct">调质</div>
+        <div class="cb">瓶颈设备: R16 <b>31</b>件</div>
+      </div>
+      <div class="cstat">总待加工 <b>102</b>件 · 23条在制 · 已完工剔除 0条</div>
+      <div class="dlist"><div class="drow dev-nm">
+          <span class="dr">委外（委外/非设备）</span>
+          <div class="barwrap"><div class="bar" style="width:35.3%;background:#9aa0a6"></div></div>
+          <span class="dq">36</span><span class="dp">35%</span>
+        </div><div class="drow dev-bk">
+          <span class="dr">R16</span>
+          <div class="barwrap"><div class="bar" style="width:30.4%;background:#d93025"></div></div>
+          <span class="dq">31</span><span class="dp">30%</span>
+        </div><div class="drow ">
+          <span class="dr">R02</span>
+          <div class="barwrap"><div class="bar" style="width:25.5%;background:#1a73e8"></div></div>
+          <span class="dq">26</span><span class="dp">25%</span>
+        </div><div class="drow ">
+          <span class="dr">R17</span>
+          <div class="barwrap"><div class="bar" style="width:7.8%;background:#1a73e8"></div></div>
+          <span class="dq">8</span><span class="dp">8%</span>
+        </div><div class="drow dev-nm">
+          <span class="dr">未指派（未指派）</span>
+          <div class="barwrap"><div class="bar" style="width:1.0%;background:#9aa0a6"></div></div>
+          <span class="dq">1</span><span class="dp">1%</span>
+        </div></div>
+    </div><div class="card" data-proc="滚齿" data-total="326" data-bk="Z-G02">
+      <div class="ch" style="border-left:5px solid #d93025">
+        <div class="ct">滚齿</div>
+        <div class="cb">瓶颈设备: Z-G02 <b>98</b>件</div>
+      </div>
+      <div class="cstat">总待加工 <b>326</b>件 · 89条在制 · 已完工剔除 1条</div>
+      <div class="dlist"><div class="drow dev-bk">
+          <span class="dr">Z-G02</span>
+          <div class="barwrap"><div class="bar" style="width:30.1%;background:#d93025"></div></div>
+          <span class="dq">98</span><span class="dp">30%</span>
+        </div><div class="drow ">
+          <span class="dr">G05</span>
+          <div class="barwrap"><div class="bar" style="width:16.0%;background:#1a73e8"></div></div>
+          <span class="dq">52</span><span class="dp">16%</span>
+        </div><div class="drow ">
+          <span class="dr">G02</span>
+          <div class="barwrap"><div class="bar" style="width:14.7%;background:#1a73e8"></div></div>
+          <span class="dq">48</span><span class="dp">15%</span>
+        </div><div class="drow ">
+          <span class="dr">G07</span>
+          <div class="barwrap"><div class="bar" style="width:7.7%;background:#1a73e8"></div></div>
+          <span class="dq">25</span><span class="dp">8%</span>
+        </div><div class="drow ">
+          <span class="dr">G18</span>
+          <div class="barwrap"><div class="bar" style="width:7.4%;background:#1a73e8"></div></div>
+          <span class="dq">24</span><span class="dp">7%</span>
+        </div><div class="drow ">
+          <span class="dr">Z-G01</span>
+          <div class="barwrap"><div class="bar" style="width:5.2%;background:#1a73e8"></div></div>
+          <span class="dq">17</span><span class="dp">5%</span>
+        </div><div class="drow ">
+          <span class="dr">G04</span>
+          <div class="barwrap"><div class="bar" style="width:5.2%;background:#1a73e8"></div></div>
+          <span class="dq">17</span><span class="dp">5%</span>
+        </div><div class="drow ">
+          <span class="dr">G30</span>
+          <div class="barwrap"><div class="bar" style="width:4.0%;background:#1a73e8"></div></div>
+          <span class="dq">13</span><span class="dp">4%</span>
+        </div><div class="drow ">
+          <span class="dr">G15</span>
+          <div class="barwrap"><div class="bar" style="width:3.1%;background:#1a73e8"></div></div>
+          <span class="dq">10</span><span class="dp">3%</span>
+        </div><div class="drow ">
+          <span class="dr">G31</span>
+          <div class="barwrap"><div class="bar" style="width:2.8%;background:#1a73e8"></div></div>
+          <span class="dq">9</span><span class="dp">3%</span>
+        </div><div class="drow ">
+          <span class="dr">G20</span>
+          <div class="barwrap"><div class="bar" style="width:1.2%;background:#1a73e8"></div></div>
+          <span class="dq">4</span><span class="dp">1%</span>
+        </div><div class="drow ">
+          <span class="dr">G27</span>
+          <div class="barwrap"><div class="bar" style="width:1.2%;background:#1a73e8"></div></div>
+          <span class="dq">4</span><span class="dp">1%</span>
+        </div><div class="drow ">
+          <span class="dr">G16</span>
+          <div class="barwrap"><div class="bar" style="width:0.6%;background:#1a73e8"></div></div>
+          <span class="dq">2</span><span class="dp">1%</span>
+        </div><div class="drow ">
+          <span class="dr">G14</span>
+          <div class="barwrap"><div class="bar" style="width:0.3%;background:#1a73e8"></div></div>
+          <span class="dq">1</span><span class="dp">0%</span>
+        </div><div class="drow dev-nm">
+          <span class="dr">委外（委外/非设备）</span>
+          <div class="barwrap"><div class="bar" style="width:0.3%;background:#9aa0a6"></div></div>
+          <span class="dq">1</span><span class="dp">0%</span>
+        </div><div class="drow ">
+          <span class="dr">滚齿:委外</span>
+          <div class="barwrap"><div class="bar" style="width:0.3%;background:#1a73e8"></div></div>
+          <span class="dq">1</span><span class="dp">0%</span>
+        </div></div>
+    </div><div class="card" data-proc="加工中心" data-total="410" data-bk="X03">
+      <div class="ch" style="border-left:5px solid #d93025">
+        <div class="ct">加工中心</div>
+        <div class="cb">瓶颈设备: X03 <b>134</b>件</div>
+      </div>
+      <div class="cstat">总待加工 <b>410</b>件 · 104条在制 · 已完工剔除 2条</div>
+      <div class="dlist"><div class="drow dev-bk">
+          <span class="dr">X03</span>
+          <div class="barwrap"><div class="bar" style="width:32.7%;background:#d93025"></div></div>
+          <span class="dq">134</span><span class="dp">33%</span>
+        </div><div class="drow ">
+          <span class="dr">X08</span>
+          <div class="barwrap"><div class="bar" style="width:28.5%;background:#1a73e8"></div></div>
+          <span class="dq">117</span><span class="dp">29%</span>
+        </div><div class="drow ">
+          <span class="dr">X01</span>
+          <div class="barwrap"><div class="bar" style="width:20.7%;background:#1a73e8"></div></div>
+          <span class="dq">85</span><span class="dp">21%</span>
+        </div><div class="drow ">
+          <span class="dr">X11</span>
+          <div class="barwrap"><div class="bar" style="width:8.0%;background:#1a73e8"></div></div>
+          <span class="dq">33</span><span class="dp">8%</span>
+        </div><div class="drow dev-nm">
+          <span class="dr">委外（委外/非设备）</span>
+          <div class="barwrap"><div class="bar" style="width:2.7%;background:#9aa0a6"></div></div>
+          <span class="dq">11</span><span class="dp">3%</span>
+        </div><div class="drow ">
+          <span class="dr">X04</span>
+          <div class="barwrap"><div class="bar" style="width:1.7%;background:#1a73e8"></div></div>
+          <span class="dq">7</span><span class="dp">2%</span>
+        </div><div class="drow ">
+          <span class="dr">X02</span>
+          <div class="barwrap"><div class="bar" style="width:1.5%;background:#1a73e8"></div></div>
+          <span class="dq">6</span><span class="dp">1%</span>
+        </div><div class="drow ">
+          <span class="dr">X08/X01</span>
+          <div class="barwrap"><div class="bar" style="width:1.5%;background:#1a73e8"></div></div>
+          <span class="dq">6</span><span class="dp">1%</span>
+        </div><div class="drow ">
+          <span class="dr">X13</span>
+          <div class="barwrap"><div class="bar" style="width:1.0%;background:#1a73e8"></div></div>
+          <span class="dq">4</span><span class="dp">1%</span>
+        </div><div class="drow ">
+          <span class="dr">X01/X08</span>
+          <div class="barwrap"><div class="bar" style="width:0.7%;background:#1a73e8"></div></div>
+          <span class="dq">3</span><span class="dp">1%</span>
+        </div><div class="drow dev-nm">
+          <span class="dr">未指派（未指派）</span>
+          <div class="barwrap"><div class="bar" style="width:0.5%;background:#9aa0a6"></div></div>
+          <span class="dq">2</span><span class="dp">0%</span>
+        </div><div class="drow ">
+          <span class="dr">X05</span>
+          <div class="barwrap"><div class="bar" style="width:0.5%;background:#1a73e8"></div></div>
+          <span class="dq">2</span><span class="dp">0%</span>
+        </div></div>
+    </div><div class="card" data-proc="热处理" data-total="256" data-bk="氮化炉">
+      <div class="ch" style="border-left:5px solid #d93025">
+        <div class="ct">热处理</div>
+        <div class="cb">瓶颈设备: 氮化炉 <b>77</b>件</div>
+      </div>
+      <div class="cstat">总待加工 <b>256</b>件 · 70条在制 · 已完工剔除 0条</div>
+      <div class="dlist"><div class="drow dev-bk">
+          <span class="dr">氮化炉</span>
+          <div class="barwrap"><div class="bar" style="width:30.1%;background:#d93025"></div></div>
+          <span class="dq">77</span><span class="dp">30%</span>
+        </div><div class="drow ">
+          <span class="dr">多用炉</span>
+          <div class="barwrap"><div class="bar" style="width:26.2%;background:#1a73e8"></div></div>
+          <span class="dq">67</span><span class="dp">26%</span>
+        </div><div class="drow ">
+          <span class="dr">R14</span>
+          <div class="barwrap"><div class="bar" style="width:11.7%;background:#1a73e8"></div></div>
+          <span class="dq">30</span><span class="dp">12%</span>
+        </div><div class="drow ">
+          <span class="dr">R16</span>
+          <div class="barwrap"><div class="bar" style="width:8.2%;background:#1a73e8"></div></div>
+          <span class="dq">21</span><span class="dp">8%</span>
+        </div><div class="drow ">
+          <span class="dr">R24</span>
+          <div class="barwrap"><div class="bar" style="width:8.2%;background:#1a73e8"></div></div>
+          <span class="dq">21</span><span class="dp">8%</span>
+        </div><div class="drow ">
+          <span class="dr">R03</span>
+          <div class="barwrap"><div class="bar" style="width:7.0%;background:#1a73e8"></div></div>
+          <span class="dq">18</span><span class="dp">7%</span>
+        </div><div class="drow ">
+          <span class="dr">R32</span>
+          <div class="barwrap"><div class="bar" style="width:3.5%;background:#1a73e8"></div></div>
+          <span class="dq">9</span><span class="dp">4%</span>
+        </div><div class="drow ">
+          <span class="dr">R10</span>
+          <div class="barwrap"><div class="bar" style="width:3.1%;background:#1a73e8"></div></div>
+          <span class="dq">8</span><span class="dp">3%</span>
+        </div><div class="drow ">
+          <span class="dr">RF30</span>
+          <div class="barwrap"><div class="bar" style="width:0.4%;background:#1a73e8"></div></div>
+          <span class="dq">1</span><span class="dp">0%</span>
+        </div><div class="drow ">
+          <span class="dr">R33</span>
+          <div class="barwrap"><div class="bar" style="width:0.4%;background:#1a73e8"></div></div>
+          <span class="dq">1</span><span class="dp">0%</span>
+        </div><div class="drow dev-nm">
+          <span class="dr">未指派（未指派）</span>
+          <div class="barwrap"><div class="bar" style="width:0.4%;background:#9aa0a6"></div></div>
+          <span class="dq">1</span><span class="dp">0%</span>
+        </div><div class="drow ">
+          <span class="dr">R34</span>
+          <div class="barwrap"><div class="bar" style="width:0.4%;background:#1a73e8"></div></div>
+          <span class="dq">1</span><span class="dp">0%</span>
+        </div><div class="drow ">
+          <span class="dr">R02</span>
+          <div class="barwrap"><div class="bar" style="width:0.4%;background:#1a73e8"></div></div>
+          <span class="dq">1</span><span class="dp">0%</span>
+        </div></div>
+    </div><div class="card" data-proc="精车" data-total="532" data-bk="Z-C01">
+      <div class="ch" style="border-left:5px solid #d93025">
+        <div class="ct">精车</div>
+        <div class="cb">瓶颈设备: Z-C01 <b>136</b>件</div>
+      </div>
+      <div class="cstat">总待加工 <b>532</b>件 · 131条在制 · 已完工剔除 3条</div>
+      <div class="dlist"><div class="drow dev-bk">
+          <span class="dr">Z-C01</span>
+          <div class="barwrap"><div class="bar" style="width:25.6%;background:#d93025"></div></div>
+          <span class="dq">136</span><span class="dp">26%</span>
+        </div><div class="drow ">
+          <span class="dr">C26/C30</span>
+          <div class="barwrap"><div class="bar" style="width:22.7%;background:#1a73e8"></div></div>
+          <span class="dq">121</span><span class="dp">23%</span>
+        </div><div class="drow dev-nm">
+          <span class="dr">委外（委外/非设备）</span>
+          <div class="barwrap"><div class="bar" style="width:12.4%;background:#9aa0a6"></div></div>
+          <span class="dq">66</span><span class="dp">12%</span>
+        </div><div class="drow ">
+          <span class="dr">C20</span>
+          <div class="barwrap"><div class="bar" style="width:7.1%;background:#1a73e8"></div></div>
+          <span class="dq">38</span><span class="dp">7%</span>
+        </div><div class="drow ">
+          <span class="dr">C06</span>
+          <div class="barwrap"><div class="bar" style="width:5.6%;background:#1a73e8"></div></div>
+          <span class="dq">30</span><span class="dp">6%</span>
+        </div><div class="drow ">
+          <span class="dr">C25</span>
+          <div class="barwrap"><div class="bar" style="width:5.6%;background:#1a73e8"></div></div>
+          <span class="dq">30</span><span class="dp">6%</span>
+        </div><div class="drow ">
+          <span class="dr">C23</span>
+          <div class="barwrap"><div class="bar" style="width:3.4%;background:#1a73e8"></div></div>
+          <span class="dq">18</span><span class="dp">3%</span>
+        </div><div class="drow ">
+          <span class="dr">C26</span>
+          <div class="barwrap"><div class="bar" style="width:3.0%;background:#1a73e8"></div></div>
+          <span class="dq">16</span><span class="dp">3%</span>
+        </div><div class="drow ">
+          <span class="dr">C15</span>
+          <div class="barwrap"><div class="bar" style="width:3.0%;background:#1a73e8"></div></div>
+          <span class="dq">16</span><span class="dp">3%</span>
+        </div><div class="drow ">
+          <span class="dr">C19</span>
+          <div class="barwrap"><div class="bar" style="width:2.4%;background:#1a73e8"></div></div>
+          <span class="dq">13</span><span class="dp">2%</span>
+        </div><div class="drow ">
+          <span class="dr">C30</span>
+          <div class="barwrap"><div class="bar" style="width:1.9%;background:#1a73e8"></div></div>
+          <span class="dq">10</span><span class="dp">2%</span>
+        </div><div class="drow ">
+          <span class="dr">C04</span>
+          <div class="barwrap"><div class="bar" style="width:1.7%;background:#1a73e8"></div></div>
+          <span class="dq">9</span><span class="dp">2%</span>
+        </div><div class="drow ">
+          <span class="dr">C09</span>
+          <div class="barwrap"><div class="bar" style="width:1.7%;background:#1a73e8"></div></div>
+          <span class="dq">9</span><span class="dp">2%</span>
+        </div><div class="drow ">
+          <span class="dr">C22</span>
+          <div class="barwrap"><div class="bar" style="width:1.7%;background:#1a73e8"></div></div>
+          <span class="dq">9</span><span class="dp">2%</span>
+        </div><div class="drow dev-nm">
+          <span class="dr">未指派（未指派）</span>
+          <div class="barwrap"><div class="bar" style="width:0.6%;background:#9aa0a6"></div></div>
+          <span class="dq">3</span><span class="dp">1%</span>
+        </div><div class="drow ">
+          <span class="dr">C27</span>
+          <div class="barwrap"><div class="bar" style="width:0.6%;background:#1a73e8"></div></div>
+          <span class="dq">3</span><span class="dp">1%</span>
+        </div><div class="drow ">
+          <span class="dr">C12</span>
+          <div class="barwrap"><div class="bar" style="width:0.6%;background:#1a73e8"></div></div>
+          <span class="dq">3</span><span class="dp">1%</span>
+        </div><div class="drow ">
+          <span class="dr">C08</span>
+          <div class="barwrap"><div class="bar" style="width:0.4%;background:#1a73e8"></div></div>
+          <span class="dq">2</span><span class="dp">0%</span>
+        </div></div>
+    </div><div class="card" data-proc="立磨" data-total="214" data-bk="X06">
+      <div class="ch" style="border-left:5px solid #d93025">
+        <div class="ct">立磨</div>
+        <div class="cb">瓶颈设备: X06 <b>117</b>件</div>
+      </div>
+      <div class="cstat">总待加工 <b>214</b>件 · 63条在制 · 已完工剔除 0条</div>
+      <div class="dlist"><div class="drow dev-bk">
+          <span class="dr">X06</span>
+          <div class="barwrap"><div class="bar" style="width:54.7%;background:#d93025"></div></div>
+          <span class="dq">117</span><span class="dp">55%</span>
+        </div><div class="drow ">
+          <span class="dr">X10</span>
+          <div class="barwrap"><div class="bar" style="width:24.8%;background:#1a73e8"></div></div>
+          <span class="dq">53</span><span class="dp">25%</span>
+        </div><div class="drow ">
+          <span class="dr">X12</span>
+          <div class="barwrap"><div class="bar" style="width:6.5%;background:#1a73e8"></div></div>
+          <span class="dq">14</span><span class="dp">7%</span>
+        </div><div class="drow ">
+          <span class="dr">X06/X10/X10</span>
+          <div class="barwrap"><div class="bar" style="width:5.6%;background:#1a73e8"></div></div>
+          <span class="dq">12</span><span class="dp">6%</span>
+        </div><div class="drow ">
+          <span class="dr">X09</span>
+          <div class="barwrap"><div class="bar" style="width:4.7%;background:#1a73e8"></div></div>
+          <span class="dq">10</span><span class="dp">5%</span>
+        </div><div class="drow ">
+          <span class="dr">X06/X12</span>
+          <div class="barwrap"><div class="bar" style="width:2.8%;background:#1a73e8"></div></div>
+          <span class="dq">6</span><span class="dp">3%</span>
+        </div><div class="drow dev-nm">
+          <span class="dr">委外（委外/非设备）</span>
+          <div class="barwrap"><div class="bar" style="width:0.9%;background:#9aa0a6"></div></div>
+          <span class="dq">2</span><span class="dp">1%</span>
+        </div></div>
+    </div><div class="card" data-proc="外圆磨" data-total="398" data-bk="Z60/Z61">
+      <div class="ch" style="border-left:5px solid #d93025">
+        <div class="ct">外圆磨</div>
+        <div class="cb">瓶颈设备: Z60/Z61 <b>199</b>件</div>
+      </div>
+      <div class="cstat">总待加工 <b>398</b>件 · 98条在制 · 已完工剔除 2条</div>
+      <div class="dlist"><div class="drow dev-bk">
+          <span class="dr">Z60/Z61</span>
+          <div class="barwrap"><div class="bar" style="width:50.0%;background:#d93025"></div></div>
+          <span class="dq">199</span><span class="dp">50%</span>
+        </div><div class="drow ">
+          <span class="dr">Z53</span>
+          <div class="barwrap"><div class="bar" style="width:33.7%;background:#1a73e8"></div></div>
+          <span class="dq">134</span><span class="dp">34%</span>
+        </div><div class="drow ">
+          <span class="dr">Z12</span>
+          <div class="barwrap"><div class="bar" style="width:10.8%;background:#1a73e8"></div></div>
+          <span class="dq">43</span><span class="dp">11%</span>
+        </div><div class="drow dev-nm">
+          <span class="dr">委外（委外/非设备）</span>
+          <div class="barwrap"><div class="bar" style="width:3.3%;background:#9aa0a6"></div></div>
+          <span class="dq">13</span><span class="dp">3%</span>
+        </div><div class="drow ">
+          <span class="dr">Z60</span>
+          <div class="barwrap"><div class="bar" style="width:1.0%;background:#1a73e8"></div></div>
+          <span class="dq">4</span><span class="dp">1%</span>
+        </div><div class="drow ">
+          <span class="dr">Z16</span>
+          <div class="barwrap"><div class="bar" style="width:0.5%;background:#1a73e8"></div></div>
+          <span class="dq">2</span><span class="dp">1%</span>
+        </div><div class="drow ">
+          <span class="dr">Z61</span>
+          <div class="barwrap"><div class="bar" style="width:0.5%;background:#1a73e8"></div></div>
+          <span class="dq">2</span><span class="dp">1%</span>
+        </div><div class="drow ">
+          <span class="dr">Z58</span>
+          <div class="barwrap"><div class="bar" style="width:0.3%;background:#1a73e8"></div></div>
+          <span class="dq">1</span><span class="dp">0%</span>
+        </div></div>
+    </div><div class="card" data-proc="磨齿" data-total="523" data-bk="M14">
+      <div class="ch" style="border-left:5px solid #d93025">
+        <div class="ct">磨齿</div>
+        <div class="cb">瓶颈设备: M14 <b>154</b>件</div>
+      </div>
+      <div class="cstat">总待加工 <b>523</b>件 · 150条在制 · 已完工剔除 0条</div>
+      <div class="dlist"><div class="drow dev-bk">
+          <span class="dr">M14</span>
+          <div class="barwrap"><div class="bar" style="width:29.4%;background:#d93025"></div></div>
+          <span class="dq">154</span><span class="dp">29%</span>
+        </div><div class="drow ">
+          <span class="dr">M07</span>
+          <div class="barwrap"><div class="bar" style="width:22.2%;background:#1a73e8"></div></div>
+          <span class="dq">116</span><span class="dp">22%</span>
+        </div><div class="drow ">
+          <span class="dr">M12</span>
+          <div class="barwrap"><div class="bar" style="width:15.3%;background:#1a73e8"></div></div>
+          <span class="dq">80</span><span class="dp">15%</span>
+        </div><div class="drow ">
+          <span class="dr">M06</span>
+          <div class="barwrap"><div class="bar" style="width:11.9%;background:#1a73e8"></div></div>
+          <span class="dq">62</span><span class="dp">12%</span>
+        </div><div class="drow ">
+          <span class="dr">M05</span>
+          <div class="barwrap"><div class="bar" style="width:9.0%;background:#1a73e8"></div></div>
+          <span class="dq">47</span><span class="dp">9%</span>
+        </div><div class="drow ">
+          <span class="dr">M04</span>
+          <div class="barwrap"><div class="bar" style="width:5.9%;background:#1a73e8"></div></div>
+          <span class="dq">31</span><span class="dp">6%</span>
+        </div><div class="drow ">
+          <span class="dr">M18</span>
+          <div class="barwrap"><div class="bar" style="width:2.7%;background:#1a73e8"></div></div>
+          <span class="dq">14</span><span class="dp">3%</span>
+        </div><div class="drow ">
+          <span class="dr">M16</span>
+          <div class="barwrap"><div class="bar" style="width:1.1%;background:#1a73e8"></div></div>
+          <span class="dq">6</span><span class="dp">1%</span>
+        </div><div class="drow ">
+          <span class="dr">M17</span>
+          <div class="barwrap"><div class="bar" style="width:1.0%;background:#1a73e8"></div></div>
+          <span class="dq">5</span><span class="dp">1%</span>
+        </div><div class="drow dev-nm">
+          <span class="dr">委外（委外/非设备）</span>
+          <div class="barwrap"><div class="bar" style="width:1.0%;background:#9aa0a6"></div></div>
+          <span class="dq">5</span><span class="dp">1%</span>
+        </div><div class="drow ">
+          <span class="dr">M20</span>
+          <div class="barwrap"><div class="bar" style="width:0.6%;background:#1a73e8"></div></div>
+          <span class="dq">3</span><span class="dp">1%</span>
+        </div></div>
+    </div><div class="card" data-proc="线切割" data-total="127" data-bk="Z06">
+      <div class="ch" style="border-left:5px solid #d93025">
+        <div class="ct">线切割</div>
+        <div class="cb">瓶颈设备: Z06 <b>75</b>件</div>
+      </div>
+      <div class="cstat">总待加工 <b>127</b>件 · 32条在制 · 已完工剔除 0条</div>
+      <div class="dlist"><div class="drow dev-bk">
+          <span class="dr">Z06</span>
+          <div class="barwrap"><div class="bar" style="width:59.1%;background:#d93025"></div></div>
+          <span class="dq">75</span><span class="dp">59%</span>
+        </div><div class="drow ">
+          <span class="dr">Z06/Z14/Z15</span>
+          <div class="barwrap"><div class="bar" style="width:35.4%;background:#1a73e8"></div></div>
+          <span class="dq">45</span><span class="dp">35%</span>
+        </div><div class="drow ">
+          <span class="dr">Z14</span>
+          <div class="barwrap"><div class="bar" style="width:3.9%;background:#1a73e8"></div></div>
+          <span class="dq">5</span><span class="dp">4%</span>
+        </div><div class="drow ">
+          <span class="dr">Z15</span>
+          <div class="barwrap"><div class="bar" style="width:1.6%;background:#1a73e8"></div></div>
+          <span class="dq">2</span><span class="dp">2%</span>
+        </div></div>
+    </div><div class="card" data-proc="电镀" data-total="10" data-bk="">
+      <div class="ch" style="border-left:5px solid #9aa0a6">
+        <div class="ct">电镀</div>
+        <div class="cb">瓶颈设备: 无自有设备（委外为主）</div>
+      </div>
+      <div class="cstat">总待加工 <b>10</b>件 · 6条在制 · 已完工剔除 0条</div>
+      <div class="dlist"><div class="drow dev-nm">
+          <span class="dr">委外（委外/非设备）</span>
+          <div class="barwrap"><div class="bar" style="width:100.0%;background:#9aa0a6"></div></div>
+          <span class="dq">10</span><span class="dp">100%</span>
+        </div></div>
+    </div><div class="card" data-proc="动平衡" data-total="90" data-bk="A01">
+      <div class="ch" style="border-left:5px solid #d93025">
+        <div class="ct">动平衡</div>
+        <div class="cb">瓶颈设备: A01 <b>76</b>件</div>
+      </div>
+      <div class="cstat">总待加工 <b>90</b>件 · 37条在制 · 已完工剔除 0条</div>
+      <div class="dlist"><div class="drow dev-bk">
+          <span class="dr">A01</span>
+          <div class="barwrap"><div class="bar" style="width:84.4%;background:#d93025"></div></div>
+          <span class="dq">76</span><span class="dp">84%</span>
+        </div><div class="drow dev-nm">
+          <span class="dr">委外（委外/非设备）</span>
+          <div class="barwrap"><div class="bar" style="width:15.6%;background:#9aa0a6"></div></div>
+          <span class="dq">14</span><span class="dp">16%</span>
+        </div></div>
+    </div><div class="card" data-proc="强力喷丸" data-total="37" data-bk="R25">
+      <div class="ch" style="border-left:5px solid #d93025">
+        <div class="ct">强力喷丸</div>
+        <div class="cb">瓶颈设备: R25 <b>25</b>件</div>
+      </div>
+      <div class="cstat">总待加工 <b>37</b>件 · 13条在制 · 已完工剔除 0条</div>
+      <div class="dlist"><div class="drow dev-bk">
+          <span class="dr">R25</span>
+          <div class="barwrap"><div class="bar" style="width:67.6%;background:#d93025"></div></div>
+          <span class="dq">25</span><span class="dp">68%</span>
+        </div><div class="drow dev-nm">
+          <span class="dr">委外（委外/非设备）</span>
+          <div class="barwrap"><div class="bar" style="width:32.4%;background:#9aa0a6"></div></div>
+          <span class="dq">12</span><span class="dp">32%</span>
+        </div></div>
+    </div><div class="card" data-proc="检测" data-total="912" data-bk="J23">
+      <div class="ch" style="border-left:5px solid #d93025">
+        <div class="ct">检测</div>
+        <div class="cb">瓶颈设备: J23 <b>362</b>件</div>
+      </div>
+      <div class="cstat">总待加工 <b>912</b>件 · 261条在制 · 已完工剔除 4条</div>
+      <div class="dlist"><div class="drow dev-bk">
+          <span class="dr">J23</span>
+          <div class="barwrap"><div class="bar" style="width:39.7%;background:#d93025"></div></div>
+          <span class="dq">362</span><span class="dp">40%</span>
+        </div><div class="drow dev-nm">
+          <span class="dr">未指派（未指派）</span>
+          <div class="barwrap"><div class="bar" style="width:23.6%;background:#9aa0a6"></div></div>
+          <span class="dq">215</span><span class="dp">24%</span>
+        </div><div class="drow ">
+          <span class="dr">J22</span>
+          <div class="barwrap"><div class="bar" style="width:12.5%;background:#1a73e8"></div></div>
+          <span class="dq">114</span><span class="dp">12%</span>
+        </div><div class="drow ">
+          <span class="dr">J32</span>
+          <div class="barwrap"><div class="bar" style="width:9.9%;background:#1a73e8"></div></div>
+          <span class="dq">90</span><span class="dp">10%</span>
+        </div><div class="drow ">
+          <span class="dr">J32；J23</span>
+          <div class="barwrap"><div class="bar" style="width:5.5%;background:#1a73e8"></div></div>
+          <span class="dq">50</span><span class="dp">5%</span>
+        </div><div class="drow ">
+          <span class="dr">J32；J22</span>
+          <div class="barwrap"><div class="bar" style="width:4.3%;background:#1a73e8"></div></div>
+          <span class="dq">39</span><span class="dp">4%</span>
+        </div><div class="drow ">
+          <span class="dr">J23；J23</span>
+          <div class="barwrap"><div class="bar" style="width:2.4%;background:#1a73e8"></div></div>
+          <span class="dq">22</span><span class="dp">2%</span>
+        </div><div class="drow ">
+          <span class="dr">J23；R27</span>
+          <div class="barwrap"><div class="bar" style="width:0.8%;background:#1a73e8"></div></div>
+          <span class="dq">7</span><span class="dp">1%</span>
+        </div><div class="drow ">
+          <span class="dr">J23；G16</span>
+          <div class="barwrap"><div class="bar" style="width:0.8%;background:#1a73e8"></div></div>
+          <span class="dq">7</span><span class="dp">1%</span>
+        </div><div class="drow ">
+          <span class="dr">J23；J22</span>
+          <div class="barwrap"><div class="bar" style="width:0.7%;background:#1a73e8"></div></div>
+          <span class="dq">6</span><span class="dp">1%</span>
+        </div></div>
+    </div></div>
+<div class="note">说明:设备列含"Z60/Z61"等组合表示该件派至设备组(按整体计);"委外"表示外协非本厂设备。本报告为初版供审阅,口径可按需调整。</div>
+</div>
+<script>
+var cards=[].slice.call(document.querySelectorAll('.card'));
+var q=document.getElementById('q');var chipBox=document.getElementById('chips');var f='all';
+q.oninput=function(){var v=q.value.trim().toLowerCase();cards.forEach(function(c){var txt=c.textContent.toLowerCase();c.classList.toggle('hide',!!v&&txt.indexOf(v)<0);});};
+chipBox.addEventListener('click',function(e){var t=e.target.closest('.chip');if(!t)return;[].slice.call(chipBox.children).forEach(function(x){x.classList.remove('on');});t.classList.add('on');f=t.dataset.f;apply();});
+function apply(){cards.forEach(function(c){var total=+c.dataset.total;var bk=c.dataset.bk;if(f==='hasbk')c.classList.toggle('hide',!bk);else if(f==='top')c.classList.toggle('hide',total<50);else c.classList.remove('hide');});}
+</script></body></html>
