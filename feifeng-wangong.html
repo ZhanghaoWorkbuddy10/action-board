@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>非风产品跟踪-完工待探伤明细</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f5f6f8;color:#222;padding:12px}
+.head{background:#1f6feb;color:#fff;padding:14px;border-radius:10px;margin-bottom:10px}
+.head h1{font-size:18px} .head p{font-size:12px;opacity:.9;margin-top:4px}
+.search{width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;margin-bottom:8px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.chip{border:1px solid #1f6feb;background:#fff;color:#1f6feb;padding:5px 10px;border-radius:16px;font-size:12px;cursor:pointer}
+.chip.active{background:#1f6feb;color:#fff}
+.card{background:#fff;border-radius:10px;padding:12px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.code{font-size:15px;font-weight:700;color:#1f6feb;margin-bottom:8px}
+.code .name{font-size:13px;color:#666;font-weight:400;margin-left:6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px}
+.grid .full{grid-column:1/-1}
+.grid .k{display:block;font-size:11px;color:#999}
+.grid .v{display:block;font-size:14px;color:#222;word-break:break-all}
+.count{font-size:13px;color:#555;margin:6px 0}
+</style></head><body>
+<div class="head"><h1>非风产品跟踪 · 完工待探伤/退磁明细</h1>
+<p>生成时间：2026-09-16 10:50:49 ｜ 共 42 条（N含完工 且 剩余工序为空/仅磁粉探伤/仅磁粉探伤+退磁）</p></div>
+<input class="search" id="q" placeholder="搜索存货编码 / 名称 ...">
+<div class="chips" id="chips"><button class="chip" data-f="子件">子件(11)</button><button class="chip" data-f="散单">散单(3)</button><button class="chip" data-f="油气">油气(9)</button><button class="chip" data-f="高精高速">高精高速(16)</button><button class="chip" data-f="齿轮箱-普通">齿轮箱-普通(2)</button><button class="chip" data-f="齿轮箱-高精">齿轮箱-高精(1)</button><button class="chip active" data-f="__ALL__">全部(42)</button></div>
+<div class="count" id="cnt">显示 42 / 42</div>
+<div id="list">
+    <div class="card" data-cat="子件" data-code="C14006249">
+      <div class="code">C14006249 <span class="name">卡箍#</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">子件</span></div>
+        <div><span class="k">当前工序</span><span class="v">精车</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">1</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-07 19:40:58</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="油气" data-code="C01300253">
+      <div class="code">C01300253 <span class="name">齿轮（左）</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">油气</span></div>
+        <div><span class="k">当前工序</span><span class="v">摇臂钻2</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">6</span></div>
+        <div><span class="k">剩余工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-14 08:40:02</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="油气" data-code="C01300253">
+      <div class="code">C01300253 <span class="name">齿轮（左）</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">油气</span></div>
+        <div><span class="k">当前工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">3</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-15 13:28:57</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="油气" data-code="C01300254">
+      <div class="code">C01300254 <span class="name">齿轮（右）</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">油气</span></div>
+        <div><span class="k">当前工序</span><span class="v">摇臂钻2</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">1</span></div>
+        <div><span class="k">剩余工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-12 15:43:30</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="油气" data-code="C01300254">
+      <div class="code">C01300254 <span class="name">齿轮（右）</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">油气</span></div>
+        <div><span class="k">当前工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">9</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-15 13:29:09</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="油气" data-code="C01300254">
+      <div class="code">C01300254 <span class="name">齿轮（右）</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">油气</span></div>
+        <div><span class="k">当前工序</span><span class="v">加工中心</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">3</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-11 21:19:34</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="子件" data-code="C14006231">
+      <div class="code">C14006231 <span class="name">甩油环</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">子件</span></div>
+        <div><span class="k">当前工序</span><span class="v">精车</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">6</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-09 00:11:58</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="子件" data-code="C14006230">
+      <div class="code">C14006230 <span class="name">一二级推力卡盘</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">子件</span></div>
+        <div><span class="k">当前工序</span><span class="v">磨内孔</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">6</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-13 14:17:42</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="子件" data-code="C14006232">
+      <div class="code">C14006232 <span class="name">甩油环</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">子件</span></div>
+        <div><span class="k">当前工序</span><span class="v">精车</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">3</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-11 19:11:37</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">YW589-2 / YW591-2</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="子件" data-code="C14006234">
+      <div class="code">C14006234 <span class="name"></span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">子件</span></div>
+        <div><span class="k">当前工序</span><span class="v">磨内孔</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">2</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-15 21:45:21</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="子件" data-code="C01300513">
+      <div class="code">C01300513 <span class="name"></span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">子件</span></div>
+        <div><span class="k">当前工序</span><span class="v">加工中心</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">1</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-08-28 15:41:16</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="油气" data-code="CC091605">
+      <div class="code">CC091605 <span class="name">左大齿轮</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">油气</span></div>
+        <div><span class="k">当前工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">1</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v">朱小华</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-09-28 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-09 10:34:50</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="油气" data-code="CC091607">
+      <div class="code">CC091607 <span class="name">齿轮轴</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">油气</span></div>
+        <div><span class="k">当前工序</span><span class="v">精车3</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">3</span></div>
+        <div><span class="k">剩余工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">计划员</span><span class="v">朱小华</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-09-09 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-11 08:24:51</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="油气" data-code="CC091607">
+      <div class="code">CC091607 <span class="name">齿轮轴</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">油气</span></div>
+        <div><span class="k">当前工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">7</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-14 17:58:44</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="高精高速" data-code="C01300527">
+      <div class="code">C01300527 <span class="name">输入轴组合加工件</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">高精高速</span></div>
+        <div><span class="k">当前工序</span><span class="v">磨齿</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">2</span></div>
+        <div><span class="k">剩余工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">计划员</span><span class="v">刘海燕</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-09-30 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-16 02:39:22</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="散单" data-code="CC091366">
+      <div class="code">CC091366 <span class="name">齿轮</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">散单</span></div>
+        <div><span class="k">当前工序</span><span class="v">磨齿</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">1</span></div>
+        <div><span class="k">剩余工序</span><span class="v">磁粉探伤-退磁</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-16 03:43:11</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="散单" data-code="CC091366">
+      <div class="code">CC091366 <span class="name">齿轮</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">散单</span></div>
+        <div><span class="k">当前工序</span><span class="v">退磁</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">9</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-11 17:59:36</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="高精高速" data-code="C01300401">
+      <div class="code">C01300401 <span class="name">大齿轮组件</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">高精高速</span></div>
+        <div><span class="k">当前工序</span><span class="v">检测</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">1</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v">刘海燕</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-09-15 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-11 15:00:56</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="高精高速" data-code="C01196368">
+      <div class="code">C01196368 <span class="name">低速齿轮组34</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">高精高速</span></div>
+        <div><span class="k">当前工序</span><span class="v">外圆磨</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">4</span></div>
+        <div><span class="k">剩余工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">计划员</span><span class="v">刘海燕</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-09-07 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-12 22:42:26</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="子件" data-code="C07000137">
+      <div class="code">C07000137 <span class="name">输入轴</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">子件</span></div>
+        <div><span class="k">当前工序</span><span class="v">外圆磨2</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">1</span></div>
+        <div><span class="k">剩余工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-03 20:38:28</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="子件" data-code="C01310054">
+      <div class="code">C01310054 <span class="name">厚齿圈</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">子件</span></div>
+        <div><span class="k">当前工序</span><span class="v">平面磨</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">1</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-07-27 13:59:36</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="高精高速" data-code="C01196228">
+      <div class="code">C01196228 <span class="name">齿轮轴组件</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">高精高速</span></div>
+        <div><span class="k">当前工序</span><span class="v">外圆磨</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">1</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v">刘海燕</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-09-10 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-11 09:58:45</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="高精高速" data-code="C01196228">
+      <div class="code">C01196228 <span class="name">齿轮轴组件</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">高精高速</span></div>
+        <div><span class="k">当前工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">2</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-15 15:46:03</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="散单" data-code="C01310018">
+      <div class="code">C01310018 <span class="name">齿圈</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">散单</span></div>
+        <div><span class="k">当前工序</span><span class="v">磨齿</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">2</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v">朱小华</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-10-04 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-08 03:17:49</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="高精高速" data-code="C01196341">
+      <div class="code">C01196341 <span class="name">低速齿轮组</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">高精高速</span></div>
+        <div><span class="k">当前工序</span><span class="v">外圆磨</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">1</span></div>
+        <div><span class="k">剩余工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">计划员</span><span class="v">刘海燕</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-09-01 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-15 11:07:48</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">YH202-1</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="高精高速" data-code="C01196343">
+      <div class="code">C01196343 <span class="name">高速齿轮组</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">高精高速</span></div>
+        <div><span class="k">当前工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">1</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v">刘海燕</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-09-01 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-01 16:06:58</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="油气" data-code="CC092323">
+      <div class="code">CC092323 <span class="name">右旋大齿轮</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">油气</span></div>
+        <div><span class="k">当前工序</span><span class="v">加工中心2</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">2</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v">朱小华</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-10-09 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-15 19:10:41</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="高精高速" data-code="C01196274">
+      <div class="code">C01196274 <span class="name">端面齿轴</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">高精高速</span></div>
+        <div><span class="k">当前工序</span><span class="v">外圆磨2</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">2</span></div>
+        <div><span class="k">剩余工序</span><span class="v">磁粉探伤-退磁</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-13 15:17:31</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="高精高速" data-code="C01196107">
+      <div class="code">C01196107 <span class="name">低速小齿轮组件</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">高精高速</span></div>
+        <div><span class="k">当前工序</span><span class="v">外圆磨2</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">10</span></div>
+        <div><span class="k">剩余工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">计划员</span><span class="v">刘海燕</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-09-10 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-10 18:31:17</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">YY823-1</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="高精高速" data-code="C01196107">
+      <div class="code">C01196107 <span class="name">低速小齿轮组件</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">高精高速</span></div>
+        <div><span class="k">当前工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">4</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-08 14:08:38</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">YY823-1</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="子件" data-code="C14006096">
+      <div class="code">C14006096 <span class="name">推力盘</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">子件</span></div>
+        <div><span class="k">当前工序</span><span class="v">磨内孔</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">10</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-06 19:29:00</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="高精高速" data-code="C01196295">
+      <div class="code">C01196295 <span class="name">低速齿轮轴</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">高精高速</span></div>
+        <div><span class="k">当前工序</span><span class="v">磨齿</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">2</span></div>
+        <div><span class="k">剩余工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-15 17:39:32</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="高精高速" data-code="C01300225">
+      <div class="code">C01300225 <span class="name">大齿轮组件</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">高精高速</span></div>
+        <div><span class="k">当前工序</span><span class="v">装配</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">2</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v">刘海燕</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-10-10 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-12 09:09:51</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="子件" data-code="C07000069">
+      <div class="code">C07000069 <span class="name">轴</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">子件</span></div>
+        <div><span class="k">当前工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">3</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-10 18:41:06</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="高精高速" data-code="C01300395">
+      <div class="code">C01300395 <span class="name">大齿轮组件</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">高精高速</span></div>
+        <div><span class="k">当前工序</span><span class="v">动平衡</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">1</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v">刘海燕</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-10-10 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-11 16:15:40</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="高精高速" data-code="CC093021">
+      <div class="code">CC093021 <span class="name">大齿轮组件</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">高精高速</span></div>
+        <div><span class="k">当前工序</span><span class="v">动平衡</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">2</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-09 18:51:40</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="子件" data-code="C01300084">
+      <div class="code">C01300084 <span class="name">大齿轮</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">子件</span></div>
+        <div><span class="k">当前工序</span><span class="v">线切割</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">3</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v"></span></div>
+        <div><span class="k">需求日期</span><span class="v"></span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-13 15:12:09</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="高精高速" data-code="C01196356">
+      <div class="code">C01196356 <span class="name">一二级高速轴组件</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">高精高速</span></div>
+        <div><span class="k">当前工序</span><span class="v">检测</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">1</span></div>
+        <div><span class="k">剩余工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">计划员</span><span class="v">刘海燕</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-09-01 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-14 09:18:41</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">YN855-1</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="高精高速" data-code="C01196410">
+      <div class="code">C01196410 <span class="name">24齿外圆70端齿工装</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">高精高速</span></div>
+        <div><span class="k">当前工序</span><span class="v">磨齿</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">1</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v">刘海燕</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-09-03 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-08-31 12:53:29</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">YN353 / YH194-2</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="齿轮箱-高精" data-code="B0100256">
+      <div class="code">B0100256 <span class="name">高速轴组件</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">齿轮箱-高精</span></div>
+        <div><span class="k">当前工序</span><span class="v">动平衡</span></div>
+        <div><span class="k">工序状态</span><span class="v">委外-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">1</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v">刘海燕</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-09-01 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-08 17:12:12</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">26070104-1</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="齿轮箱-普通" data-code="C01196002">
+      <div class="code">C01196002 <span class="name">齿轮轴</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">齿轮箱-普通</span></div>
+        <div><span class="k">当前工序</span><span class="v">磨齿</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">1</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v">罗莉</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-09-01 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-15 12:10:12</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">（无）</span></div>
+      </div>
+    </div>
+    <div class="card" data-cat="齿轮箱-普通" data-code="C01216011">
+      <div class="code">C01216011 <span class="name">中间级行星轮</span></div>
+      <div class="grid">
+        <div><span class="k">产品分类</span><span class="v">齿轮箱-普通</span></div>
+        <div><span class="k">当前工序</span><span class="v">磁粉探伤</span></div>
+        <div><span class="k">工序状态</span><span class="v">自制-完工</span></div>
+        <div><span class="k">在制件数</span><span class="v">4</span></div>
+        <div><span class="k">剩余工序</span><span class="v">（空）</span></div>
+        <div><span class="k">计划员</span><span class="v">罗莉</span></div>
+        <div><span class="k">需求日期</span><span class="v">2026-09-30 00:00:00</span></div>
+        <div><span class="k">时间</span><span class="v">2026-09-15 15:47:08</span></div>
+        <div class="full"><span class="k">NCR汇总</span><span class="v">ZDY767 / ZDY763 / ZDY769 / ZDY764 / ZDY765 / ZDY762 / ZDY766</span></div>
+      </div>
+    </div></div>
+<script>
+var q=document.getElementById('q'),chips=document.getElementById('chips'),list=document.getElementById('list'),cnt=document.getElementById('cnt');
+var cur='__ALL__';
+function filt(){
+  var t=q.value.trim().toLowerCase(),n=0;
+  list.querySelectorAll('.card').forEach(function(c){
+    var hit=(cur==='__ALL__'||c.dataset.cat===cur);
+    var txt=(c.dataset.code+' '+c.textContent).toLowerCase();
+    if(hit&&(t===''||txt.indexOf(t)>-1)){c.style.display='';n++;}else{c.style.display='none';}
+  });
+  cnt.textContent='显示 '+n+' / 42';
+}
+q.oninput=filt;
+chips.onclick=function(e){if(e.target.classList.contains('chip')){cur=e.target.dataset.f;[].forEach.call(chips.children,function(b){b.classList.remove('active')});e.target.classList.add('active');filt();}};
+</script></body></html>
