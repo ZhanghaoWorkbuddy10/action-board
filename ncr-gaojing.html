@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>高精高速组件 / 高精高速子件 NCR 未关闭明细 — 2026-09-21 08:26</title>
+<title>高精高速组件 / 高精高速子件 NCR 未关闭明细 — 2026-09-22 08:24</title>
 <style>
   :root {
     --bg: #f5f6f8; --card-bg: #fff; --text: #2c3e50; --text-secondary: #7f8c8d;
@@ -61,29 +61,29 @@
 <div class="header">
   <h1>高精高速组件 / 高精高速子件 — 未关闭 NCR 明细</h1>
   <div class="meta">
-    <span><span class="dot live"></span> 数据更新：2026-09-21 08:26</span>
-    <span>NCR 总条数：13</span>
+    <span><span class="dot live"></span> 数据更新：2026-09-22 08:24</span>
+    <span>NCR 总条数：10</span>
     <span>数据来源：非风产品交付 NCR 跟踪</span>
   </div>
 </div>
 
 <div class="stats">
   <div class="stat-card gaojing">
-    <div class="num" id="statGaojing">9</div>
+    <div class="num" id="statGaojing">7</div>
     <div class="label">高精高速组件 NCR</div>
   </div>
   <div class="stat-card zijian">
-    <div class="num" id="statZijian">4</div>
+    <div class="num" id="statZijian">3</div>
     <div class="label">高精高速子件 NCR</div>
   </div>
   <div class="stat-card total">
-    <div class="num" id="statTotal">13</div>
+    <div class="num" id="statTotal">10</div>
     <div class="label">合计</div>
   </div>
 </div>
 
 <div class="section">
-  <h2><span class="badge gaojing">高精高速组件</span> 未关闭 NCR（<span id="countGaojing">9</span> 条）</h2>
+  <h2><span class="badge gaojing">高精高速组件</span> 未关闭 NCR（<span id="countGaojing">7</span> 条）</h2>
   <div class="table-wrap">
     <table id="tableGaojing">
       <thead>
@@ -103,7 +103,7 @@
 </div>
 
 <div class="section">
-  <h2><span class="badge zijian">高精高速子件</span> 未关闭 NCR（<span id="countZijian">4</span> 条）</h2>
+  <h2><span class="badge zijian">高精高速子件</span> 未关闭 NCR（<span id="countZijian">3</span> 条）</h2>
   <div class="table-wrap">
     <table id="tableZijian">
       <thead>
@@ -128,7 +128,7 @@
 </div>
 
 <script>
-const DATA = {"gaojing": [{"xuhao": "5", "bianma": "C01196368", "name": "低速齿轮组34", "kehu": "51002048", "ncr": "YN875-3", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/25d4ee84-2ac0-487c-965b-1301fc3818e8?additional_query={}", "time": "2026-09-18", "approver": "张谦"}, {"xuhao": "6", "bianma": "C01196230", "name": "齿轮轴", "kehu": "51202007", "ncr": "YP106-5", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/5592fee3-4970-4d46-922c-2f62692908fa?additional_query={}", "time": "2026-09-19", "approver": "沈雨菁"}, {"xuhao": "7", "bianma": "C01196341", "name": "低速齿轮组", "kehu": "51205026", "ncr": "YH202-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/638e77ac-d261-49f7-98a8-768537264f9d?additional_query={}", "time": "2026-08-25", "approver": "返工返修流程"}, {"xuhao": "10", "bianma": "C01196107", "name": "低速小齿轮组件", "kehu": "021097", "ncr": "YY823-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/0a5ad1ae-8c92-4e16-b7f3-eb546743920d?additional_query={}", "time": "2026-09-10", "approver": "偏差申请流程"}, {"xuhao": "11", "bianma": "C01196109", "name": "高速小齿轮组件", "kehu": "021097", "ncr": "无零件号", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/098eedc3-2acd-4b97-8847-06da1cb9e4ba?additional_query={}", "time": "2026-09-08", "approver": "王晓柯"}, {"xuhao": "12", "bianma": "C01196347", "name": "高速齿轮轴组件", "kehu": "021097", "ncr": "YT401-2", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/98c6bd4d-a2f2-43c3-8830-8cd1fd5bc120?additional_query={}", "time": "2026-09-19", "approver": "返工返修流程"}, {"xuhao": "13", "bianma": "C01196347", "name": "高速齿轮轴组件", "kehu": "021097", "ncr": "YT401-3", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/22d4ee9f-18d1-4e72-a7e3-65c7fd1df715?additional_query={}", "time": "2026-09-19", "approver": "返工返修流程"}, {"xuhao": "14", "bianma": "C01196347", "name": "高速齿轮轴组件", "kehu": "021097", "ncr": "YT401-5", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/af5090ee-79a7-4ef3-bfe6-73ff6af42b5e?additional_query={}", "time": "2026-09-19", "approver": "返工返修流程"}, {"xuhao": "15", "bianma": "C01196356", "name": "一二级高速轴组件", "kehu": "021104", "ncr": "YN855-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/e0bd380d-f774-4664-882b-41cbd07cf615?additional_query={}", "time": "2026-09-14", "approver": "徐浩"}], "zijian": [{"xuhao": "1", "bianma": "C01300549", "name": "齿环#", "kehu": "", "ncr": "YY795-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/a6a55111-9e13-49fe-9c3d-41af3d8bb080?additional_query={}", "time": "2026-09-12", "approver": "徐浩"}, {"xuhao": "2", "bianma": "C14006233", "name": "三级推力盘转接套", "kehu": "", "ncr": "YW591-3", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/6ba647ec-2695-4030-be23-c6ecb629804a?additional_query={}", "time": "2026-09-17", "approver": "袁胜"}, {"xuhao": "3", "bianma": "C14006233", "name": "三级推力盘转接套", "kehu": "", "ncr": "YW589-3", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/b724028e-f946-4cc4-b751-704bfea356d6?additional_query={}", "time": "2026-09-17", "approver": "袁胜"}, {"xuhao": "4", "bianma": "C14006233", "name": "三级推力盘转接套", "kehu": "", "ncr": "YW590-3", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/8c20d94d-a8a7-475e-bc75-71fea58a4e8a?additional_query={}", "time": "2026-09-17", "approver": "袁胜"}]};
+const DATA = {"gaojing": [{"xuhao": "5", "bianma": "C01196341", "name": "低速齿轮组", "kehu": "51205026", "ncr": "YH202-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/638e77ac-d261-49f7-98a8-768537264f9d?additional_query={}", "time": "2026-08-25", "approver": "返工返修流程"}, {"xuhao": "8", "bianma": "C01196107", "name": "低速小齿轮组件", "kehu": "021097", "ncr": "YY823-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/0a5ad1ae-8c92-4e16-b7f3-eb546743920d?additional_query={}", "time": "2026-09-10", "approver": "李桂成"}, {"xuhao": "9", "bianma": "C01196109", "name": "高速小齿轮组件", "kehu": "021097", "ncr": "无零件号", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/098eedc3-2acd-4b97-8847-06da1cb9e4ba?additional_query={}", "time": "2026-09-08", "approver": "王晓柯"}, {"xuhao": "10", "bianma": "C01196347", "name": "高速齿轮轴组件", "kehu": "021097", "ncr": "YT401-2", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/98c6bd4d-a2f2-43c3-8830-8cd1fd5bc120?additional_query={}", "time": "2026-09-19", "approver": "返工返修流程"}, {"xuhao": "11", "bianma": "C01196347", "name": "高速齿轮轴组件", "kehu": "021097", "ncr": "YT401-3", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/22d4ee9f-18d1-4e72-a7e3-65c7fd1df715?additional_query={}", "time": "2026-09-19", "approver": "返工返修流程"}, {"xuhao": "12", "bianma": "C01196347", "name": "高速齿轮轴组件", "kehu": "021097", "ncr": "YT401-5", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/af5090ee-79a7-4ef3-bfe6-73ff6af42b5e?additional_query={}", "time": "2026-09-19", "approver": "返工返修流程"}, {"xuhao": "13", "bianma": "C01196347", "name": "高速齿轮轴组件", "kehu": "021097", "ncr": "YT401-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/4d089e41-8be9-460f-9607-cd4260b9d3dd?additional_query={}", "time": "2026-09-21", "approver": "金益"}], "zijian": [{"xuhao": "2", "bianma": "C14006233", "name": "三级推力盘转接套", "kehu": "", "ncr": "YW591-3", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/6ba647ec-2695-4030-be23-c6ecb629804a?additional_query={}", "time": "2026-09-17", "approver": "马苏豫"}, {"xuhao": "3", "bianma": "C14006233", "name": "三级推力盘转接套", "kehu": "", "ncr": "YW589-3", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/b724028e-f946-4cc4-b751-704bfea356d6?additional_query={}", "time": "2026-09-17", "approver": "马苏豫"}, {"xuhao": "4", "bianma": "C14006233", "name": "三级推力盘转接套", "kehu": "", "ncr": "YW590-3", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/8c20d94d-a8a7-475e-bc75-71fea58a4e8a?additional_query={}", "time": "2026-09-17", "approver": "马苏豫"}]};
 
 function getApproverTag(approver) {
   if (!approver) return '<span class="tag empty">未分配</span>';
