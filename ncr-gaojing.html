@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>高精高速组件 / 高精高速子件 NCR 未关闭明细 — 2026-09-29 09:00</title>
+<title>高精高速组件 / 高精高速子件 NCR 未关闭明细 — 2026-10-06 08:15</title>
 <style>
   :root {
     --bg: #f5f6f8; --card-bg: #fff; --text: #2c3e50; --text-secondary: #7f8c8d;
@@ -61,29 +61,29 @@
 <div class="header">
   <h1>高精高速组件 / 高精高速子件 — 未关闭 NCR 明细</h1>
   <div class="meta">
-    <span><span class="dot live"></span> 数据更新：2026-09-29 09:00</span>
-    <span>NCR 总条数：6</span>
+    <span><span class="dot live"></span> 数据更新：2026-10-06 08:15</span>
+    <span>NCR 总条数：0</span>
     <span>数据来源：非风产品交付 NCR 跟踪</span>
   </div>
 </div>
 
 <div class="stats">
   <div class="stat-card gaojing">
-    <div class="num" id="statGaojing">4</div>
+    <div class="num" id="statGaojing">0</div>
     <div class="label">高精高速组件 NCR</div>
   </div>
   <div class="stat-card zijian">
-    <div class="num" id="statZijian">2</div>
+    <div class="num" id="statZijian">0</div>
     <div class="label">高精高速子件 NCR</div>
   </div>
   <div class="stat-card total">
-    <div class="num" id="statTotal">6</div>
+    <div class="num" id="statTotal">0</div>
     <div class="label">合计</div>
   </div>
 </div>
 
 <div class="section">
-  <h2><span class="badge gaojing">高精高速组件</span> 未关闭 NCR（<span id="countGaojing">4</span> 条）</h2>
+  <h2><span class="badge gaojing">高精高速组件</span> 未关闭 NCR（<span id="countGaojing">0</span> 条）</h2>
   <div class="table-wrap">
     <table id="tableGaojing">
       <thead>
@@ -103,7 +103,7 @@
 </div>
 
 <div class="section">
-  <h2><span class="badge zijian">高精高速子件</span> 未关闭 NCR（<span id="countZijian">2</span> 条）</h2>
+  <h2><span class="badge zijian">高精高速子件</span> 未关闭 NCR（<span id="countZijian">0</span> 条）</h2>
   <div class="table-wrap">
     <table id="tableZijian">
       <thead>
@@ -128,7 +128,7 @@
 </div>
 
 <script>
-const DATA = {"gaojing": [{"xuhao": "3", "bianma": "C01196210", "name": "齿轮轴组件", "kehu": "51202007", "ncr": "无零件号", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/ac46c0f9-c70d-43d3-b2bd-f1035cd5b6c1?additional_query={}", "time": "2026-09-22", "approver": "返工返修流程"}, {"xuhao": "4", "bianma": "C01196212", "name": "齿轮轴组件", "kehu": "51202007", "ncr": "无零件号", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/80609b6b-fac6-4f59-9474-3e5b3daf3050?additional_query={}", "time": "2026-09-19", "approver": "返工返修流程"}, {"xuhao": "5", "bianma": "C01196212", "name": "齿轮轴组件", "kehu": "51202007", "ncr": "无零件号", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/fcdc5d28-38ee-488a-b268-c5b0ca621abd?additional_query={}", "time": "2026-09-22", "approver": "返工返修流程"}, {"xuhao": "9", "bianma": "C01196364", "name": "三级高速轴", "kehu": "021104", "ncr": "YN835", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/b8da0f6e-1fff-4287-b5a0-62d9dddba627?additional_query={}", "time": "2026-09-22", "approver": "袁胜"}], "zijian": [{"xuhao": "1", "bianma": "C07000134", "name": "输入轴", "kehu": "", "ncr": "YW583-2", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/d4deb9bc-8913-4206-b5d3-2bf2eb9d7d6e?additional_query={}", "time": "2026-09-24", "approver": "返工返修流程"}, {"xuhao": "2", "bianma": "C01196178", "name": "高速齿轮轴27", "kehu": "", "ncr": "XR413", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/111384bf-bf3e-4883-aaae-5373d30546ba?additional_query={}", "time": "2026-08-18", "approver": "返工返修流程"}]};
+const DATA = {"gaojing": [], "zijian": []};
 
 function getApproverTag(approver) {
   if (!approver) return '<span class="tag empty">未分配</span>';
