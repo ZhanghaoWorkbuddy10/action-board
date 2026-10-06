@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>全部 NCR 未关闭明细 — 2026-09-29 09:00</title>
+<title>全部 NCR 未关闭明细 — 2026-10-06 08:16</title>
 <style>
   :root {
     --bg: #f5f6f8; --card-bg: #fff; --text: #2c3e50; --text-secondary: #7f8c8d;
@@ -68,33 +68,33 @@
 <div class="header">
   <h1>全部 NCR 未关闭明细</h1>
   <div class="meta">
-    <span><span class="dot live"></span> 数据更新：2026-09-29 09:00</span>
-    <span>NCR 总条数：10</span>
+    <span><span class="dot live"></span> 数据更新：2026-10-06 08:16</span>
+    <span>NCR 总条数：0</span>
     <span>数据来源：非风产品交付 NCR 跟踪</span>
   </div>
 </div>
 
 <div class="stats">
   <div class="stat-card total">
-    <div class="num" id="statTotal">10</div>
+    <div class="num" id="statTotal">0</div>
     <div class="label">全部 NCR</div>
   </div>
   <div class="stat-card gaojing">
-    <div class="num" id="statGaojing">4</div>
+    <div class="num" id="statGaojing">0</div>
     <div class="label">高精高速组件</div>
   </div>
   <div class="stat-card zijian">
-    <div class="num" id="statZijian">2</div>
+    <div class="num" id="statZijian">0</div>
     <div class="label">高精高速子件</div>
   </div>
   <div class="stat-card other">
-    <div class="num" id="statOther">4</div>
+    <div class="num" id="statOther">0</div>
     <div class="label">其他</div>
   </div>
 </div>
 
 <div class="section">
-  <h2>全部未关闭 NCR（<span id="countTotal">10</span> 条）</h2>
+  <h2>全部未关闭 NCR（<span id="countTotal">0</span> 条）</h2>
   <div class="table-wrap">
     <table id="tableAll">
       <thead>
@@ -120,7 +120,7 @@
 </div>
 
 <script>
-const DATA = [{"xuhao": "1", "bianma": "C07000134", "name": "输入轴", "cat": "子件", "kehu": "", "ncr": "YW583-2", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/d4deb9bc-8913-4206-b5d3-2bf2eb9d7d6e?additional_query={}", "time": "2026-09-24", "approver": "返工返修流程"}, {"xuhao": "2", "bianma": "C01196178", "name": "高速齿轮轴27", "cat": "子件", "kehu": "", "ncr": "XR413", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/111384bf-bf3e-4883-aaae-5373d30546ba?additional_query={}", "time": "2026-08-18", "approver": "返工返修流程"}, {"xuhao": "3", "bianma": "C01196210", "name": "齿轮轴组件", "cat": "高精高速", "kehu": "51202007", "ncr": "无零件号", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/ac46c0f9-c70d-43d3-b2bd-f1035cd5b6c1?additional_query={}", "time": "2026-09-22", "approver": "返工返修流程"}, {"xuhao": "4", "bianma": "C01196212", "name": "齿轮轴组件", "cat": "高精高速", "kehu": "51202007", "ncr": "无零件号", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/80609b6b-fac6-4f59-9474-3e5b3daf3050?additional_query={}", "time": "2026-09-19", "approver": "返工返修流程"}, {"xuhao": "5", "bianma": "C01196212", "name": "齿轮轴组件", "cat": "高精高速", "kehu": "51202007", "ncr": "无零件号", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/fcdc5d28-38ee-488a-b268-c5b0ca621abd?additional_query={}", "time": "2026-09-22", "approver": "返工返修流程"}, {"xuhao": "6", "bianma": "CC092697", "name": "齿轮", "cat": "散单", "kehu": "51204008", "ncr": "YY820", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/108b0bc2-a11d-427e-9d73-ed12aa0e004a?additional_query={}", "time": "2026-09-23", "approver": "陈斌"}, {"xuhao": "7", "bianma": "C01300543", "name": "被动齿轮组件", "cat": "散单", "kehu": "021037", "ncr": "YY654", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/00fb72b8-3a60-4d3d-ac66-6666b66f0c2e?additional_query={}", "time": "2026-09-23", "approver": "陈斌"}, {"xuhao": "8", "bianma": "C01300543", "name": "被动齿轮组件", "cat": "散单", "kehu": "021037", "ncr": "YY653", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/00fb72b8-3a60-4d3d-ac66-6666b66f0c2e?additional_query={}", "time": "2026-09-23", "approver": "陈斌"}, {"xuhao": "9", "bianma": "C01196364", "name": "三级高速轴", "cat": "高精高速", "kehu": "021104", "ncr": "YN835", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/b8da0f6e-1fff-4287-b5a0-62d9dddba627?additional_query={}", "time": "2026-09-22", "approver": "袁胜"}, {"xuhao": "10", "bianma": "CC091001", "name": "齿轮（右）", "cat": "油气", "kehu": "027003", "ncr": "无零件号", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/332712de-1e4a-497e-9451-08c6f8805f16?additional_query={}", "time": "2026-07-04", "approver": "王晓柯"}];
+const DATA = [];
 
 function getApproverTag(approver) {
   if (!approver) return '<span class="tag empty">未分配</span>';
