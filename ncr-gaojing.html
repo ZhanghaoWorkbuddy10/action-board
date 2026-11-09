@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>高精高速组件 / 高精高速子件 NCR 未关闭明细 — 2026-11-09 07:29</title>
+<title>高精高速组件 / 高精高速子件 NCR 未关闭明细 — 2026-11-10 07:29</title>
 <style>
   :root {
     --bg: #f5f6f8; --card-bg: #fff; --text: #2c3e50; --text-secondary: #7f8c8d;
@@ -61,29 +61,29 @@
 <div class="header">
   <h1>高精高速组件 / 高精高速子件 — 未关闭 NCR 明细</h1>
   <div class="meta">
-    <span><span class="dot live"></span> 数据更新：2026-11-09 07:29</span>
-    <span>NCR 总条数：25</span>
+    <span><span class="dot live"></span> 数据更新：2026-11-10 07:29</span>
+    <span>NCR 总条数：16</span>
     <span>数据来源：非风产品交付 NCR 跟踪</span>
   </div>
 </div>
 
 <div class="stats">
   <div class="stat-card gaojing">
-    <div class="num" id="statGaojing">25</div>
+    <div class="num" id="statGaojing">13</div>
     <div class="label">高精高速组件 NCR</div>
   </div>
   <div class="stat-card zijian">
-    <div class="num" id="statZijian">0</div>
+    <div class="num" id="statZijian">3</div>
     <div class="label">高精高速子件 NCR</div>
   </div>
   <div class="stat-card total">
-    <div class="num" id="statTotal">25</div>
+    <div class="num" id="statTotal">16</div>
     <div class="label">合计</div>
   </div>
 </div>
 
 <div class="section">
-  <h2><span class="badge gaojing">高精高速组件</span> 未关闭 NCR（<span id="countGaojing">25</span> 条）</h2>
+  <h2><span class="badge gaojing">高精高速组件</span> 未关闭 NCR（<span id="countGaojing">13</span> 条）</h2>
   <div class="table-wrap">
     <table id="tableGaojing">
       <thead>
@@ -103,7 +103,7 @@
 </div>
 
 <div class="section">
-  <h2><span class="badge zijian">高精高速子件</span> 未关闭 NCR（<span id="countZijian">0</span> 条）</h2>
+  <h2><span class="badge zijian">高精高速子件</span> 未关闭 NCR（<span id="countZijian">3</span> 条）</h2>
   <div class="table-wrap">
     <table id="tableZijian">
       <thead>
@@ -128,7 +128,7 @@
 </div>
 
 <script>
-const DATA = {"gaojing": [{"xuhao": "4", "bianma": "C01196382", "name": "高速轴", "kehu": "998033", "ncr": "YW524", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/b2e68061-3632-48de-890a-84e3f30ccd4f?additional_query={}", "time": "", "approver": ""}, {"xuhao": "5", "bianma": "C01196382", "name": "高速轴", "kehu": "998033", "ncr": "YW525", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/b2e68061-3632-48de-890a-84e3f30ccd4f?additional_query={}", "time": "", "approver": ""}, {"xuhao": "6", "bianma": "C01196383", "name": "高速轴", "kehu": "998033", "ncr": "YW526", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/35c63c9c-4e5e-4f60-bd01-34fc67f5ccfb?additional_query={}", "time": "", "approver": ""}, {"xuhao": "7", "bianma": "C01196383", "name": "高速轴", "kehu": "998033", "ncr": "YW527", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/35c63c9c-4e5e-4f60-bd01-34fc67f5ccfb?additional_query={}", "time": "", "approver": ""}, {"xuhao": "10", "bianma": "C01196226", "name": "齿轮轴组件", "kehu": "51202007", "ncr": "AAC053-6", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/243e9ac0-9ae9-4dd7-8480-614ebb35f72a?additional_query={}", "time": "", "approver": ""}, {"xuhao": "11", "bianma": "C01196337", "name": "齿轮轴", "kehu": "51202007", "ncr": "YP102-8", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/e6efb8b0-74f7-4a37-8277-76c5a94384c8?additional_query={}", "time": "", "approver": ""}, {"xuhao": "12", "bianma": "C01196337", "name": "齿轮轴", "kehu": "51202007", "ncr": "YP102-13", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/45c97109-c304-4f61-87b8-8a5706326785?additional_query={}", "time": "", "approver": ""}, {"xuhao": "13", "bianma": "C01196337", "name": "齿轮轴", "kehu": "51202007", "ncr": "YP102-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/559f8dbe-a992-43d0-a988-06660d4e696e?additional_query={}", "time": "", "approver": ""}, {"xuhao": "14", "bianma": "C01196337", "name": "齿轮轴", "kehu": "51202007", "ncr": "YP102-2", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/ff669a3d-5bcd-4dec-bc97-803df0362723?additional_query={}", "time": "", "approver": ""}, {"xuhao": "15", "bianma": "C01196337", "name": "齿轮轴", "kehu": "51202007", "ncr": "YP102-11", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/d5f51cf9-7953-42c1-b0b4-38faebc82ee1?additional_query={}", "time": "", "approver": ""}, {"xuhao": "16", "bianma": "C01196337", "name": "齿轮轴", "kehu": "51202007", "ncr": "YP102-5", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/bd6145ff-da7a-4590-8986-86f902dd5395?additional_query={}", "time": "", "approver": ""}, {"xuhao": "17", "bianma": "C01196337", "name": "齿轮轴", "kehu": "51202007", "ncr": "YP102-6", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/4e42cef1-4e50-416c-9b23-a95211e3617d?additional_query={}", "time": "", "approver": ""}, {"xuhao": "18", "bianma": "C01196337", "name": "齿轮轴", "kehu": "51202007", "ncr": "YP102-4", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/d7f9a436-3987-473b-94f4-1dd93fefefe2?additional_query={}", "time": "", "approver": ""}, {"xuhao": "19", "bianma": "C01196337", "name": "齿轮轴", "kehu": "51202007", "ncr": "YP102-10", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/ed204b25-6e29-4c79-af0d-916364d78e69?additional_query={}", "time": "", "approver": ""}, {"xuhao": "20", "bianma": "C01196337", "name": "齿轮轴", "kehu": "51202007", "ncr": "YY808-3", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/05bdcda0-42c5-4e72-88a8-6546cb24ab3e?additional_query={}", "time": "", "approver": ""}, {"xuhao": "21", "bianma": "C01196337", "name": "齿轮轴", "kehu": "51202007", "ncr": "YY779-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/f5d8383a-2e3f-4b27-ac12-1edac03bd895?additional_query={}", "time": "", "approver": ""}, {"xuhao": "22", "bianma": "C01196337", "name": "齿轮轴", "kehu": "51202007", "ncr": "YY779-2", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/d66883ef-1c29-4da8-8fab-05948c771938?additional_query={}", "time": "", "approver": ""}, {"xuhao": "23", "bianma": "C01196395", "name": "齿轮轴", "kehu": "51202007", "ncr": "AAA506-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/da834426-8251-40ef-98ad-7fb67cc86f1d?additional_query={}", "time": "", "approver": ""}, {"xuhao": "24", "bianma": "C01196395", "name": "齿轮轴", "kehu": "51202007", "ncr": "AAA506-2", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/da834426-8251-40ef-98ad-7fb67cc86f1d?additional_query={}", "time": "", "approver": ""}, {"xuhao": "25", "bianma": "C01196395", "name": "齿轮轴", "kehu": "51202007", "ncr": "AAA506-3", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/da834426-8251-40ef-98ad-7fb67cc86f1d?additional_query={}", "time": "", "approver": ""}, {"xuhao": "26", "bianma": "CC092930", "name": "齿轮", "kehu": "021093", "ncr": "AAB900", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/f2a96764-d2af-46d1-a305-1efa84cf118b?additional_query={}", "time": "", "approver": ""}, {"xuhao": "27", "bianma": "CC093088", "name": "圆柱齿轮", "kehu": "021093", "ncr": "YZ111", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/fb2a34fd-6ed2-4e38-8a6d-dc21353be368?additional_query={}", "time": "", "approver": ""}, {"xuhao": "28", "bianma": "C01196293", "name": "低速齿轮轴", "kehu": "021097", "ncr": "XR364", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/39340a60-61dd-4147-87fc-78cee207d076?additional_query={}", "time": "", "approver": ""}, {"xuhao": "29", "bianma": "C01196294", "name": "高速齿轮轴", "kehu": "021097", "ncr": "XS382", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/77048e2c-b050-4e6f-bfa8-62f9c4645d8f?additional_query={}", "time": "", "approver": ""}, {"xuhao": "30", "bianma": "C01300225", "name": "大齿轮组件", "kehu": "021097", "ncr": "YN657-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/4c588739-9b97-48fd-a209-e717843ad8f1?additional_query={}", "time": "", "approver": ""}], "zijian": []};
+const DATA = {"gaojing": [{"xuhao": "3", "bianma": "C01196382", "name": "高速轴", "kehu": "998033", "ncr": "YW524", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/b2e68061-3632-48de-890a-84e3f30ccd4f?additional_query={}", "time": "", "approver": ""}, {"xuhao": "4", "bianma": "C01196382", "name": "高速轴", "kehu": "998033", "ncr": "YW525", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/b2e68061-3632-48de-890a-84e3f30ccd4f?additional_query={}", "time": "", "approver": ""}, {"xuhao": "5", "bianma": "C01196383", "name": "高速轴", "kehu": "998033", "ncr": "YW526", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/35c63c9c-4e5e-4f60-bd01-34fc67f5ccfb?additional_query={}", "time": "", "approver": ""}, {"xuhao": "6", "bianma": "C01196383", "name": "高速轴", "kehu": "998033", "ncr": "YW527", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/35c63c9c-4e5e-4f60-bd01-34fc67f5ccfb?additional_query={}", "time": "", "approver": ""}, {"xuhao": "9", "bianma": "C01196226", "name": "齿轮轴组件", "kehu": "51202007", "ncr": "AAC053-6", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/243e9ac0-9ae9-4dd7-8480-614ebb35f72a?additional_query={}", "time": "", "approver": ""}, {"xuhao": "10", "bianma": "C01196337", "name": "齿轮轴", "kehu": "51202007", "ncr": "YY779-2", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/d66883ef-1c29-4da8-8fab-05948c771938?additional_query={}", "time": "", "approver": ""}, {"xuhao": "11", "bianma": "C01196395", "name": "齿轮轴", "kehu": "51202007", "ncr": "AAA506-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/da834426-8251-40ef-98ad-7fb67cc86f1d?additional_query={}", "time": "", "approver": ""}, {"xuhao": "12", "bianma": "C01196395", "name": "齿轮轴", "kehu": "51202007", "ncr": "AAA506-2", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/da834426-8251-40ef-98ad-7fb67cc86f1d?additional_query={}", "time": "", "approver": ""}, {"xuhao": "13", "bianma": "C01196395", "name": "齿轮轴", "kehu": "51202007", "ncr": "AAA506-3", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/da834426-8251-40ef-98ad-7fb67cc86f1d?additional_query={}", "time": "", "approver": ""}, {"xuhao": "14", "bianma": "C01196293", "name": "低速齿轮轴", "kehu": "021097", "ncr": "XR364", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/39340a60-61dd-4147-87fc-78cee207d076?additional_query={}", "time": "", "approver": ""}, {"xuhao": "15", "bianma": "C01196294", "name": "高速齿轮轴", "kehu": "021097", "ncr": "XS382", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/77048e2c-b050-4e6f-bfa8-62f9c4645d8f?additional_query={}", "time": "", "approver": ""}, {"xuhao": "19", "bianma": "C01300225", "name": "大齿轮组件", "kehu": "021097", "ncr": "YN657-1", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/4c588739-9b97-48fd-a209-e717843ad8f1?additional_query={}", "time": "", "approver": ""}, {"xuhao": "20", "bianma": "C01300225", "name": "大齿轮组件", "kehu": "021097", "ncr": "YN657-3", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/16218538-cc01-4c89-b193-c5746b2ac4f6?additional_query={}", "time": "", "approver": ""}], "zijian": [{"xuhao": "16", "bianma": "C14006220", "name": "轴套1", "kehu": "", "ncr": "AAB826", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/ee6ead21-37a5-494c-955f-3496e8d1c662?additional_query={}", "time": "", "approver": ""}, {"xuhao": "17", "bianma": "C14006220", "name": "轴套1", "kehu": "", "ncr": "AAB824", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/f7eed339-63e4-402f-9123-178085dc75cb?additional_query={}", "time": "", "approver": ""}, {"xuhao": "18", "bianma": "C14006221", "name": "轴套2", "kehu": "", "ncr": "AAB838", "link": "https://oa.szapmc.com/apps/desktop/process/app_4knz4afkjv/92f768f1-00e2-4b4d-8bba-86f7c7acfec4?additional_query={}", "time": "", "approver": ""}]};
 
 function getApproverTag(approver) {
   if (!approver) return '<span class="tag empty">未分配</span>';
