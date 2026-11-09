@@ -80,23 +80,23 @@
 <body>
 <div class="container">
     <h1>瓶颈工序分析报告</h1>
-    <p class="subtitle">非风产品跟踪V2 — 生成时间：2026-11-08 08:21</p>
+    <p class="subtitle">非风产品跟踪V2 — 生成时间：2026-11-09 08:22</p>
     <p class="method-note">数据来源：<b>需求明细全部在制记录</b>（含标准等待时间内的物料，不再仅取慢速物料）；待加工工序取「剩余工序」链首道，等待时长按「时间」字段至今日计算。<br>分析口径：以<b>各设备前待加工数量</b>为核心，识别当前时点瓶颈设备；并按"待加工工序"统计待加工批次数/等待时长识别瓶颈工序。 设备映射来源：非远景产品加工任务汇总_V1102.xlsx</p>
     <p class="method-note" style="color:#e67e22;">⚠️ 已剔除等待天数&gt;60天的异常数据 24 款（疑似系统未及时处理 / 实物丢失等特殊情况），不纳入本次分析</p>
     
     <div class="summary-cards">
         <div class="card alert">
-            <div class="num">191</div>
-            <div class="num-sub">（待加工批次 318 条）</div>
+            <div class="num">190</div>
+            <div class="num-sub">（待加工批次 312 条）</div>
             <div class="label">在制待加工（去重编码）</div>
         </div>
         <div class="card warn">
-            <div class="num">46</div>
+            <div class="num">47</div>
             <div class="label">涉及待加工工序数</div>
         </div>
         <div class="card">
             <div class="num">501</div>
-            <div class="num-sub">（总记录 766 条）</div>
+            <div class="num-sub">（总记录 758 条）</div>
             <div class="label">需求明细（去重编码）</div>
         </div>
     </div>
@@ -113,51 +113,51 @@
             <td class="num-cell"><b>1</b></td>
             <td class="proc-name">🔴 磨齿</td>
             <td class="num-cell">40<span class="unit">批</span></td>
-            <td class="num-cell">315<span class="unit">件</span></td>
-            <td class="num-cell">6.4<span class="unit">天</span></td>
-            <td class="num-cell">54<span class="unit">天</span></td>
-            <td class="num-cell">37<span class="unit">款</span></td>
-            <td class="num-cell score">473.1</td>
+            <td class="num-cell">285<span class="unit">件</span></td>
+            <td class="num-cell">6.8<span class="unit">天</span></td>
+            <td class="num-cell">55<span class="unit">天</span></td>
+            <td class="num-cell">36<span class="unit">款</span></td>
+            <td class="num-cell score">475.3</td>
         </tr>
         <tr>
             <td class="num-cell"><b>2</b></td>
-            <td class="proc-name">🔴 立磨</td>
-            <td class="num-cell">28<span class="unit">批</span></td>
-            <td class="num-cell">255<span class="unit">件</span></td>
-            <td class="num-cell">4.7<span class="unit">天</span></td>
-            <td class="num-cell">20<span class="unit">天</span></td>
-            <td class="num-cell">23<span class="unit">款</span></td>
-            <td class="num-cell score">314.1</td>
+            <td class="proc-name">🔴 精车</td>
+            <td class="num-cell">26<span class="unit">批</span></td>
+            <td class="num-cell">436<span class="unit">件</span></td>
+            <td class="num-cell">7.7<span class="unit">天</span></td>
+            <td class="num-cell">23<span class="unit">天</span></td>
+            <td class="num-cell">42<span class="unit">款</span></td>
+            <td class="num-cell score">306.2</td>
         </tr>
         <tr>
             <td class="num-cell"><b>3</b></td>
-            <td class="proc-name">🔴 精车</td>
+            <td class="proc-name">🔴 立磨</td>
             <td class="num-cell">26<span class="unit">批</span></td>
-            <td class="num-cell">438<span class="unit">件</span></td>
-            <td class="num-cell">6.4<span class="unit">天</span></td>
-            <td class="num-cell">22<span class="unit">天</span></td>
-            <td class="num-cell">43<span class="unit">款</span></td>
-            <td class="num-cell score">301.3</td>
+            <td class="num-cell">268<span class="unit">件</span></td>
+            <td class="num-cell">5.3<span class="unit">天</span></td>
+            <td class="num-cell">21<span class="unit">天</span></td>
+            <td class="num-cell">22<span class="unit">款</span></td>
+            <td class="num-cell score">296.9</td>
         </tr>
         <tr>
             <td class="num-cell"><b>4</b></td>
             <td class="proc-name">🔴 加工中心</td>
-            <td class="num-cell">22<span class="unit">批</span></td>
-            <td class="num-cell">80<span class="unit">件</span></td>
-            <td class="num-cell">6.4<span class="unit">天</span></td>
-            <td class="num-cell">31<span class="unit">天</span></td>
-            <td class="num-cell">20<span class="unit">款</span></td>
-            <td class="num-cell score">270.2</td>
+            <td class="num-cell">21<span class="unit">批</span></td>
+            <td class="num-cell">79<span class="unit">件</span></td>
+            <td class="num-cell">6.2<span class="unit">天</span></td>
+            <td class="num-cell">20<span class="unit">天</span></td>
+            <td class="num-cell">17<span class="unit">款</span></td>
+            <td class="num-cell score">248.7</td>
         </tr>
         <tr>
             <td class="num-cell"><b>5</b></td>
             <td class="proc-name">🔴 清理喷丸</td>
-            <td class="num-cell">21<span class="unit">批</span></td>
-            <td class="num-cell">233<span class="unit">件</span></td>
-            <td class="num-cell">4.2<span class="unit">天</span></td>
-            <td class="num-cell">11<span class="unit">天</span></td>
+            <td class="num-cell">22<span class="unit">批</span></td>
+            <td class="num-cell">235<span class="unit">件</span></td>
+            <td class="num-cell">4.3<span class="unit">天</span></td>
+            <td class="num-cell">12<span class="unit">天</span></td>
             <td class="num-cell">27<span class="unit">款</span></td>
-            <td class="num-cell score">233.6</td>
+            <td class="num-cell score">244.8</td>
         </tr></tbody>
         </table>
     </div>
@@ -168,16 +168,16 @@
             <div class="detail-header">
                 <span class="rank-badge" style="background:#e74c3c">1</span>
                 <strong class="detail-title">磨齿</strong>
-                <span class="detail-score">瓶颈评分 473.1</span>
+                <span class="detail-score">瓶颈评分 475.3</span>
             </div>
             <div class="detail-stats">
                 <span class="stat"><b>40</b> 批次等待</span>
-                <span class="stat">平均等待 <b>6.4</b> 天</span>
-                <span class="stat">最长 <b>54</b> 天</span>
-                <span class="stat">当前在加工 <b>37</b> 款</span>
+                <span class="stat">平均等待 <b>6.8</b> 天</span>
+                <span class="stat">最长 <b>55</b> 天</span>
+                <span class="stat">当前在加工 <b>36</b> 款</span>
             </div>
-            <div class="detail-from">上道工序来源：立磨(13款)、精车(9款)、检测(3款)、加工中心4(3款)、磨花键(3款)</div>
-            <div class="device-block"><div class="device-title">设备负荷分布 · 瓶颈设备：<b>M12</b></div><table class="device-table"><thead><tr><th>设备</th><th>待加工件数</th></tr></thead><tbody><tr class="dev-nm"><td>未指派</td><td>265</td></tr><tr class="dev-bk"><td>M12</td><td>31</td></tr><tr class=""><td>M14</td><td>16</td></tr><tr class=""><td>M05</td><td>2</td></tr><tr class=""><td>M07</td><td>1</td></tr></tbody></table><div class="device-note">设备映射来源：非远景产品加工任务汇总_V1102（工序任务分解目录；用户未重发前固定此版）；本工序待加工件数按设备汇总</div></div>
+            <div class="detail-from">上道工序来源：立磨(14款)、精车(8款)、检测(3款)、加工中心4(3款)、磨花键(3款)</div>
+            <div class="device-block"><div class="device-title">设备负荷分布 · 瓶颈设备：<b>M12</b></div><table class="device-table"><thead><tr><th>设备</th><th>待加工件数</th></tr></thead><tbody><tr class="dev-nm"><td>未指派</td><td>233</td></tr><tr class="dev-bk"><td>M12</td><td>31</td></tr><tr class=""><td>M14</td><td>16</td></tr><tr class=""><td>M05</td><td>3</td></tr><tr class=""><td>M07</td><td>2</td></tr></tbody></table><div class="device-note">设备映射来源：非远景产品加工任务汇总_V1102（工序任务分解目录；用户未重发前固定此版）；本工序待加工件数按设备汇总</div></div>
             <div class="detail-table-wrap">
             <table class="detail-table">
                 <thead><tr><th>存货编码</th><th>存货名称</th><th>产品分类</th><th>当前工序</th><th>等待天数</th><th>在制件数</th></tr></thead>
@@ -187,7 +187,7 @@
                     <td>TC-13K二级行星轮</td>
                     <td class="cat-风电">风电</td>
                     <td>立磨</td>
-                    <td class="wait-high">54天</td>
+                    <td class="wait-high">55天</td>
                     <td>1</td>
                 </tr>
                 <tr>
@@ -195,7 +195,7 @@
                     <td>6X＿205高速轴</td>
                     <td class="cat-风电">风电</td>
                     <td>检测</td>
-                    <td class="wait-high">41天</td>
+                    <td class="wait-high">42天</td>
                     <td>1</td>
                 </tr>
                 <tr>
@@ -203,7 +203,7 @@
                     <td>TD二级行星轮</td>
                     <td class="cat-风电">风电</td>
                     <td>精车</td>
-                    <td class="wait-high">18天</td>
+                    <td class="wait-high">19天</td>
                     <td>2</td>
                 </tr>
                 <tr>
@@ -211,23 +211,15 @@
                     <td>大齿轮组件</td>
                     <td class="cat-高精高速">高精高速</td>
                     <td>精车</td>
-                    <td class="wait-high">17天</td>
+                    <td class="wait-high">18天</td>
                     <td>1</td>
-                </tr>
-                <tr>
-                    <td>C01216028</td>
-                    <td>TB+二级行星轮加宽</td>
-                    <td class="cat-风电">风电</td>
-                    <td>立磨</td>
-                    <td class="wait-mid">13天</td>
-                    <td>2</td>
                 </tr>
                 <tr>
                     <td>C01300473</td>
                     <td>大齿轮组件</td>
                     <td class="cat-高精高速">高精高速</td>
                     <td>立磨</td>
-                    <td class="wait-mid">12天</td>
+                    <td class="wait-mid">13天</td>
                     <td>1</td>
                 </tr>
                 <tr>
@@ -235,7 +227,7 @@
                     <td>齿轮</td>
                     <td class="cat-散单">散单</td>
                     <td>立磨</td>
-                    <td class="wait-mid">11天</td>
+                    <td class="wait-mid">12天</td>
                     <td>1</td>
                 </tr>
                 <tr>
@@ -243,7 +235,7 @@
                     <td>齿轮</td>
                     <td class="cat-散单">散单</td>
                     <td>立磨</td>
-                    <td class="wait-mid">9天</td>
+                    <td class="wait-mid">10天</td>
                     <td>1</td>
                 </tr>
                 <tr>
@@ -251,7 +243,7 @@
                     <td>一二级高速轴</td>
                     <td class="cat-子件">子件</td>
                     <td>电镀2</td>
-                    <td class="wait-mid">8天</td>
+                    <td class="wait-mid">9天</td>
                     <td>2</td>
                 </tr>
                 <tr>
@@ -259,7 +251,7 @@
                     <td>一级太阳轮</td>
                     <td class="cat-风电">风电</td>
                     <td>磨花键</td>
-                    <td class="wait-mid">7天</td>
+                    <td class="wait-mid">8天</td>
                     <td>9</td>
                 </tr>
                 <tr>
@@ -267,7 +259,7 @@
                     <td>齿轮一</td>
                     <td class="cat-散单">散单</td>
                     <td>检测</td>
-                    <td class="wait-low">6天</td>
+                    <td class="wait-mid">7天</td>
                     <td>1</td>
                 </tr>
                 <tr>
@@ -275,7 +267,7 @@
                     <td>输出齿轮Ⅰ</td>
                     <td class="cat-齿轮箱-普通">齿轮箱-普通</td>
                     <td>立磨</td>
-                    <td class="wait-low">6天</td>
+                    <td class="wait-mid">7天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -283,7 +275,7 @@
                     <td>6X+194高速轴</td>
                     <td class="cat-风电">风电</td>
                     <td>外圆磨</td>
-                    <td class="wait-low">6天</td>
+                    <td class="wait-mid">7天</td>
                     <td>1</td>
                 </tr>
                 <tr>
@@ -291,7 +283,7 @@
                     <td>齿轮一</td>
                     <td class="cat-散单">散单</td>
                     <td>精车</td>
-                    <td class="wait-low">5天</td>
+                    <td class="wait-low">6天</td>
                     <td>23</td>
                 </tr>
                 <tr>
@@ -299,7 +291,7 @@
                     <td>输出齿轮 Ⅱ</td>
                     <td class="cat-齿轮箱-普通">齿轮箱-普通</td>
                     <td>立磨</td>
-                    <td class="wait-low">5天</td>
+                    <td class="wait-low">6天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -307,23 +299,23 @@
                     <td>10X-TB-BOOST三级行星轮</td>
                     <td class="cat-风电">风电</td>
                     <td>精车</td>
-                    <td class="wait-low">4天</td>
-                    <td>36</td>
+                    <td class="wait-low">5天</td>
+                    <td>26</td>
                 </tr>
                 <tr>
                     <td>C01226005</td>
                     <td>TC-13K三级行星轮</td>
                     <td class="cat-风电">风电</td>
                     <td>精车</td>
-                    <td class="wait-low">4天</td>
-                    <td>10</td>
+                    <td class="wait-low">5天</td>
+                    <td>2</td>
                 </tr>
                 <tr>
                     <td>C01196025</td>
                     <td>低速小齿轮</td>
                     <td class="cat-子件">子件</td>
                     <td>外圆磨3</td>
-                    <td class="wait-low">3天</td>
+                    <td class="wait-low">4天</td>
                     <td>11</td>
                 </tr>
                 <tr>
@@ -331,23 +323,15 @@
                     <td>EN55+二级齿圈</td>
                     <td class="cat-风电">风电</td>
                     <td>加工中心4</td>
-                    <td class="wait-low">3天</td>
-                    <td>19</td>
-                </tr>
-                <tr>
-                    <td>C01216030</td>
-                    <td>YE二级行星轮-加宽</td>
-                    <td class="cat-风电">风电</td>
-                    <td>精车</td>
-                    <td class="wait-low">3天</td>
-                    <td>7</td>
+                    <td class="wait-low">4天</td>
+                    <td>13</td>
                 </tr>
                 <tr>
                     <td>C01246053</td>
                     <td>TD内花键一级太阳轮-new</td>
                     <td class="cat-风电">风电</td>
                     <td>倒角2</td>
-                    <td class="wait-low">3天</td>
+                    <td class="wait-low">4天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -355,7 +339,7 @@
                     <td>斜齿轮</td>
                     <td class="cat-散单">散单</td>
                     <td>检测</td>
-                    <td class="wait-low">2天</td>
+                    <td class="wait-low">3天</td>
                     <td>1</td>
                 </tr>
                 <tr>
@@ -363,15 +347,15 @@
                     <td>斜齿轮</td>
                     <td class="cat-散单">散单</td>
                     <td>三坐标检测</td>
-                    <td class="wait-low">2天</td>
-                    <td>4</td>
+                    <td class="wait-low">3天</td>
+                    <td>3</td>
                 </tr>
                 <tr>
                     <td>C01196176</td>
                     <td>低速齿轮轴43</td>
                     <td class="cat-子件">子件</td>
                     <td>外圆磨3</td>
-                    <td class="wait-low">2天</td>
+                    <td class="wait-low">3天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -379,31 +363,15 @@
                     <td>6X＿205高速轴</td>
                     <td class="cat-风电">风电</td>
                     <td>外圆磨</td>
-                    <td class="wait-low">2天</td>
+                    <td class="wait-low">3天</td>
                     <td>13</td>
-                </tr>
-                <tr>
-                    <td>C01320039</td>
-                    <td>7XJ大轮组件240-加强版</td>
-                    <td class="cat-风电">风电</td>
-                    <td>立磨</td>
-                    <td class="wait-low">2天</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>C01390026</td>
-                    <td>JSG齿轮</td>
-                    <td class="cat-散单">散单</td>
-                    <td>立磨</td>
-                    <td class="wait-low">1天</td>
-                    <td>11</td>
                 </tr>
                 <tr>
                     <td>CC092653</td>
                     <td>一级太阳轮</td>
                     <td class="cat-风电">风电</td>
                     <td>磨花键</td>
-                    <td class="wait-low">1天</td>
+                    <td class="wait-low">2天</td>
                     <td>4</td>
                 </tr>
                 <tr>
@@ -411,7 +379,7 @@
                     <td>TA narrow二级太阳轮内花键</td>
                     <td class="cat-风电">风电</td>
                     <td>倒角2</td>
-                    <td class="wait-low">1天</td>
+                    <td class="wait-low">2天</td>
                     <td>13</td>
                 </tr>
                 <tr>
@@ -419,8 +387,72 @@
                     <td>一级行星轮</td>
                     <td class="cat-风电">风电</td>
                     <td>立磨</td>
+                    <td class="wait-low">2天</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>C01300474</td>
+                    <td>大齿轮组件</td>
+                    <td class="cat-高精高速">高精高速</td>
+                    <td>立磨</td>
                     <td class="wait-low">1天</td>
-                    <td>29</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>CC090493</td>
+                    <td>齿轮</td>
+                    <td class="cat-散单">散单</td>
+                    <td>立磨</td>
+                    <td class="wait-low">1天</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>C01390026</td>
+                    <td>JSG齿轮</td>
+                    <td class="cat-散单">散单</td>
+                    <td>立磨</td>
+                    <td class="wait-low">1天</td>
+                    <td>21</td>
+                </tr>
+                <tr>
+                    <td>C01116010</td>
+                    <td>24++二级齿圈</td>
+                    <td class="cat-风电">风电</td>
+                    <td>加工中心4</td>
+                    <td class="wait-low">1天</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>CC093218</td>
+                    <td>ENG24++二级行星轮</td>
+                    <td class="cat-风电">风电</td>
+                    <td>精车</td>
+                    <td class="wait-low">1天</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>C01106042</td>
+                    <td>7XJ 一级齿圈-EV5开齿调质</td>
+                    <td class="cat-风电">风电</td>
+                    <td>加工中心4</td>
+                    <td class="wait-low">1天</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>C01226004</td>
+                    <td>TA-BOOST三级行星轮</td>
+                    <td class="cat-风电">风电</td>
+                    <td>精车</td>
+                    <td class="wait-low">1天</td>
+                    <td>59</td>
+                </tr>
+                <tr>
+                    <td>C01320039</td>
+                    <td>7XJ大轮组件240-加强版</td>
+                    <td class="cat-风电">风电</td>
+                    <td>立磨</td>
+                    <td class="wait-low">1天</td>
+                    <td>5</td>
                 </tr>
                 <tr>
                     <td>C01320043</td>
@@ -428,7 +460,7 @@
                     <td class="cat-风电">风电</td>
                     <td>立磨</td>
                     <td class="wait-low">1天</td>
-                    <td>1</td>
+                    <td>2</td>
                 </tr>
                 <tr>
                     <td>C01320065</td>
@@ -444,10 +476,18 @@
                     <td class="cat-风电">风电</td>
                     <td>倒角2</td>
                     <td class="wait-low">1天</td>
-                    <td>3</td>
+                    <td>5</td>
                 </tr>
                 <tr>
-                    <td>CC090493</td>
+                    <td>C01206034</td>
+                    <td>TC13.8K 一级行星轮</td>
+                    <td class="cat-风电">风电</td>
+                    <td>精车</td>
+                    <td class="wait-low">1天</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>CC090492</td>
                     <td>齿轮</td>
                     <td class="cat-散单">散单</td>
                     <td>立磨</td>
@@ -455,52 +495,12 @@
                     <td>1</td>
                 </tr>
                 <tr>
-                    <td>C01116010</td>
-                    <td>24++二级齿圈</td>
-                    <td class="cat-风电">风电</td>
-                    <td>加工中心4</td>
-                    <td class="wait-low">0天</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>CC093218</td>
-                    <td>ENG24++二级行星轮</td>
-                    <td class="cat-风电">风电</td>
-                    <td>精车</td>
-                    <td class="wait-low">0天</td>
-                    <td>17</td>
-                </tr>
-                <tr>
                     <td>CC092859</td>
                     <td>二级太阳轮</td>
                     <td class="cat-风电">风电</td>
                     <td>磨花键</td>
                     <td class="wait-low">0天</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>C01106042</td>
-                    <td>7XJ 一级齿圈-EV5开齿调质</td>
-                    <td class="cat-风电">风电</td>
-                    <td>加工中心4</td>
-                    <td class="wait-low">0天</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>C01226004</td>
-                    <td>TA-BOOST三级行星轮</td>
-                    <td class="cat-风电">风电</td>
-                    <td>精车</td>
-                    <td class="wait-low">0天</td>
-                    <td>59</td>
-                </tr>
-                <tr>
-                    <td>C01206034</td>
-                    <td>TC13.8K 一级行星轮</td>
-                    <td class="cat-风电">风电</td>
-                    <td>精车</td>
-                    <td class="wait-low">0天</td>
-                    <td>8</td>
+                    <td>7</td>
                 </tr></tbody>
             </table>
             </div>
@@ -509,263 +509,17 @@
         <div class="detail-card rank-2">
             <div class="detail-header">
                 <span class="rank-badge" style="background:#f39c12">2</span>
-                <strong class="detail-title">立磨</strong>
-                <span class="detail-score">瓶颈评分 314.1</span>
-            </div>
-            <div class="detail-stats">
-                <span class="stat"><b>28</b> 批次等待</span>
-                <span class="stat">平均等待 <b>4.7</b> 天</span>
-                <span class="stat">最长 <b>20</b> 天</span>
-                <span class="stat">当前在加工 <b>23</b> 款</span>
-            </div>
-            <div class="detail-from">上道工序来源：磨齿(9款)、加工中心(5款)、氮化(3款)、线切割(3款)、精车(3款)</div>
-            <div class="device-block"><div class="device-title">设备负荷分布 · 瓶颈设备：<b>X06</b></div><table class="device-table"><thead><tr><th>设备</th><th>待加工件数</th></tr></thead><tbody><tr class="dev-nm"><td>未指派</td><td>187</td></tr><tr class="dev-bk"><td>X06</td><td>22</td></tr><tr class=""><td>X12</td><td>21</td></tr><tr class=""><td>Z-M01</td><td>20</td></tr><tr class=""><td>X10</td><td>5</td></tr></tbody></table><div class="device-note">设备映射来源：非远景产品加工任务汇总_V1102（工序任务分解目录；用户未重发前固定此版）；本工序待加工件数按设备汇总</div></div>
-            <div class="detail-table-wrap">
-            <table class="detail-table">
-                <thead><tr><th>存货编码</th><th>存货名称</th><th>产品分类</th><th>当前工序</th><th>等待天数</th><th>在制件数</th></tr></thead>
-                <tbody>
-                <tr>
-                    <td>C01216008</td>
-                    <td>TC-13K二级行星轮</td>
-                    <td class="cat-风电">风电</td>
-                    <td>磨齿</td>
-                    <td class="wait-high">20天</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>C01310060</td>
-                    <td>薄齿圈</td>
-                    <td class="cat-子件">子件</td>
-                    <td>加工中心</td>
-                    <td class="wait-high">19天</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>C01310061</td>
-                    <td>厚齿圈</td>
-                    <td class="cat-子件">子件</td>
-                    <td>加工中心</td>
-                    <td class="wait-high">18天</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>CC091431</td>
-                    <td>齿轮</td>
-                    <td class="cat-散单">散单</td>
-                    <td>钳</td>
-                    <td class="wait-mid">13天</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>C01300508</td>
-                    <td>大齿轮</td>
-                    <td class="cat-子件">子件</td>
-                    <td>氮化</td>
-                    <td class="wait-mid">13天</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>CC090492</td>
-                    <td>齿轮</td>
-                    <td class="cat-散单">散单</td>
-                    <td>加工中心</td>
-                    <td class="wait-mid">9天</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>C07000124</td>
-                    <td>轮毂</td>
-                    <td class="cat-子件">子件</td>
-                    <td>线切割</td>
-                    <td class="wait-low">5天</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>C07000125</td>
-                    <td>轮毂</td>
-                    <td class="cat-子件">子件</td>
-                    <td>线切割</td>
-                    <td class="wait-low">5天</td>
-                    <td>2</td>
-                </tr>
-                <tr>
-                    <td>CC090493</td>
-                    <td>齿轮</td>
-                    <td class="cat-散单">散单</td>
-                    <td>加工中心</td>
-                    <td class="wait-low">5天</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>C01216011</td>
-                    <td>中间级行星轮</td>
-                    <td class="cat-齿轮箱-普通">齿轮箱-普通</td>
-                    <td>清理喷丸</td>
-                    <td class="wait-low">5天</td>
-                    <td>2</td>
-                </tr>
-                <tr>
-                    <td>XY06109</td>
-                    <td>初级行星轮</td>
-                    <td class="cat-齿轮箱-普通">齿轮箱-普通</td>
-                    <td>清理喷丸</td>
-                    <td class="wait-low">5天</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td>C01300478</td>
-                    <td>齿轮</td>
-                    <td class="cat-高精高速">高精高速</td>
-                    <td>线切割</td>
-                    <td class="wait-low">4天</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>CC091723</td>
-                    <td>齿轮</td>
-                    <td class="cat-散单">散单</td>
-                    <td>钳</td>
-                    <td class="wait-low">2天</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>C01300358</td>
-                    <td>主齿轮</td>
-                    <td class="cat-子件">子件</td>
-                    <td>氮化</td>
-                    <td class="wait-low">2天</td>
-                    <td>6</td>
-                </tr>
-                <tr>
-                    <td>C01390026</td>
-                    <td>JSG齿轮</td>
-                    <td class="cat-散单">散单</td>
-                    <td>精车</td>
-                    <td class="wait-low">2天</td>
-                    <td>56</td>
-                </tr>
-                <tr>
-                    <td>C01300218</td>
-                    <td>主齿轮</td>
-                    <td class="cat-子件">子件</td>
-                    <td>氮化</td>
-                    <td class="wait-low">1天</td>
-                    <td>8</td>
-                </tr>
-                <tr>
-                    <td>CC090193</td>
-                    <td>齿轮</td>
-                    <td class="cat-散单">散单</td>
-                    <td>精车</td>
-                    <td class="wait-low">1天</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>CC090194</td>
-                    <td>齿轮</td>
-                    <td class="cat-散单">散单</td>
-                    <td>加工中心</td>
-                    <td class="wait-low">1天</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>C01300225</td>
-                    <td>大齿轮组件</td>
-                    <td class="cat-高精高速">高精高速</td>
-                    <td>装配</td>
-                    <td class="wait-low">1天</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>CC093028</td>
-                    <td>一级行星轮</td>
-                    <td class="cat-风电">风电</td>
-                    <td>精车</td>
-                    <td class="wait-low">1天</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>CC093218</td>
-                    <td>ENG24++二级行星轮</td>
-                    <td class="cat-风电">风电</td>
-                    <td>磨齿</td>
-                    <td class="wait-low">0天</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>CC093028</td>
-                    <td>一级行星轮</td>
-                    <td class="cat-风电">风电</td>
-                    <td>磨齿</td>
-                    <td class="wait-low">0天</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>CC093028</td>
-                    <td>一级行星轮</td>
-                    <td class="cat-风电">风电</td>
-                    <td>磨齿</td>
-                    <td class="wait-low">0天</td>
-                    <td>19</td>
-                </tr>
-                <tr>
-                    <td>C01216030</td>
-                    <td>YE二级行星轮-加宽</td>
-                    <td class="cat-风电">风电</td>
-                    <td>磨齿</td>
-                    <td class="wait-low">0天</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>C01216030</td>
-                    <td>YE二级行星轮-加宽</td>
-                    <td class="cat-风电">风电</td>
-                    <td>磨齿</td>
-                    <td class="wait-low">0天</td>
-                    <td>36</td>
-                </tr>
-                <tr>
-                    <td>C01226002</td>
-                    <td>10X-TB-BOOST三级行星轮</td>
-                    <td class="cat-风电">风电</td>
-                    <td>磨齿</td>
-                    <td class="wait-low">0天</td>
-                    <td>25</td>
-                </tr>
-                <tr>
-                    <td>C01226005</td>
-                    <td>TC-13K三级行星轮</td>
-                    <td class="cat-风电">风电</td>
-                    <td>磨齿</td>
-                    <td class="wait-low">0天</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>C01226005</td>
-                    <td>TC-13K三级行星轮</td>
-                    <td class="cat-风电">风电</td>
-                    <td>磨齿</td>
-                    <td class="wait-low">0天</td>
-                    <td>35</td>
-                </tr></tbody>
-            </table>
-            </div>
-            <div class="detail-count">共 28 条明细</div>
-        </div>
-        <div class="detail-card rank-3">
-            <div class="detail-header">
-                <span class="rank-badge" style="background:#f39c12">3</span>
                 <strong class="detail-title">精车</strong>
-                <span class="detail-score">瓶颈评分 301.3</span>
+                <span class="detail-score">瓶颈评分 306.2</span>
             </div>
             <div class="detail-stats">
                 <span class="stat"><b>26</b> 批次等待</span>
-                <span class="stat">平均等待 <b>6.4</b> 天</span>
-                <span class="stat">最长 <b>22</b> 天</span>
-                <span class="stat">当前在加工 <b>43</b> 款</span>
+                <span class="stat">平均等待 <b>7.7</b> 天</span>
+                <span class="stat">最长 <b>23</b> 天</span>
+                <span class="stat">当前在加工 <b>42</b> 款</span>
             </div>
             <div class="detail-from">上道工序来源：清理喷丸(15款)、调质(5款)、正火(1款)、淬火(1款)、锯头(1款)</div>
-            <div class="device-block"><div class="device-title">设备负荷分布 · 瓶颈设备：<b>Z-C01</b></div><table class="device-table"><thead><tr><th>设备</th><th>待加工件数</th></tr></thead><tbody><tr class="dev-nm"><td>未指派</td><td>387</td></tr><tr class="dev-bk"><td>Z-C01</td><td>34</td></tr><tr class=""><td>C26/C30</td><td>9</td></tr><tr class="dev-nm"><td>委外</td><td>7</td></tr><tr class=""><td>C06</td><td>1</td></tr></tbody></table><div class="device-note">设备映射来源：非远景产品加工任务汇总_V1102（工序任务分解目录；用户未重发前固定此版）；本工序待加工件数按设备汇总</div></div>
+            <div class="device-block"><div class="device-title">设备负荷分布 · 瓶颈设备：<b>Z-C01</b></div><table class="device-table"><thead><tr><th>设备</th><th>待加工件数</th></tr></thead><tbody><tr class="dev-nm"><td>未指派</td><td>385</td></tr><tr class="dev-bk"><td>Z-C01</td><td>34</td></tr><tr class=""><td>C26/C30</td><td>9</td></tr><tr class="dev-nm"><td>委外</td><td>7</td></tr><tr class=""><td>C06</td><td>1</td></tr></tbody></table><div class="device-note">设备映射来源：非远景产品加工任务汇总_V1102（工序任务分解目录；用户未重发前固定此版）；本工序待加工件数按设备汇总</div></div>
             <div class="detail-table-wrap">
             <table class="detail-table">
                 <thead><tr><th>存货编码</th><th>存货名称</th><th>产品分类</th><th>当前工序</th><th>等待天数</th><th>在制件数</th></tr></thead>
@@ -775,15 +529,23 @@
                     <td>TD-215 高速轴</td>
                     <td class="cat-风电">风电</td>
                     <td>线切割</td>
-                    <td class="wait-high">22天</td>
+                    <td class="wait-high">23天</td>
                     <td>1</td>
+                </tr>
+                <tr>
+                    <td>C01300262</td>
+                    <td>7XJ高速大轮240-加强版</td>
+                    <td class="cat-子件">子件</td>
+                    <td>清理喷丸</td>
+                    <td class="wait-high">21天</td>
+                    <td>2</td>
                 </tr>
                 <tr>
                     <td>C07000147</td>
                     <td>输入轴</td>
                     <td class="cat-子件">子件</td>
                     <td>调质</td>
-                    <td class="wait-high">17天</td>
+                    <td class="wait-high">18天</td>
                     <td>2</td>
                 </tr>
                 <tr>
@@ -791,7 +553,7 @@
                     <td>输入轴</td>
                     <td class="cat-子件">子件</td>
                     <td>调质</td>
-                    <td class="wait-high">17天</td>
+                    <td class="wait-high">18天</td>
                     <td>7</td>
                 </tr>
                 <tr>
@@ -799,7 +561,7 @@
                     <td>花键轴</td>
                     <td class="cat-散单">散单</td>
                     <td>调质</td>
-                    <td class="wait-high">15天</td>
+                    <td class="wait-high">16天</td>
                     <td>5</td>
                 </tr>
                 <tr>
@@ -807,23 +569,15 @@
                     <td>花键轴</td>
                     <td class="cat-散单">散单</td>
                     <td>锯头</td>
-                    <td class="wait-mid">13天</td>
+                    <td class="wait-mid">14天</td>
                     <td>2</td>
-                </tr>
-                <tr>
-                    <td>C01300262</td>
-                    <td>7XJ高速大轮240-加强版</td>
-                    <td class="cat-子件">子件</td>
-                    <td>清理喷丸</td>
-                    <td class="wait-mid">12天</td>
-                    <td>3</td>
                 </tr>
                 <tr>
                     <td>C14006230</td>
                     <td>一二级推力卡盘</td>
                     <td class="cat-子件">子件</td>
                     <td>正火</td>
-                    <td class="wait-mid">8天</td>
+                    <td class="wait-mid">9天</td>
                     <td>6</td>
                 </tr>
                 <tr>
@@ -831,15 +585,15 @@
                     <td>10XJ一级太阳轮内花键</td>
                     <td class="cat-风电">风电</td>
                     <td>清理喷丸</td>
-                    <td class="wait-mid">8天</td>
-                    <td>7</td>
+                    <td class="wait-mid">9天</td>
+                    <td>6</td>
                 </tr>
                 <tr>
                     <td>C01300066</td>
                     <td>TB-BOOST高速大轮210</td>
                     <td class="cat-子件">子件</td>
                     <td>清理喷丸</td>
-                    <td class="wait-low">6天</td>
+                    <td class="wait-mid">7天</td>
                     <td>11</td>
                 </tr>
                 <tr>
@@ -847,7 +601,7 @@
                     <td>齿轮</td>
                     <td class="cat-散单">散单</td>
                     <td>清理喷丸</td>
-                    <td class="wait-low">5天</td>
+                    <td class="wait-low">6天</td>
                     <td>1</td>
                 </tr>
                 <tr>
@@ -855,7 +609,7 @@
                     <td>中间级太阳轮</td>
                     <td class="cat-齿轮箱-普通">齿轮箱-普通</td>
                     <td>清理喷丸</td>
-                    <td class="wait-low">5天</td>
+                    <td class="wait-low">6天</td>
                     <td>7</td>
                 </tr>
                 <tr>
@@ -863,7 +617,7 @@
                     <td>ENG24++二级太阳轮-斜花键</td>
                     <td class="cat-风电">风电</td>
                     <td>清理喷丸</td>
-                    <td class="wait-low">5天</td>
+                    <td class="wait-low">6天</td>
                     <td>20</td>
                 </tr>
                 <tr>
@@ -871,7 +625,7 @@
                     <td>高速大轮</td>
                     <td class="cat-子件">子件</td>
                     <td>清理喷丸</td>
-                    <td class="wait-low">5天</td>
+                    <td class="wait-low">6天</td>
                     <td>2</td>
                 </tr>
                 <tr>
@@ -879,7 +633,7 @@
                     <td>甩油环</td>
                     <td class="cat-子件">子件</td>
                     <td>调质</td>
-                    <td class="wait-low">4天</td>
+                    <td class="wait-low">5天</td>
                     <td>6</td>
                 </tr>
                 <tr>
@@ -887,7 +641,7 @@
                     <td>甩油环</td>
                     <td class="cat-子件">子件</td>
                     <td>调质</td>
-                    <td class="wait-low">4天</td>
+                    <td class="wait-low">5天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -895,7 +649,7 @@
                     <td>输出太阳轮</td>
                     <td class="cat-齿轮箱-普通">齿轮箱-普通</td>
                     <td>清理喷丸</td>
-                    <td class="wait-low">4天</td>
+                    <td class="wait-low">5天</td>
                     <td>7</td>
                 </tr>
                 <tr>
@@ -903,7 +657,7 @@
                     <td>轴套2</td>
                     <td class="cat-子件">子件</td>
                     <td>回火</td>
-                    <td class="wait-low">3天</td>
+                    <td class="wait-low">4天</td>
                     <td>2</td>
                 </tr>
                 <tr>
@@ -911,7 +665,7 @@
                     <td>圆柱齿轮</td>
                     <td class="cat-散单">散单</td>
                     <td>清理喷丸</td>
-                    <td class="wait-low">2天</td>
+                    <td class="wait-low">3天</td>
                     <td>1</td>
                 </tr>
                 <tr>
@@ -919,7 +673,7 @@
                     <td>圆柱齿轮</td>
                     <td class="cat-散单">散单</td>
                     <td>清理喷丸</td>
-                    <td class="wait-low">2天</td>
+                    <td class="wait-low">3天</td>
                     <td>1</td>
                 </tr>
                 <tr>
@@ -927,7 +681,7 @@
                     <td>高速轴</td>
                     <td class="cat-风电">风电</td>
                     <td>清理喷丸</td>
-                    <td class="wait-low">2天</td>
+                    <td class="wait-low">3天</td>
                     <td>20</td>
                 </tr>
                 <tr>
@@ -935,7 +689,7 @@
                     <td>TC内花键一级太阳轮-new</td>
                     <td class="cat-风电">风电</td>
                     <td>清理喷丸</td>
-                    <td class="wait-low">2天</td>
+                    <td class="wait-low">3天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -943,7 +697,7 @@
                     <td>TC13.8K 一级行星轮</td>
                     <td class="cat-风电">风电</td>
                     <td>清理喷丸</td>
-                    <td class="wait-low">2天</td>
+                    <td class="wait-low">3天</td>
                     <td>23</td>
                 </tr>
                 <tr>
@@ -951,7 +705,7 @@
                     <td>三级推力盘转接套</td>
                     <td class="cat-子件">子件</td>
                     <td>淬火</td>
-                    <td class="wait-low">1天</td>
+                    <td class="wait-low">2天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -959,7 +713,7 @@
                     <td>ENG24++二级行星轮</td>
                     <td class="cat-风电">风电</td>
                     <td>强力喷丸</td>
-                    <td class="wait-low">1天</td>
+                    <td class="wait-low">2天</td>
                     <td>18</td>
                 </tr>
                 <tr>
@@ -967,7 +721,7 @@
                     <td>TA-BOOST三级行星轮</td>
                     <td class="cat-风电">风电</td>
                     <td>清理喷丸</td>
-                    <td class="wait-low">1天</td>
+                    <td class="wait-low">2天</td>
                     <td>167</td>
                 </tr>
                 <tr>
@@ -975,8 +729,238 @@
                     <td>10X-TB-BOOST三级行星轮</td>
                     <td class="cat-风电">风电</td>
                     <td>清理喷丸</td>
-                    <td class="wait-low">1天</td>
+                    <td class="wait-low">2天</td>
                     <td>110</td>
+                </tr></tbody>
+            </table>
+            </div>
+            <div class="detail-count">共 26 条明细</div>
+        </div>
+        <div class="detail-card rank-3">
+            <div class="detail-header">
+                <span class="rank-badge" style="background:#f39c12">3</span>
+                <strong class="detail-title">立磨</strong>
+                <span class="detail-score">瓶颈评分 296.9</span>
+            </div>
+            <div class="detail-stats">
+                <span class="stat"><b>26</b> 批次等待</span>
+                <span class="stat">平均等待 <b>5.3</b> 天</span>
+                <span class="stat">最长 <b>21</b> 天</span>
+                <span class="stat">当前在加工 <b>22</b> 款</span>
+            </div>
+            <div class="detail-from">上道工序来源：磨齿(8款)、氮化(3款)、线切割(3款)、加工中心(3款)、精车(3款)</div>
+            <div class="device-block"><div class="device-title">设备负荷分布 · 瓶颈设备：<b>X12</b></div><table class="device-table"><thead><tr><th>设备</th><th>待加工件数</th></tr></thead><tbody><tr class="dev-nm"><td>未指派</td><td>202</td></tr><tr class="dev-bk"><td>X12</td><td>21</td></tr><tr class=""><td>X06</td><td>20</td></tr><tr class=""><td>Z-M01</td><td>20</td></tr><tr class=""><td>X10</td><td>5</td></tr></tbody></table><div class="device-note">设备映射来源：非远景产品加工任务汇总_V1102（工序任务分解目录；用户未重发前固定此版）；本工序待加工件数按设备汇总</div></div>
+            <div class="detail-table-wrap">
+            <table class="detail-table">
+                <thead><tr><th>存货编码</th><th>存货名称</th><th>产品分类</th><th>当前工序</th><th>等待天数</th><th>在制件数</th></tr></thead>
+                <tbody>
+                <tr>
+                    <td>C01216008</td>
+                    <td>TC-13K二级行星轮</td>
+                    <td class="cat-风电">风电</td>
+                    <td>磨齿</td>
+                    <td class="wait-high">21天</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>C01310060</td>
+                    <td>薄齿圈</td>
+                    <td class="cat-子件">子件</td>
+                    <td>加工中心</td>
+                    <td class="wait-high">20天</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>C01310061</td>
+                    <td>厚齿圈</td>
+                    <td class="cat-子件">子件</td>
+                    <td>加工中心</td>
+                    <td class="wait-high">19天</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>CC091431</td>
+                    <td>齿轮</td>
+                    <td class="cat-散单">散单</td>
+                    <td>钳</td>
+                    <td class="wait-mid">14天</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>C01300508</td>
+                    <td>大齿轮</td>
+                    <td class="cat-子件">子件</td>
+                    <td>氮化</td>
+                    <td class="wait-mid">14天</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>C07000124</td>
+                    <td>轮毂</td>
+                    <td class="cat-子件">子件</td>
+                    <td>线切割</td>
+                    <td class="wait-low">6天</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>C07000125</td>
+                    <td>轮毂</td>
+                    <td class="cat-子件">子件</td>
+                    <td>线切割</td>
+                    <td class="wait-low">6天</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>C01216011</td>
+                    <td>中间级行星轮</td>
+                    <td class="cat-齿轮箱-普通">齿轮箱-普通</td>
+                    <td>清理喷丸</td>
+                    <td class="wait-low">6天</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>XY06109</td>
+                    <td>初级行星轮</td>
+                    <td class="cat-齿轮箱-普通">齿轮箱-普通</td>
+                    <td>清理喷丸</td>
+                    <td class="wait-low">6天</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>C01300478</td>
+                    <td>齿轮</td>
+                    <td class="cat-高精高速">高精高速</td>
+                    <td>线切割</td>
+                    <td class="wait-low">5天</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>CC091723</td>
+                    <td>齿轮</td>
+                    <td class="cat-散单">散单</td>
+                    <td>钳</td>
+                    <td class="wait-low">3天</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>C01300358</td>
+                    <td>主齿轮</td>
+                    <td class="cat-子件">子件</td>
+                    <td>氮化</td>
+                    <td class="wait-low">3天</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>C01390026</td>
+                    <td>JSG齿轮</td>
+                    <td class="cat-散单">散单</td>
+                    <td>精车</td>
+                    <td class="wait-low">3天</td>
+                    <td>46</td>
+                </tr>
+                <tr>
+                    <td>C01300218</td>
+                    <td>主齿轮</td>
+                    <td class="cat-子件">子件</td>
+                    <td>氮化</td>
+                    <td class="wait-low">2天</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>CC090193</td>
+                    <td>齿轮</td>
+                    <td class="cat-散单">散单</td>
+                    <td>精车</td>
+                    <td class="wait-low">2天</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>CC090194</td>
+                    <td>齿轮</td>
+                    <td class="cat-散单">散单</td>
+                    <td>加工中心</td>
+                    <td class="wait-low">2天</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>C01300225</td>
+                    <td>大齿轮组件</td>
+                    <td class="cat-高精高速">高精高速</td>
+                    <td>装配</td>
+                    <td class="wait-low">2天</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>CC093028</td>
+                    <td>一级行星轮</td>
+                    <td class="cat-风电">风电</td>
+                    <td>精车</td>
+                    <td class="wait-low">2天</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>C01320039</td>
+                    <td>7XJ大轮组件240-加强版</td>
+                    <td class="cat-风电">风电</td>
+                    <td>装配</td>
+                    <td class="wait-low">1天</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>C01226005</td>
+                    <td>TC-13K三级行星轮</td>
+                    <td class="cat-风电">风电</td>
+                    <td>磨齿</td>
+                    <td class="wait-low">1天</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>CC093218</td>
+                    <td>ENG24++二级行星轮</td>
+                    <td class="cat-风电">风电</td>
+                    <td>磨齿</td>
+                    <td class="wait-low">0天</td>
+                    <td>15</td>
+                </tr>
+                <tr>
+                    <td>CC093028</td>
+                    <td>一级行星轮</td>
+                    <td class="cat-风电">风电</td>
+                    <td>磨齿</td>
+                    <td class="wait-low">0天</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>CC093028</td>
+                    <td>一级行星轮</td>
+                    <td class="cat-风电">风电</td>
+                    <td>磨齿</td>
+                    <td class="wait-low">0天</td>
+                    <td>23</td>
+                </tr>
+                <tr>
+                    <td>C01216030</td>
+                    <td>YE二级行星轮-加宽</td>
+                    <td class="cat-风电">风电</td>
+                    <td>磨齿</td>
+                    <td class="wait-low">0天</td>
+                    <td>44</td>
+                </tr>
+                <tr>
+                    <td>C01226002</td>
+                    <td>10X-TB-BOOST三级行星轮</td>
+                    <td class="cat-风电">风电</td>
+                    <td>磨齿</td>
+                    <td class="wait-low">0天</td>
+                    <td>35</td>
+                </tr>
+                <tr>
+                    <td>C01226005</td>
+                    <td>TC-13K三级行星轮</td>
+                    <td class="cat-风电">风电</td>
+                    <td>磨齿</td>
+                    <td class="wait-low">0天</td>
+                    <td>27</td>
                 </tr></tbody>
             </table>
             </div>
@@ -986,34 +970,26 @@
             <div class="detail-header">
                 <span class="rank-badge" style="background:#bdc3c7">4</span>
                 <strong class="detail-title">加工中心</strong>
-                <span class="detail-score">瓶颈评分 270.2</span>
+                <span class="detail-score">瓶颈评分 248.7</span>
             </div>
             <div class="detail-stats">
-                <span class="stat"><b>22</b> 批次等待</span>
-                <span class="stat">平均等待 <b>6.4</b> 天</span>
-                <span class="stat">最长 <b>31</b> 天</span>
-                <span class="stat">当前在加工 <b>20</b> 款</span>
+                <span class="stat"><b>21</b> 批次等待</span>
+                <span class="stat">平均等待 <b>6.2</b> 天</span>
+                <span class="stat">最长 <b>20</b> 天</span>
+                <span class="stat">当前在加工 <b>17</b> 款</span>
             </div>
             <div class="detail-from">上道工序来源：精车(10款)、滚齿(3款)、研磨(2款)、线切割(2款)、外圆磨2(2款)</div>
-            <div class="device-block"><div class="device-title">设备负荷分布 · 瓶颈设备：<b>X03</b></div><table class="device-table"><thead><tr><th>设备</th><th>待加工件数</th></tr></thead><tbody><tr class="dev-nm"><td>未指派</td><td>49</td></tr><tr class="dev-bk"><td>X03</td><td>11</td></tr><tr class=""><td>X04</td><td>8</td></tr><tr class=""><td>X01</td><td>6</td></tr><tr class=""><td>X08</td><td>6</td></tr></tbody></table><div class="device-note">设备映射来源：非远景产品加工任务汇总_V1102（工序任务分解目录；用户未重发前固定此版）；本工序待加工件数按设备汇总</div></div>
+            <div class="device-block"><div class="device-title">设备负荷分布 · 瓶颈设备：<b>X03</b></div><table class="device-table"><thead><tr><th>设备</th><th>待加工件数</th></tr></thead><tbody><tr class="dev-nm"><td>未指派</td><td>49</td></tr><tr class="dev-bk"><td>X03</td><td>10</td></tr><tr class=""><td>X04</td><td>8</td></tr><tr class=""><td>X01</td><td>6</td></tr><tr class=""><td>X08</td><td>6</td></tr></tbody></table><div class="device-note">设备映射来源：非远景产品加工任务汇总_V1102（工序任务分解目录；用户未重发前固定此版）；本工序待加工件数按设备汇总</div></div>
             <div class="detail-table-wrap">
             <table class="detail-table">
                 <thead><tr><th>存货编码</th><th>存货名称</th><th>产品分类</th><th>当前工序</th><th>等待天数</th><th>在制件数</th></tr></thead>
                 <tbody>
                 <tr>
-                    <td>C07000139</td>
-                    <td>输入轴</td>
-                    <td class="cat-子件">子件</td>
-                    <td>外圆磨</td>
-                    <td class="wait-high">31天</td>
-                    <td>1</td>
-                </tr>
-                <tr>
                     <td>CC092860</td>
                     <td>齿轮</td>
                     <td class="cat-散单">散单</td>
                     <td>滚齿</td>
-                    <td class="wait-high">19天</td>
+                    <td class="wait-high">20天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -1021,7 +997,7 @@
                     <td>中间齿轮</td>
                     <td class="cat-齿轮箱-普通">齿轮箱-普通</td>
                     <td>精车</td>
-                    <td class="wait-high">16天</td>
+                    <td class="wait-high">17天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -1029,7 +1005,7 @@
                     <td>输出齿轮轴</td>
                     <td class="cat-齿轮箱-普通">齿轮箱-普通</td>
                     <td>精车</td>
-                    <td class="wait-high">16天</td>
+                    <td class="wait-high">17天</td>
                     <td>5</td>
                 </tr>
                 <tr>
@@ -1037,7 +1013,7 @@
                     <td>齿轮</td>
                     <td class="cat-散单">散单</td>
                     <td>滚齿</td>
-                    <td class="wait-mid">14天</td>
+                    <td class="wait-high">15天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -1045,7 +1021,7 @@
                     <td>输入轴</td>
                     <td class="cat-子件">子件</td>
                     <td>研磨</td>
-                    <td class="wait-low">6天</td>
+                    <td class="wait-mid">7天</td>
                     <td>1</td>
                 </tr>
                 <tr>
@@ -1053,7 +1029,7 @@
                     <td>6X＿205高速轴</td>
                     <td class="cat-风电">风电</td>
                     <td>精车2</td>
-                    <td class="wait-low">6天</td>
+                    <td class="wait-mid">7天</td>
                     <td>11</td>
                 </tr>
                 <tr>
@@ -1061,7 +1037,7 @@
                     <td>轴</td>
                     <td class="cat-子件">子件</td>
                     <td>研磨</td>
-                    <td class="wait-low">5天</td>
+                    <td class="wait-low">6天</td>
                     <td>2</td>
                 </tr>
                 <tr>
@@ -1069,7 +1045,7 @@
                     <td>低速齿轮轴</td>
                     <td class="cat-子件">子件</td>
                     <td>外圆磨2</td>
-                    <td class="wait-low">5天</td>
+                    <td class="wait-low">6天</td>
                     <td>2</td>
                 </tr>
                 <tr>
@@ -1077,7 +1053,7 @@
                     <td>ENG24++花键轴-斜花键</td>
                     <td class="cat-子件">子件</td>
                     <td>精车</td>
-                    <td class="wait-low">5天</td>
+                    <td class="wait-low">6天</td>
                     <td>16</td>
                 </tr>
                 <tr>
@@ -1085,7 +1061,7 @@
                     <td>高速齿轮轴</td>
                     <td class="cat-子件">子件</td>
                     <td>外圆磨2</td>
-                    <td class="wait-low">4天</td>
+                    <td class="wait-low">5天</td>
                     <td>2</td>
                 </tr>
                 <tr>
@@ -1093,7 +1069,7 @@
                     <td>1G16S一级齿圈</td>
                     <td class="cat-风电">风电</td>
                     <td>精车</td>
-                    <td class="wait-low">3天</td>
+                    <td class="wait-low">4天</td>
                     <td>1</td>
                 </tr>
                 <tr>
@@ -1101,7 +1077,7 @@
                     <td>齿轮轴</td>
                     <td class="cat-高精高速">高精高速</td>
                     <td>磨齿</td>
-                    <td class="wait-low">2天</td>
+                    <td class="wait-low">3天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -1109,7 +1085,7 @@
                     <td>EN55+斜花键轴</td>
                     <td class="cat-子件">子件</td>
                     <td>精车</td>
-                    <td class="wait-low">2天</td>
+                    <td class="wait-low">3天</td>
                     <td>2</td>
                 </tr>
                 <tr>
@@ -1117,7 +1093,7 @@
                     <td>TC5 花键轴</td>
                     <td class="cat-子件">子件</td>
                     <td>精车</td>
-                    <td class="wait-low">2天</td>
+                    <td class="wait-low">3天</td>
                     <td>6</td>
                 </tr>
                 <tr>
@@ -1125,7 +1101,7 @@
                     <td>花键轴</td>
                     <td class="cat-散单">散单</td>
                     <td>精车</td>
-                    <td class="wait-low">1天</td>
+                    <td class="wait-low">2天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -1133,7 +1109,7 @@
                     <td>花键轴</td>
                     <td class="cat-散单">散单</td>
                     <td>精车</td>
-                    <td class="wait-low">1天</td>
+                    <td class="wait-low">2天</td>
                     <td>2</td>
                 </tr>
                 <tr>
@@ -1141,7 +1117,7 @@
                     <td>右旋大齿轮</td>
                     <td class="cat-油气">油气</td>
                     <td>线切割</td>
-                    <td class="wait-low">1天</td>
+                    <td class="wait-low">2天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -1149,7 +1125,7 @@
                     <td>左旋大齿轮</td>
                     <td class="cat-油气">油气</td>
                     <td>线切割</td>
-                    <td class="wait-low">1天</td>
+                    <td class="wait-low">2天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -1157,7 +1133,7 @@
                     <td>YE一级齿圈EV5-开齿调质</td>
                     <td class="cat-风电">风电</td>
                     <td>精车</td>
-                    <td class="wait-low">1天</td>
+                    <td class="wait-low">2天</td>
                     <td>4</td>
                 </tr>
                 <tr>
@@ -1165,7 +1141,7 @@
                     <td>齿轮</td>
                     <td class="cat-散单">散单</td>
                     <td>精车</td>
-                    <td class="wait-low">0天</td>
+                    <td class="wait-low">1天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -1173,27 +1149,27 @@
                     <td>偏置油缸齿轮</td>
                     <td class="cat-子件">子件</td>
                     <td>滚齿</td>
-                    <td class="wait-low">0天</td>
+                    <td class="wait-low">1天</td>
                     <td>1</td>
                 </tr></tbody>
             </table>
             </div>
-            <div class="detail-count">共 22 条明细</div>
+            <div class="detail-count">共 21 条明细</div>
         </div>
         <div class="detail-card rank-other">
             <div class="detail-header">
                 <span class="rank-badge" style="background:#bdc3c7">5</span>
                 <strong class="detail-title">清理喷丸</strong>
-                <span class="detail-score">瓶颈评分 233.6</span>
+                <span class="detail-score">瓶颈评分 244.8</span>
             </div>
             <div class="detail-stats">
-                <span class="stat"><b>21</b> 批次等待</span>
-                <span class="stat">平均等待 <b>4.2</b> 天</span>
-                <span class="stat">最长 <b>11</b> 天</span>
+                <span class="stat"><b>22</b> 批次等待</span>
+                <span class="stat">平均等待 <b>4.3</b> 天</span>
+                <span class="stat">最长 <b>12</b> 天</span>
                 <span class="stat">当前在加工 <b>27</b> 款</span>
             </div>
-            <div class="detail-from">上道工序来源：渗碳淬火(21款)</div>
-            <div class="device-block"><div class="device-title">设备负荷分布 · 无自有设备（委外/未指派为主）</div><table class="device-table"><thead><tr><th>设备</th><th>待加工件数</th></tr></thead><tbody><tr class="dev-nm"><td>未指派</td><td>233</td></tr></tbody></table><div class="device-note">设备映射来源：非远景产品加工任务汇总_V1102（工序任务分解目录；用户未重发前固定此版）；本工序待加工件数按设备汇总</div></div>
+            <div class="detail-from">上道工序来源：渗碳淬火(22款)</div>
+            <div class="device-block"><div class="device-title">设备负荷分布 · 无自有设备（委外/未指派为主）</div><table class="device-table"><thead><tr><th>设备</th><th>待加工件数</th></tr></thead><tbody><tr class="dev-nm"><td>未指派</td><td>235</td></tr></tbody></table><div class="device-note">设备映射来源：非远景产品加工任务汇总_V1102（工序任务分解目录；用户未重发前固定此版）；本工序待加工件数按设备汇总</div></div>
             <div class="detail-table-wrap">
             <table class="detail-table">
                 <thead><tr><th>存货编码</th><th>存货名称</th><th>产品分类</th><th>当前工序</th><th>等待天数</th><th>在制件数</th></tr></thead>
@@ -1203,7 +1179,7 @@
                     <td>薄齿圈</td>
                     <td class="cat-子件">子件</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-mid">11天</td>
+                    <td class="wait-mid">12天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -1211,31 +1187,15 @@
                     <td>厚齿圈</td>
                     <td class="cat-子件">子件</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-mid">11天</td>
+                    <td class="wait-mid">12天</td>
                     <td>3</td>
-                </tr>
-                <tr>
-                    <td>C01246053</td>
-                    <td>TD内花键一级太阳轮-new</td>
-                    <td class="cat-风电">风电</td>
-                    <td>渗碳淬火</td>
-                    <td class="wait-mid">10天</td>
-                    <td>2</td>
-                </tr>
-                <tr>
-                    <td>C01300066</td>
-                    <td>TB-BOOST高速大轮210</td>
-                    <td class="cat-子件">子件</td>
-                    <td>渗碳淬火</td>
-                    <td class="wait-low">6天</td>
-                    <td>1</td>
                 </tr>
                 <tr>
                     <td>C01176065</td>
                     <td>低速大齿轮</td>
                     <td class="cat-子件">子件</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-low">5天</td>
+                    <td class="wait-low">6天</td>
                     <td>1</td>
                 </tr>
                 <tr>
@@ -1243,7 +1203,7 @@
                     <td>主动同步齿轮</td>
                     <td class="cat-高精高速">高精高速</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-low">4天</td>
+                    <td class="wait-low">5天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -1251,7 +1211,7 @@
                     <td>ENG24++二级行星轮</td>
                     <td class="cat-风电">风电</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-low">4天</td>
+                    <td class="wait-low">5天</td>
                     <td>6</td>
                 </tr>
                 <tr>
@@ -1259,7 +1219,7 @@
                     <td>TA narrow二级太阳轮内花键</td>
                     <td class="cat-风电">风电</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-low">4天</td>
+                    <td class="wait-low">5天</td>
                     <td>16</td>
                 </tr>
                 <tr>
@@ -1267,7 +1227,7 @@
                     <td>10X-TB-BOOST三级行星轮</td>
                     <td class="cat-风电">风电</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-low">4天</td>
+                    <td class="wait-low">5天</td>
                     <td>55</td>
                 </tr>
                 <tr>
@@ -1275,7 +1235,7 @@
                     <td>TC内花键一级太阳轮-new</td>
                     <td class="cat-风电">风电</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-low">4天</td>
+                    <td class="wait-low">5天</td>
                     <td>3</td>
                 </tr>
                 <tr>
@@ -1283,7 +1243,7 @@
                     <td>TC-13K三级行星轮</td>
                     <td class="cat-风电">风电</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-low">4天</td>
+                    <td class="wait-low">5天</td>
                     <td>9</td>
                 </tr>
                 <tr>
@@ -1291,7 +1251,7 @@
                     <td>ENG24++二级行星轮</td>
                     <td class="cat-风电">风电</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-low">3天</td>
+                    <td class="wait-low">4天</td>
                     <td>32</td>
                 </tr>
                 <tr>
@@ -1299,7 +1259,7 @@
                     <td>二级太阳轮</td>
                     <td class="cat-风电">风电</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-low">3天</td>
+                    <td class="wait-low">4天</td>
                     <td>5</td>
                 </tr>
                 <tr>
@@ -1307,7 +1267,7 @@
                     <td>二级太阳轮</td>
                     <td class="cat-风电">风电</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-low">3天</td>
+                    <td class="wait-low">4天</td>
                     <td>26</td>
                 </tr>
                 <tr>
@@ -1315,7 +1275,7 @@
                     <td>7XJ高速大轮240-加强版</td>
                     <td class="cat-子件">子件</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-low">3天</td>
+                    <td class="wait-low">4天</td>
                     <td>12</td>
                 </tr>
                 <tr>
@@ -1323,7 +1283,7 @@
                     <td>TA narrow二级太阳轮内花键</td>
                     <td class="cat-风电">风电</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-low">3天</td>
+                    <td class="wait-low">4天</td>
                     <td>8</td>
                 </tr>
                 <tr>
@@ -1331,7 +1291,7 @@
                     <td>高速轴</td>
                     <td class="cat-风电">风电</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-low">2天</td>
+                    <td class="wait-low">3天</td>
                     <td>17</td>
                 </tr>
                 <tr>
@@ -1339,7 +1299,7 @@
                     <td>高速齿轮轴</td>
                     <td class="cat-高精高速">高精高速</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-low">1天</td>
+                    <td class="wait-low">2天</td>
                     <td>1</td>
                 </tr>
                 <tr>
@@ -1347,7 +1307,7 @@
                     <td>低速齿轮轴</td>
                     <td class="cat-子件">子件</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-low">1天</td>
+                    <td class="wait-low">2天</td>
                     <td>2</td>
                 </tr>
                 <tr>
@@ -1355,7 +1315,7 @@
                     <td>高速齿轮轴</td>
                     <td class="cat-子件">子件</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-low">1天</td>
+                    <td class="wait-low">2天</td>
                     <td>2</td>
                 </tr>
                 <tr>
@@ -1363,12 +1323,36 @@
                     <td>TC-13K二级行星轮</td>
                     <td class="cat-风电">风电</td>
                     <td>渗碳淬火</td>
-                    <td class="wait-low">1天</td>
+                    <td class="wait-low">2天</td>
                     <td>26</td>
+                </tr>
+                <tr>
+                    <td>C01300066</td>
+                    <td>TB-BOOST高速大轮210</td>
+                    <td class="cat-子件">子件</td>
+                    <td>渗碳淬火</td>
+                    <td class="wait-low">1天</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>C01300066</td>
+                    <td>TB-BOOST高速大轮210</td>
+                    <td class="cat-子件">子件</td>
+                    <td>渗碳淬火</td>
+                    <td class="wait-low">1天</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>C01246053</td>
+                    <td>TD内花键一级太阳轮-new</td>
+                    <td class="cat-风电">风电</td>
+                    <td>渗碳淬火</td>
+                    <td class="wait-low">1天</td>
+                    <td>2</td>
                 </tr></tbody>
             </table>
             </div>
-            <div class="detail-count">共 21 条明细</div>
+            <div class="detail-count">共 22 条明细</div>
         </div>
     </div>
     <div class="section">
@@ -1386,7 +1370,7 @@
             <td>检测</td>
             <td>自制-完工</td>
             <td class="proc-name">氮化</td>
-            <td class="wait-high">55</td>
+            <td class="wait-high">56</td>
             <td>1</td>
         </tr>
         <tr>
@@ -1396,7 +1380,7 @@
             <td>立磨</td>
             <td>自制-完工</td>
             <td class="proc-name">磨齿</td>
-            <td class="wait-high">54</td>
+            <td class="wait-high">55</td>
             <td>1</td>
         </tr>
         <tr>
@@ -1406,7 +1390,7 @@
             <td>立磨</td>
             <td>自制-完工</td>
             <td class="proc-name">超声波探伤2</td>
-            <td class="wait-high">53</td>
+            <td class="wait-high">54</td>
             <td>1</td>
         </tr>
         <tr>
@@ -1416,7 +1400,7 @@
             <td>磨齿</td>
             <td>自制-完工</td>
             <td class="proc-name">氮化</td>
-            <td class="wait-high">52</td>
+            <td class="wait-high">53</td>
             <td>5</td>
         </tr>
         <tr>
@@ -1426,7 +1410,7 @@
             <td>外圆磨</td>
             <td>自制-完工</td>
             <td class="proc-name">研磨</td>
-            <td class="wait-high">47</td>
+            <td class="wait-high">48</td>
             <td>1</td>
         </tr>
         <tr>
@@ -1436,17 +1420,7 @@
             <td>检测</td>
             <td>自制-完工</td>
             <td class="proc-name">磨齿</td>
-            <td class="wait-high">41</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>C07000139</td>
-            <td>输入轴</td>
-            <td class="cat-子件">子件</td>
-            <td>外圆磨</td>
-            <td>自制-完工</td>
-            <td class="proc-name">加工中心</td>
-            <td class="wait-high">31</td>
+            <td class="wait-high">42</td>
             <td>1</td>
         </tr>
         <tr>
@@ -1456,7 +1430,7 @@
             <td>研磨</td>
             <td>自制-完工</td>
             <td class="proc-name">外圆磨2</td>
-            <td class="wait-high">27</td>
+            <td class="wait-high">28</td>
             <td>4</td>
         </tr>
         <tr>
@@ -1466,7 +1440,7 @@
             <td>摇臂钻</td>
             <td>自制-完工</td>
             <td class="proc-name">滚齿</td>
-            <td class="wait-high">27</td>
+            <td class="wait-high">28</td>
             <td>1</td>
         </tr>
         <tr>
@@ -1476,7 +1450,7 @@
             <td>滚齿</td>
             <td>自制-开工</td>
             <td class="proc-name">倒角</td>
-            <td class="wait-high">27</td>
+            <td class="wait-high">28</td>
             <td>1</td>
         </tr>
         <tr>
@@ -1486,7 +1460,7 @@
             <td>氮化</td>
             <td>自制-完工</td>
             <td class="proc-name">外圆磨</td>
-            <td class="wait-high">26</td>
+            <td class="wait-high">27</td>
             <td>2</td>
         </tr>
         <tr>
@@ -1496,7 +1470,7 @@
             <td>氮化</td>
             <td>自制-完工</td>
             <td class="proc-name">外圆磨</td>
-            <td class="wait-high">26</td>
+            <td class="wait-high">27</td>
             <td>2</td>
         </tr>
         <tr>
@@ -1506,7 +1480,7 @@
             <td>齿检仪检测</td>
             <td>自制-完工</td>
             <td class="proc-name">外圆磨</td>
-            <td class="wait-high">24</td>
+            <td class="wait-high">25</td>
             <td>2</td>
         </tr>
         <tr>
@@ -1516,7 +1490,7 @@
             <td>半精车</td>
             <td>委外-完工</td>
             <td class="proc-name">超声波探伤</td>
-            <td class="wait-high">23</td>
+            <td class="wait-high">24</td>
             <td>2</td>
         </tr>
         <tr>
@@ -1526,8 +1500,18 @@
             <td>线切割</td>
             <td>委外-完工</td>
             <td class="proc-name">精车</td>
-            <td class="wait-high">22</td>
+            <td class="wait-high">23</td>
             <td>1</td>
+        </tr>
+        <tr>
+            <td>C01300262</td>
+            <td>7XJ高速大轮240-加强版</td>
+            <td class="cat-子件">子件</td>
+            <td>清理喷丸</td>
+            <td>自制-完工</td>
+            <td class="proc-name">精车</td>
+            <td class="wait-high">21</td>
+            <td>2</td>
         </tr>
         <tr>
             <td>C01216008</td>
@@ -1536,7 +1520,7 @@
             <td>磨齿</td>
             <td>自制-完工</td>
             <td class="proc-name">立磨</td>
-            <td class="wait-high">20</td>
+            <td class="wait-high">21</td>
             <td>1</td>
         </tr>
         <tr>
@@ -1546,7 +1530,7 @@
             <td>加工中心</td>
             <td>自制-完工</td>
             <td class="proc-name">立磨</td>
-            <td class="wait-high">19</td>
+            <td class="wait-high">20</td>
             <td>3</td>
         </tr>
         <tr>
@@ -1556,7 +1540,7 @@
             <td>滚齿</td>
             <td>自制-完工</td>
             <td class="proc-name">加工中心</td>
-            <td class="wait-high">19</td>
+            <td class="wait-high">20</td>
             <td>3</td>
         </tr>
         <tr>
@@ -1566,7 +1550,7 @@
             <td>加工中心</td>
             <td>自制-完工</td>
             <td class="proc-name">立磨</td>
-            <td class="wait-high">18</td>
+            <td class="wait-high">19</td>
             <td>3</td>
         </tr>
         <tr>
@@ -1576,7 +1560,7 @@
             <td>精车</td>
             <td>自制-完工</td>
             <td class="proc-name">磨齿</td>
-            <td class="wait-high">18</td>
+            <td class="wait-high">19</td>
             <td>2</td>
         </tr>
         <tr>
@@ -1586,7 +1570,7 @@
             <td>调质</td>
             <td>自制-完工</td>
             <td class="proc-name">精车</td>
-            <td class="wait-high">17</td>
+            <td class="wait-high">18</td>
             <td>2</td>
         </tr>
         <tr>
@@ -1596,7 +1580,7 @@
             <td>精车</td>
             <td>自制-完工</td>
             <td class="proc-name">磨齿</td>
-            <td class="wait-high">17</td>
+            <td class="wait-high">18</td>
             <td>1</td>
         </tr>
         <tr>
@@ -1606,7 +1590,7 @@
             <td>调质</td>
             <td>自制-完工</td>
             <td class="proc-name">精车</td>
-            <td class="wait-high">17</td>
+            <td class="wait-high">18</td>
             <td>7</td>
         </tr>
         <tr>
@@ -1616,7 +1600,7 @@
             <td>锻造</td>
             <td>委外-开工</td>
             <td class="proc-name">正火</td>
-            <td class="wait-high">16</td>
+            <td class="wait-high">17</td>
             <td>4</td>
         </tr>
         <tr>
@@ -1626,7 +1610,7 @@
             <td>齿检仪检测</td>
             <td>自制-完工</td>
             <td class="proc-name">磁粉探伤</td>
-            <td class="wait-high">16</td>
+            <td class="wait-high">17</td>
             <td>1</td>
         </tr>
         <tr>
@@ -1636,7 +1620,7 @@
             <td>精车</td>
             <td>自制-完工</td>
             <td class="proc-name">外圆磨</td>
-            <td class="wait-high">16</td>
+            <td class="wait-high">17</td>
             <td>1</td>
         </tr>
         <tr>
@@ -1646,7 +1630,7 @@
             <td>粗车</td>
             <td>自制-完工</td>
             <td class="proc-name">外圆磨</td>
-            <td class="wait-high">16</td>
+            <td class="wait-high">17</td>
             <td>1</td>
         </tr>
         <tr>
@@ -1656,7 +1640,7 @@
             <td>精车</td>
             <td>委外-开工</td>
             <td class="proc-name">加工中心</td>
-            <td class="wait-high">16</td>
+            <td class="wait-high">17</td>
             <td>3</td>
         </tr>
         <tr>
@@ -1666,7 +1650,7 @@
             <td>精车</td>
             <td>委外-开工</td>
             <td class="proc-name">加工中心</td>
-            <td class="wait-high">16</td>
+            <td class="wait-high">17</td>
             <td>5</td>
         </tr>
         <tr>
@@ -1676,7 +1660,7 @@
             <td>调质</td>
             <td>委外-完工</td>
             <td class="proc-name">精车</td>
-            <td class="wait-high">15</td>
+            <td class="wait-high">16</td>
             <td>5</td>
         </tr></tbody>
         </table>
